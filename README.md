@@ -2,10 +2,10 @@
 An IDE specifically made to edit Minecraft Bedrock Edition addon files. Originally made by Hanprogramer. Now maintained by the CoreCoder team.
 
 ## How to collaborate
-*Download and install Node.js
-*Install Electronjs via npm
-*Git clone this repo
-*Execute command npm install
+1. Download and install Node.js
+2. Install Electronjs via npm
+3. Git clone this repo
+4. Execute command npm install
 
 ## How to build
 -
