@@ -250,6 +250,7 @@
 							if(!(ev.pageX > bound.left && ev.pageX < bound.right && ev.pageY > bound.top && ev.pageY < bound.bottom)){
 								document.querySelectorAll(".a-color-picker").forEach( el => {el.parentNode.removeChild(el)});
 							}
+							saveSettings();
 						}
 						function isUpperCase(char){
 							if(char.toUpperCase() == char)

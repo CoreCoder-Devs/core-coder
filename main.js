@@ -1,7 +1,4 @@
 const Electron = require('electron');
-// nw.Window.open('src/project_manager.html', {}, function(win) {});
-// //nw.Window.open('src/content/tabs-demo.html', {}, function(win) {});
-
 
 Electron.app.whenReady().then(()=>{
     var win = new Electron.BrowserWindow({

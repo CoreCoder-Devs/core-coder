@@ -14,7 +14,7 @@ function rgb(r, g, b) {
 function initGlobalTheme(){
     // Inject the theme colors to the current css
     Object.keys(GlobalSettings["theme"]).forEach(key => {
-        root.style.setProperty('--' + key, GlobalSettings["theme"][key]);
+        document.documentElement.style.setProperty('--' + key, GlobalSettings["theme"][key]);
     });
 }
 const white = rgb(255,255,255);
@@ -47,11 +47,18 @@ function saveSettings(){
 }
 function loadSettings(){
     var result = GlobalSettings;
-    try{
-        GlobalSettings = JSON.parse(_fs.readFileSync(settingsPath));
-    }catch(e){
-        console.log(e);
+    if(_fs.existsSync(settingsPath)){
+        try{
+            result = JSON.parse(_fs.readFileSync(settingsPath));
+        }catch(e){
+            console.log(e);
+        }
+    }else{
+        saveSettings();
     }
 
     GlobalSettings = result;
+    initGlobalTheme();
 }
+
+loadSettings();
