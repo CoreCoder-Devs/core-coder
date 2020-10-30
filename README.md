@@ -5,3 +5,7 @@ An IDE specifically made to edit Minecraft Bedrock Edition addon files. Original
 *Download and install Node.js
 *Install Electronjs via npm
 *Git clone this repo
+*Execute command npm install
+
+## How to build
+-
