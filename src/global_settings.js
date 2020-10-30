@@ -1,3 +1,4 @@
+// Global settings which will be used in all files
 const _fs = require("fs");
 
 function componentToHex(c) {
@@ -40,14 +41,14 @@ GlobalSettings = {
 }
 
 
-var path = "C:\\CoreCoder\\settings.json";
+var settingsPath = "C:\\CoreCoder\\settings.json";
 function saveSettings(){
-    _fs.writeFileSync(path, JSON.stringify(GlobalSettings));
+    _fs.writeFileSync(settingsPath, JSON.stringify(GlobalSettings));
 }
 function loadSettings(){
     var result = GlobalSettings;
     try{
-        GlobalSettings = JSON.parse(_fs.readFileSync(path));
+        GlobalSettings = JSON.parse(_fs.readFileSync(settingsPath));
     }catch(e){
         console.log(e);
     }
