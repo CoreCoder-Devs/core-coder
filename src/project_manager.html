@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Core Coder</title>
+		<link rel="stylesheet" href="styles/core-dark.css"/>
+		<link rel="stylesheet" href="styles/scrollbar-dark.css"/>
+		<link rel="stylesheet" href="styles/project-manager.css"/>
+		<link rel="stylesheet" href="styles/controls.css"/>
+		<link href="content/lib/css/chrome-tabs.css" rel="stylesheet">
+		<link href="content/lib/css/chrome-tabs-dark-theme.css" rel="stylesheet">
+		<style>
+			.fillEntire{
+				position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+			}
+		</style>
+	</head>
+	<body style="margin: 0;" class="fillEntire">
+		<!--COMP#DISABLE-->
+		<script src="content/util/Preferences.js"></script>
+		<script src="project-manager.js"></script>
+		<script src="content/util.js"></script>
+		<script src="global_settings.js"></script>
+		<!--COMP#DISABLE-->
+
+		<!--COMP#ENABLE-->
+		<!--<script>nw.Window.get().evalNWBin(null, 'runtime\\content\\util\\Preferences.bin');
+		<!--		nw.Window.get().evalNWBin(null, 'runtime\\project-manager.bin');
+		<!--		nw.Window.get().evalNWBin(null, 'runtime\\content\\util.bin');</script>
+		<!--COMP#ENABLE-->
+		
+		<div w3-include-html="project-manager-dialogs.html"></div>
+		<div style="display: flex; flex-wrap: nowrap; flex-direction: row; width: 100%; height: 100%; background-color: rgb(15, 15, 15);">
+			<!-- <div class="tabbar">
+				<div id="projectTabs" class="chrome-tabs" style="--tab-content-margin: 9px;  margin: 0">
+					<div class="chrome-tabs-content">
+					</div>
+				</div>
+				<script>
+					// Initialize the tabs system
+					const ChromeTabs = require("chrome-tabs");
+					var el = document.getElementById("projectTabs");
+					projectTabs = new ChromeTabs();
+					document.documentElement.classList.add('dark-theme');
+					el.classList.add('chrome-tabs-dark-theme');
+					projectTabs.init(el);
+					projectTabs.addTab({
+					    title: 'Home',
+					    favicon: false,
+					    noclose: true
+					});
+					projectTabs.activeTabEl.id = "page1";
+					projectTabs.addTab({
+					    title: 'Settings',
+					    favicon: false,
+					    noclose: true
+					});
+					projectTabs.activeTabEl.id = "page2";
+					// projectTabs.addTab({
+					//     title: 'Plugins',
+					//     favicon: false,
+					//     noclose: true
+					// });
+					// projectTabs.activeTabEl.id = "page3";
+					projectTabs.setCurrentTab(projectTabs.tabEls[0]);
+
+					preferences = {
+						"commojangdir" : ""
+					}
+				</script>
+			</div> -->
+			<div class="sidebar">
+				<!-- The navigation icons -->
+				<div id="btnhome"     class="selected mainminibutton" style="-webkit-mask-box-image: url(content/images/027-real-estate.png)" onclick="openPage('page1', this)"></div>
+				<div id="btnhome-tootlip"><div class="tooltip" >Home</div></div>
+				<div id="btnsettings" class="mainminibutton"          style="-webkit-mask-box-image: url(content/images/011-adjust.png)" onclick="openPage('page2', this)"></div>
+				<div id="btnsettings-tootlip"><div class="tooltip" >Settings</div></div>
+			</div>
+			<div style="flex-grow: 1">
+				<div id="page1content" style="overflow-y:hidden; position: absolute; bottom: 0; top: 0px; left: 46px; right: 0">
+					<div style="width: 100%; height: 100%; display: flex; overflow-y: hidden; flex-direction:column">
+						<div class=toolbar>
+							<a style="flex-grow: 1">Projects</a>
+							<img class="minibutton" src="content/images/menu.png" onclick="setLayoutMode(0);"/>
+							<img class="minibutton" src="content/images/grid.png" onclick="setLayoutMode(1)"/>
+							<img class="minibutton" src="content/images/006-add-plus-button.png" onclick="openCreateDlg()"/>
+						</div>
+						<div class="main_proj_list_container" style="overflow-y:scroll; position: absolute; left: 0; top: 43px; right: 0; bottom: 0">
+							<div style="position: absolute; left: 10%; top: 4px;">
+								<div id="proj_container" style="display: flex; flex-wrap:wrap; width: 100%;">
+									<!-- Projects content is generated -->
+								</div>
+							</div>
+						</div>
+						<!-- <div id="pageView" style="background-color: rgb(31, 31, 31); flex-grow: 1">
+							<div id="pageFailed" style="width: 100%; height: 100%; ">
+								<div style="
+									position: absolute;
+									left: 256px; top: 0; bottom: 0; right: 0;">
+									<div style="
+										margin: 0;
+										position: absolute;
+										top: 50%;
+										left: 50%;-webkit-user-select: none;
+										-webkit-user-drag: none;
+										-webkit-app-region: no-drag;
+										-ms-transform: translate(-50%, -50%);
+										transform: translate(-50%, -50%);
+										"><img src="resources/icon_grayscale.png" style="width: 90px; height: 90px;
+										"></div>
+									</p>
+								</div>
+							</div>
+							<s!-- <script>
+								var e = document.createElement('embed');
+								e.src = "https://mcpecore.com/p/CoreCoder";
+								e.style.width = "100%";
+								e.style.height = "100%";
+								// e.type = "image/svg+xml";
+								
+								document.getElementById("pageView").appendChild(e);
+								e.addEventListener('load', function()
+								{
+								    document.getElementById("pageFailed").style.display = "none";
+								});
+							</script> -s->
+						</div> -->
+					</div>
+				</div>
+				<div id="page2content" style="width: 100%; height: 100%; display: none">
+					<div class="tab">
+						<button class="tablinks" onclick="openPanel(event, 'General')" id="general">General</button>
+						<button class="tablinks" onclick="openPanel(event, 'Customization')">Customization</button>
+						<button class="tablinks" onclick="openPanel(event, 'Editor')">Editor</button>
+					</div>
+					<div id="General" class="tabcontent">
+                        <h3>General Settings</h3>
+                        <div class="settingsitem">
+                            <!-- <a class="text">com.mojang directory
+								<span id="commojangdirvalue">C:\Users\Hanprog\com.mojang</span>
+								<input id="input1" type="file"/>
+                            </a>
+							<button onclick="openFolderSelect1()">Browse</button>
+							<script>
+								input = document.getElementById("input1");
+								label1= document.getElementById("commojangdirvalue");
+								function openFolderSelect1(){
+									input.click();
+								}
+
+								input.onchange = function(e){
+									var path = input.files[0].path.split("\\");
+									path.pop();
+									path = path.join("\\");
+									label1.innerText = path + '\\';
+									setMojangPath(path);
+								}
+								label1.innerText = getMojangPath();
+							
+							</script> -->
+                        </div>
+					</div>
+					<div id="Customization" class="tabcontent">
+						<h3>Customization Settings</h3>
+						<div class="settingsitem" id="var_backgroundColor"></div>
+						<div class="settingsitem" id="var_backgroundColorDarker"></div>
+						<div class="settingsitem" id="var_backgroundColorLighter"></div>
+						<div class="settingsitem" id="var_textColor"></div>
+						<div class="settingsitem" id="var_textColorDarker"></div>
+						<div class="settingsitem" id="var_colorAccent"></div>
+						<div class="settingsitem" id="var_colorAccentDarker"></div>
+						<div class="settingsitem" id="var_colorAccentLighter"></div>
+						<div class="settingsitem" id="var_sidebarColor"></div>
+						<div class="settingsitem" id="var_iconColor"></div>
+						<div class="settingsitem" id="var_iconColorActive"></div>
+					</div>
+					<div id="Editor" class="tabcontent">
+						<h3>Editor Settings</h3>
+					</div>
+					<script>
+						function openPanel(evt, panelName) {
+						    // Declare all variables
+						    var i, tabcontent, tablinks;
+						
+						    // Get all elements with class="tabcontent" and hide them
+						    tabcontent = document.getElementsByClassName("tabcontent");
+						    for (i = 0; i < tabcontent.length; i++) {
+						        tabcontent[i].style.display = "none";
+						    }
+						
+						    // Get all elements with class="tablinks" and remove the class "active"
+						    tablinks = document.getElementsByClassName("tablinks");
+						    for (i = 0; i < tablinks.length; i++) {
+						        tablinks[i].className = tablinks[i].className.replace(" active", "");
+						    }
+						
+						    // Show the current tab, and add an "active" class to the link that opened the tab
+						    document.getElementById(panelName).style.display = "block";
+							evt.currentTarget.className += " active";
+							
+							if(panelName == "Customization"){
+								reinitCustomizationPanel();
+							}
+						}
+						var ev = {
+							"currentTarget" : document.getElementById("general")
+						};
+						const AColorPicker = require("a-color-picker");
+						function reinitCustomizationPanel(){
+							// Initialize theme category
+							// Object.keys(GlobalSettings["theme"]).forEach(key => {
+							// 	root.style.setProperty('--' + key, GlobalSettings["theme"][key]);
+							// });
+							// Initalize settingsitem name
+							document.getElementById("Customization").querySelectorAll(".settingsitem").forEach((e)=>{
+								// loop throuogh every settingsitem and give labels
+								var text = document.createElement("a");
+								text.classList.add("text");
+								text.innerText = varnameToReadable(e.id);
+
+								// Create the color indicators
+								var cp = document.createElement("div");
+								cp.classList.add("colorPickingInput");
+								cp.style.backgroundColor = GlobalSettings.theme[e.id];
+								e.setAttribute("acp-color", GlobalSettings.theme[e.id]);
+								cp.addEventListener("click", function(el, ev){
+									document.querySelectorAll(".a-color-picker").forEach( el => {el.parentNode.removeChild(el)});
+									document.removeEventListener("mouseup",checkColorPickerClick);
+									var acp = AColorPicker.from('#' + e.id);
+									acp.on('change', (picker, color) => {
+										GlobalSettings["theme"][e.id] = color;
+										cp.style.backgroundColor = color;
+										document.documentElement.style.setProperty('--' + e.id, GlobalSettings["theme"][e.id]);
+										e.setAttribute("acp-color", GlobalSettings.theme[e.id]);
+									});
+									acp.id = e.id;
+									
+									document.addEventListener("mouseup", checkColorPickerClick);
+								});
+
+
+								e.innerHTML = "";
+								e.appendChild(text);e.appendChild(cp);
+							});
+						}
+
+						function checkColorPickerClick(ev){
+							var elm = document.querySelector(".a-color-picker");
+							if(elm == null) return;
+							var bound = elm.getBoundingClientRect();
+							if(!(ev.pageX > bound.left && ev.pageX < bound.right && ev.pageY > bound.top && ev.pageY < bound.bottom)){
+								document.querySelectorAll(".a-color-picker").forEach( el => {el.parentNode.removeChild(el)});
+							}
+						}
+						function isUpperCase(char){
+							if(char.toUpperCase() == char)
+								return true;
+							return false;
+						}
+						function varnameToReadable(str){
+							var sub = str.substr(4);
+							var result = "";
+							for (let i = 0; i < sub.length; i++) {
+								var char = sub[i];
+								if(i == 0){
+									result += char.toUpperCase();
+								} else if(isUpperCase(char)){
+									result += " ";
+									result += char;
+								}else{
+									result += char;
+								}
+							}
+							return result;
+						}
+
+						openPanel(ev, "General");
+					</script>
+				</div>
+				<div id="page3content" style="width: 100%; height: 100%; display: none">
+				</div>
+			</div>
+
+			<!--COMP#DISABLE-->
+			<script src="scripts/string_validator.js"></script>
+			<!--COMP#DISABLE-->
+
+			<!--COMP#ENABLE-->
+			<!--<script>nw.Window.get().evalNWBin(null, 'runtime\src\scripts\string_validator.bin');</script>
+			<!--COMP#ENABLE-->
+			<script>
+				//Active page changer
+				pages = {
+				    "page1content" : document.getElementById("page1content"),
+				    "page2content" : document.getElementById("page2content"),
+				    "page3content" : document.getElementById("page3content")
+				};
+				function openPage(page, self){
+					document.querySelectorAll(".sidebar .mainminibutton").forEach((elm) =>{
+						elm.classList.remove("selected");
+					});
+				    pages["page1content"].style.display = "none";
+				    pages["page2content"].style.display = "none";
+				    pages["page3content"].style.display = "none";
+					pages[page + "content"].style.display = "block";
+					self.classList.add("selected");
+				}
+				init();
+			</script>
+		</div>
+	</body>
+</html>

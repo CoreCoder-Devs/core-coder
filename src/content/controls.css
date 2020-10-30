@@ -1,0 +1,124 @@
+/* Remove default bullets */
+ul, .treeView {
+    list-style-type: none;
+}
+
+/* Remove margins and padding from the parent ul */
+.treeView{
+    margin: 0;
+    padding: 8px;
+    color: rgb(201, 201, 201);
+    cursor: pointer;
+	-webkit-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-app-region: no-drag;
+}
+
+.treeView span:hover{
+    color: #ffffff;
+}
+
+.treeView img {
+    width : 16px;
+    height : 16px;
+}
+
+/* Style the carret / arrow */
+.caret {
+    cursor: pointer;
+    user-select: none; /*Prevents text selection*/
+}
+
+/* Create the caret/arrow with a unicode, and style it */
+.caret::before {
+    content: "\25B6";
+    color: rgb(219, 219, 219);
+    display: inline-block;
+    margin-right: 6px;
+}
+
+/*Rotate the caret / arow icon when clicked on (using JS) */
+.caret-down::before {
+    transform: rotate(90deg);
+}
+
+/* Hide the nested list */
+.nested {
+    display: none;
+}
+
+/* Show the nested list when user clicks on the caret/arrow */
+.active {
+    display: block;
+}
+
+
+
+.toolbar {
+    background-color: rgb(31, 31, 31);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 32px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.toolbar img {
+    width : 16px;
+    height: 16px;
+    padding: 8px;
+	-webkit-user-select: none;
+	-webkit-user-drag: none;
+    -webkit-app-region: no-drag;
+    cursor: pointer;
+    top: -16px;
+    filter: opacity(45%);
+    transition: transform 0.2s;
+    transform: scale(1);
+}
+
+.toolbar img:hover {
+    filter: opacity(100%);
+}
+
+.toolbar img:active {
+    transform: scale(0.8);
+}
+
+.toolbar .label {
+    line-height: 32px;
+    /* vertical-align: center; */
+    margin-left: 8px;
+    color: white;
+	-webkit-user-select: none;
+	-webkit-user-drag: none;
+    -webkit-app-region: no-drag;
+    height: 100%;
+    margin: 0 0 0 8px;
+}
+
+
+
+.toolbar div:hover .tooltiptext{
+    visibility: visible;
+}
+
+
+.toolbar .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black; /* Fallback color */
+    background-color: rgba(8, 8, 8, 0.671);
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 100;
+    margin-top: 32px;
+}

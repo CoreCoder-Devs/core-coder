@@ -1,0 +1,634 @@
+:root{
+	--var_backgroundColor : rgb(29, 29, 29);
+	--var_backgroundColorDarker : rgb(19, 19, 19);
+	--var_backgroundColorLighter : rgb(39, 39, 39);
+
+	--var_textColor: white;
+	--var_textColorDarker : rgb(175, 175, 175);
+
+	--var_colorAccent : rgb(0, 158, 124);
+	--var_colorAccentDarker : rgb(5, 126, 110);
+	--var_colorAccentLighter : rgb(10, 185, 147);
+	--var_sidebarColor: rgb(44, 44, 44);
+	--var_iconColor: rgb(168, 164, 164);
+	--var_iconColorActive: rgb(255, 255, 255);
+}
+
+
+* {
+	font-family: Arial, Helvetica, sans-serif;
+	color: var(--var_textColor);
+}
+
+body {
+	background-color: var(--var_backgroundColorDarker);
+}
+
+.mainminibutton {
+	width: 36px;
+	height: 36px;
+	margin-top: 10px;
+	margin-left: 4px;
+	cursor: pointer;
+	z-index: 100000;
+	filter: opacity(50%);
+	transition: filter .2s;
+	transition: background-color .1s;
+	border-radius: 4px;
+	padding: 2px;
+	background-color: var(--var_iconColor);
+}
+.mainminibutton{
+	background-color: var(--var_iconColor);
+	transition: .2s all;
+}
+.mainminibutton.selected{
+	background-color: var(--var_iconColorActive);
+	filter: opacity(100%);
+}
+.mainminibutton:hover{
+	background-color: var(--var_iconColor);
+	filter: opacity(100%);
+}
+.mainminibutton.selected:hover{
+	background-color: var(--var_iconColorActive);
+	filter: opacity(100%);
+}
+.mainminibutton:active{
+	filter: opacity(50%);
+}
+
+.main_proj_list_container{
+	background-color: var(--var_backgroundColorDarker);
+}
+.panel {
+	background-image: linear-gradient(to bottom right, var(--var_colorAccent), var(--var_colorAccentDarker), var(--var_colorAccentDarker));
+	/* backdrop-filter: brightness(50%) blur(32px); */
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	/* flex-wrap: wrap; */
+	/* border: 1px solid #5a5a5a; */
+	border-radius: 8px;
+	/* margin: 2px; */
+	transition: all 0.3s;
+	width: 190px;
+	height: 100%;
+	cursor: pointer;
+
+}
+
+.panel:hover{
+	filter: brightness(130%);
+}
+#proj_container h2{
+	width: 90%;
+}
+.panel .minibutton{
+	min-width: 20px;
+	min-height: 20px;
+	max-width: 20px;
+	max-height: 20px;
+	
+	padding: 0;
+	margin: 0;
+
+    position: absolute;
+	margin-left: 162px;
+	margin-top: 8px;
+	transform: rotate(90deg);
+	transition: all .2s;
+}
+
+
+.panel .minibutton:hover{
+	transform: rotate(0deg);
+}
+
+.panel .icon {
+	max-width:  60px;
+	max-height: 60px;
+	min-width:  60px;
+	min-height: 60px;
+	position: relative;
+	top: 16px;
+	left: 60px;
+}
+.panel-back{
+	margin: 2px;
+	height: 160px;
+	transition: transform .2s;
+}
+.panel-back:hover{
+	/* transform: scale(1.1); */
+	z-index: 500;
+}
+
+.panel:hover {
+	/* border: 1px solid #00df89; */
+	background-color: var(--var_backgroundColorLighter);
+	box-shadow: 0 2px 8px rgba(36, 36, 36, 0.719);
+	z-index: -1;
+}
+.panel:hover img {
+	cursor: pointer;
+}
+
+.btnText {
+	vertical-align: middle;
+	display: inline-block;
+	text-align: center;
+	font-size: 16px;
+	padding: 4px;
+	padding-top: 16px;
+	padding-right: 40px;
+	font-family: Arial, Helvetica, sans-serif;
+	flex-grow: 1;
+	width: 95%;
+	-webkit-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-app-region: no-drag;
+}
+
+.btnText:hover {
+	/* color: rgb(0, 255, 115); */
+	cursor: pointer;
+}
+
+.panel span {
+	font-size: 16px;
+	color: var(--var_textColorDarker);
+	display: block;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+
+/* .panel > img,
+.panel > span {
+    vertical-align: middle;
+    box-shadow: 0px 0px 5px black;
+} */
+
+button {
+	color: var(--var_textColor);
+	background-color: var(--var_colorAccent);
+	/* border-radius: 8px; */
+	padding: 16px 31px;
+	margin: 2px;
+	text-align: center left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	border: none;
+	border-bottom: 4px solid var(--var_colorAccentDarker);
+	align-items: center;
+	cursor: pointer;
+}
+button:focus {
+	outline: none;
+	box-shadow: none;
+}
+
+button:hover {
+	background-color: var(--var_colorAccentLighter);
+	border-bottom: 4px solid var(--var_colorAccentDarker);
+}
+
+.minibutton {
+	width: 20px;
+	height: 20px;
+	margin-top: 10px;
+	margin-right: 10px;
+	cursor: pointer;
+	filter: opacity(50%);
+	transition: filter .2s;
+	transition: background-color .1s;
+	border-radius: 4px;
+	padding: 4px;
+}
+
+.minibutton:hover {
+	filter: opacity(100%);
+	background-color: rgba(104, 104, 104, 0.432);
+}
+
+.minibutton:active{
+	background-color: rgba(36, 36, 36, 0.432);
+}
+
+.panel .minibutton {
+	visibility: hidden;
+}
+
+.panel:hover .minibutton {
+	visibility: visible;
+}
+
+.toolbar {
+	background-color: var(--var_backgroundColorLighter);
+	font-family: Arial, Helvetica, sans-serif;
+	display: flex;
+	flex-direction: row;
+	height: 43px;
+}
+
+.toolbar a {
+	margin: 12px;
+}
+
+
+/* Style the tab */
+.tab-hor {
+	overflow: show;
+	background-color: #131313;
+}
+
+
+/* Style the buttons inside the tab */
+.tab-hor button {
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	/* padding: 14px 16px; */
+	transition: 0.3s;
+	font-size: 12px;
+}
+
+.tab-hor button {
+    margin-top: 8px;
+    height: 48px;
+    border-radius: 0;
+}
+
+
+/* Change background color of buttons on hover */
+.tab-hor button:hover {
+	background-color: rgb(36, 36, 36);
+}
+
+/* Create an active/current tablink class */
+.tab-hor button.active {
+    background-color: rgb(3, 3, 3);
+    border-bottom: 4px solid rgb(255, 0, 76);
+}
+
+
+/* Style the tab content */
+
+.tabcontent {
+	display: none;
+	/* padding: 6px 12px; */
+	border: 1px solid var(--var_backgroundColor);
+	border-top: none;
+	background-color: var(--var_backgroundColorDarker);
+}
+
+
+/* Settings */
+
+#page2content * {
+	box-sizing: border-box
+}
+
+
+/* Style the tab */
+
+.tab {
+	float: left;
+	background-color: var(--var_backgroundColorLighter);
+	width: 256px;
+	height: 100%;
+}
+
+
+/* Style the buttons that are used to open the tab content */
+
+.tab button {
+	display: block;
+	background-color: inherit;
+	color: var(--var_textColor);
+	padding: 10px 16px;
+	width: 100%;
+	border: none;
+	outline: none;
+	text-align: left;
+	cursor: pointer;
+	transition: 0.3s;
+	margin: 0;
+}
+
+
+/* Change background color of buttons on hover */
+
+.tab button:hover {
+	background-color: var(--var_colorAccentLighter);
+}
+
+
+/* Create an active/current "tab button" class */
+
+.tab button.active {
+	background-color: var(--var_colorAccentDarker);
+}
+
+
+/* Style the tab content */
+
+.tabcontent {
+	float: left;
+	padding: 0px 12px;
+	border: none;
+    display: none;
+	overflow-y: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 302px;
+}
+
+.settingsitem {
+	margin: 8px;
+	padding: 16px;
+	border-radius: 8px;
+	border: 1px solid var(--var_backgroundColorDarker);
+	background-color: var(--var_backgroundColorLighter);
+	color: var(--var_textColorDarker);
+	font-size: 16px;
+	/* Layouting */
+	display: flex;
+	flex-direction: row;
+}
+
+.settingsitem:hover {
+	border: 1px solid var(--var_colorAccent);
+}
+
+.settingsitem a {
+	flex-grow: 1;
+}
+
+.text {
+	vertical-align: middle;
+	display: inline-block;
+	text-align: left;
+	font-size: 16px;
+	padding: 4px;
+	font-family: Arial, Helvetica, sans-serif;
+	flex-grow: 1;
+}
+
+.settingsitem:hover .text {
+	color: var(--var_textColor);
+	cursor: pointer;
+}
+
+
+/* Dialogs */
+
+
+/* The Modal (background) */
+
+.modal {
+	display: none;
+	/* Hidden by default */
+	position: fixed;
+	/* Stay in place */
+	z-index: 50;
+	/* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%;
+	/* Full width */
+	bottom: 0;
+	/* Full height */
+	overflow: hidden;
+	/* Enable scroll if needed */
+	background-color: var(--var_backgroundColor);
+	/* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4);
+	/* Black w/ opacity */
+
+	/* Filter */
+	backdrop-filter: brightness(50%);
+}
+
+
+/* Modal Content/Box */
+
+.modal-content {
+	background-color: #141414;
+	margin: 15% auto;
+	/* 15% from the top and centered */
+	padding: 0;
+	border: 1px solid rgb(41, 41, 41);
+	width: 50%;
+	max-width: 480px;
+	/* Could be more or less, depending on screen size */
+	color: #ffffff;
+}
+
+
+/* The Close Button */
+
+.modal-header .close {
+	color: var(--var_textColorDarker);
+	float: right;
+	font-size: 28px;
+	margin-top: 8px;
+	margin-right: 8px;
+	font-weight: bold;
+}
+
+.modal-header .close:hover,
+.modal-header .close:focus {
+	color: var(--var_textColor);
+	text-decoration: none;
+	cursor: pointer;
+}
+
+
+/* Modal Header */
+
+.modal-header {
+	padding: 2px 8px;
+	background-color: var(--var_backgroundColorLighter);
+	color: white;
+	-webkit-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-app-region: no-drag;
+	/* border-radius: 8px 8px 0 0; */
+	margin-bottom: 8px;
+}
+
+
+/* Modal Body */
+
+.modal-body {
+	padding: 2px 16px;
+}
+
+
+/* Modal Footer */
+
+.modal-footer {
+	padding: 2px 16px;
+	margin-top: 8px;
+	background-color: var(--var_backgroundColor);
+	color: var(--var_textColor);
+	/* border-radius: 0 0 8px 8px; */
+}
+
+
+/* Add Animation */
+
+
+/* @keyframes animatetop {
+from {top: -300px; opacity: 0}
+to {top: 300px; opacity: 1}
+} */
+
+.modal-body .textinput {
+	flex: 1 1 0px;
+	background-color: #242424;
+	padding: 8px;
+	margin: 2px;
+	border: none;
+	color: white;
+	border-bottom: none;
+	border-bottom: 2px solid #242424;
+	transition: border-bottom 0.4s;
+}
+
+.modal-body .textinput {
+	border: none;
+	outline: none;
+}
+
+.modal-body .valid {
+	border: none;
+	outline: none;
+	border-bottom: 2px solid #00aa80;
+}
+
+.modal-body .invalid {
+	border: none;
+	outline: none;
+	border-bottom: 2px solid #f82929;
+}
+
+.modal-body a {
+	flex: 1 1 0px;
+}
+
+
+.sidebar {
+	display: flex;
+	flex-direction: column;
+	min-width: 40px;
+	background-color: var(--var_sidebarColor);
+}
+
+.sidebar .mainminibutton {
+	width: 30px;
+	height: 30px;
+	padding: 4px;
+	margin: 4px;
+}
+.sidebar .mainminibutton .selected {
+	filter: opacity(100%);
+}
+.sidebar .mainminibutton+div {
+	z-index: 100;
+}
+.sidebar .mainminibutton+div .tooltip{
+	background-color:var(--var_backgroundColor);
+	padding: 8px;
+	border-radius: 4px;
+	z-index: 100;
+	display: none;
+	position: absolute;
+	margin-left: 16px;
+	box-shadow: 0px 0px 4px black;
+}
+.sidebar .mainminibutton:hover+div .tooltip{
+	display: block;
+}
+.sidebar .tooltip::after {
+	content: " ";
+	position: absolute;
+	top: 50%;
+	right: 100%; /* To the left of the tooltip */
+	margin-top: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: transparent #1a1a1aef transparent transparent;
+  }
+
+.sidebar .mainminibutton::after {
+	position: absolute;
+	top: 50%;
+	left: 8px; /* To the left of the tooltip */
+
+	height: 100%;
+
+	margin-top: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: white;
+	border-left: 8px solid white;
+}
+
+/* Tooltip for the main minibutton */
+.sidebar .mainminibutton+div .tooltip{
+	background-color:var(--var_backgroundColor);
+	padding: 8px;
+	border-radius: 4px;
+	z-index: 100000;
+	display: none;
+	position: absolute;
+	margin-left: 16px;
+	box-shadow: 0px 0px 4px black;
+}
+.sidebar .mainminibutton:hover+div .tooltip{
+	display: block;
+}
+.sidebar .maintooltip::after {
+	content: " ";
+	position: absolute;
+	top: 50%;
+	right: 100%; /* To the left of the tooltip */
+	margin-top: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: transparent #1a1a1aef transparent transparent;
+  }
+
+.sidebar .mainminibutton::after {
+	position: absolute;
+	top: 50%;
+	left: 8px; /* To the left of the tooltip */
+
+	height: 100%;
+
+	margin-top: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: white;
+	border-left: 8px solid white;
+}
+
+.colorPickingInput{
+	width: 32px;
+	height: 32px;
+	cursor: pointer;
+	border: 1px solid white;
+}
+
+.a-color-picker{
+	position: absolute;
+	right: 64px;;
+	margin-top: 32px;
+}

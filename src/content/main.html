@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>Core Coder v0.1 beta</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="lib/css/chrome-tabs.css" rel="stylesheet">
+      <link href="lib/css/chrome-tabs-dark-theme.css" rel="stylesheet">
+      <link href="editor.css" rel="stylesheet">
+      <link href="dialogs.css" rel="stylesheet">
+      <link href="controls.css" rel="stylesheet">
+	  <link href="../styles/scrollbar-dark.css" rel="stylesheet">
+	  
+      <script src="../../lib/ace/ace.js"></script>
+      <script src="../../lib/ace/mode-javascript.js"></script>
+      <script src="../../lib/ace/theme-merbivore_soft.js"></script>
+     <script src="../../lib/ace/ext-language_tools.js"></script>
+     
+     <script src="../../node_modules/chrome-tabs/node_modules/draggabilly/dist/draggabilly.pkgd.min.js"></script>
+     <script src="../../node_modules/chrome-tabs/js/chrome-tabs.js"></script>
+	  
+   </head>
+   <body onload="init();">
+	<!--COMP#DISABLE-->
+	<script src="util.js"></script>
+	<script src="util/Preferences.js"></script>
+	<script src="editor.js"></script>
+	<!--COMP#DISABLE-->
+
+	<!--COMP#ENABLE-->
+	<!--<script>
+	-!--nw.Window.get().evalNWBin(null, 'runtime\\content\\util.bin');
+	-!--nw.Window.get().evalNWBin(null, 'runtime\\content\\util\\Preferences.bin');
+	-!--nw.Window.get().evalNWBin(null, 'runtime\\content\\editor.bin');
+	-!--</script>
+	<!--COMP#ENABLE-->
+      <div style="top: 0; width: 100%; bottom: 0; position: absolute">
+         <div w3-include-html="dialogs.html"></div>
+         <div class="sidenav" style="display: flex; flex-direction: column">
+            <!-- <a href="#" onclick="createNewFile()"><img  src="images/025-files-and-folders.png"></img><span class="tooltiptext">Create new file</span></a> -->
+            <a href="#" onclick="openBrowser(1)" id="openBPBrowser">
+            <img src="images/folder_bp.png">
+            <span class="tooltiptext">Behavior browser</span>
+            </a>
+            <a href="#" onclick="openBrowser(0)" id="openRPBrowser">
+            <img src="images/folder_rp.png">
+            <span class="tooltiptext">Resource browser</span>
+            </a>
+            <a href="#" onclick="saveCurrentFile()">
+            <img src="images/016-save.png">
+            <span class="tooltiptext">Save file</span>
+            </a>
+            <a href="#" onclick="openWebBrowser('file://' + __dirname + '\\pages\\home.html');">
+               <img src="images/web.png">
+               <span class="tooltiptext">Web Browser</span>
+            </a>
+            <!-- <a href="#" onclick="openPrefModal()"><img src="images/011-adjust.png"></img><span class="tooltiptext">Settings</span></a> -->
+            <a href="#" style="flex-grow: 1"></a>
+            <a href="#" onclick="window.location = '../project_manager.html'">
+            <img src="images/027-real-estate.png">
+            <span class="tooltiptext">Project Menu</span>
+            </a>
+         </div>
+         <div class="mid_panel" id="midpane" style="display:none;">
+            <a id="browserpath"></a>
+            <div id="browsercontent" style="position: absolute;left: 0; top: 64px; bottom: 0; right: 0; overflow-y:scroll; overflow-x: hidden;">
+               <!-- Content generated -->
+            </div>
+            <div class="browsercontext" id="contextFile">
+               <!-- The item detail -->
+               <div class="flex-hor label" id="fileStat">
+                  <img src="images/015-folder.png"/>
+                  <a>FILENAME</a>
+                  <a style="flex-grow: 1"></a>
+                  <a>3.4kb</a>
+               </div>
+               <div class="sep"></div>
+               <!-- Actions -->
+               <div class="flex-hor item" onclick="cutClicked()">
+                  <img src="images/scissors.png"/>
+                  <a>Cut</a>
+               </div>
+               <div class="flex-hor item" onclick="copyClicked()">
+                  <img src="images/013-content.png"/>
+                  <a>Copy</a>
+               </div>
+               <div class="flex-hor item" onclick="pasteClicked()" id="contextPaste" disabled>
+                  <img src="images/register.png"/>
+                  <a>Paste Here</a>
+               </div>
+               <div class="sep"></div>
+               <div class="flex-hor item" onclick="revealClicked()">
+                  <img src="images/015-folder.png"/>
+                  <a>Reveal in explorer</a>
+               </div>
+               <div class="flex-hor item" onclick="dupplicateClicked()">
+                  <img src="images/013-content.png"/>
+                  <a>Dupplicate</a>
+               </div>
+               <div class="flex-hor item" onclick="deleteClicked()">
+                  <img src="images/007-rubbish-bin-delete-button.png"/>
+                  <a>Delete</a>
+               </div>
+            </div>
+            <div class="browsercontext" id="contextNonFile">
+               <!-- Context menu for non item click -->
+               <!-- Actions -->
+               <div class="flex-hor item" onclick="pasteCurrentFolder()" id="contextPaste" disabled>
+                  <img src="images/register.png"/>
+                  <a>Paste Here</a>
+               </div>
+               <div class="sep"></div>
+               <div class="flex-hor item" onclick="revealCurrentFolder()">
+                  <img src="images/015-folder.png"/>
+                  <a>Reveal in explorer</a>
+               </div>
+            </div>
+            <!-- Toolbbar -->
+            <div class="toolbar">
+               <p class="label" style="flex-grow: 1;" id="midpaneTitle">File Browser
+               </p>
+               <div href="#" onclick="regenerateTree()">
+                  <img src="images/synchronize.png"></img>
+                  <span class="tooltiptext">Refresh</span>
+               </div>
+               <div href="#" onclick="createNewFolder()">
+                  <img src="images/015-folder.png">
+                  <span class="tooltiptext">Create Folder</span>
+               </div>
+               <div href="#" onclick="createNewFile()">
+                  <img src="images/025-files-and-folders.png">
+                  <span class="tooltiptext">Create File</span>
+               </div>
+            </div>
+         </div>
+         <div class="content" id="content">
+            <div id="navBar" class="nav_bar">
+               <!-- Web browser's navigation bar -->
+               <img   src="images/027-real-estate.png" class="nav_button" onclick="browserGoHome();">
+               <input id="navBarInput" type="text" style="flex-grow: 1" onfocus="this.select();">
+               <img   src="images/004-close-button.png" class="nav_button" onclick="stopBrowser();">
+               <img   src="images/synchronize.png" class="nav_button" onclick="reloadBrowser();">
+               <img   src="images/006-add-plus-button.png" class="nav_button" onclick="addBookmark();">
+               <!-- <img   src="images/menu.png" class="nav_button"> -->
+            </div>
+            <div id="divMain" class="content_center">
+               <p>No files opened. Create new file by clicking (+) button or open it from file manager</p>
+            </div>
+            <div class="tabbar">
+               <div class="chrome-tabs" style="--tab-content-margin: 9px">
+                  <div class="chrome-tabs-content"></div>
+               </div>
+            </div>
+            <script>
+               includeHTML();
+               const ChromeTabs = require("chrome-tabs");
+               var el = document.querySelector('.chrome-tabs');
+               chromeTabs = new ChromeTabs();
+               document.documentElement.classList.add('dark-theme');
+               el.classList.add('chrome-tabs-dark-theme');
+               
+               chromeTabs.init(el);
+               /*el.addEventListener('activeTabChange', ({ detail }) => console.log('Active tab changed', detail.tabEl))
+               el.addEventListener('tabAdd', ({ detail }) => console.log('Tab added', detail.tabEl))
+               el.addEventListener('tabRemove', ({ detail }) => console.log('Tab removed', detail.tabEl))
+               
+               document.querySelector('button[data-add-tab]').addEventListener('click', _ => {
+                 chromeTabs.addTab({
+                   title: 'New Tab',
+                   favicon: false
+                 })
+               })
+               
+               document.querySelector('button[data-add-background-tab]').addEventListener('click', _ => {
+                 chromeTabs.addTab({
+                   title: 'New Tab',
+                   favicon: false
+                 }, {
+                   background: true
+                 })
+               })
+               
+               document.querySelector('button[data-remove-tab]').addEventListener('click', _ => {
+                 chromeTabs.removeTab(chromeTabs.activeTabEl)
+               })
+               
+               document.querySelector('button[data-theme-toggle]').addEventListener('click', _ => {
+                 if (el.classList.contains('chrome-tabs-dark-theme')) {
+                   document.documentElement.classList.remove('dark-theme')
+                   el.classList.remove('chrome-tabs-dark-theme')
+                 } else {
+                   document.documentElement.classList.add('dark-theme')
+                   el.classList.add('chrome-tabs-dark-theme')
+                 }
+               })*/
+               
+               el.addEventListener('activeTabChange', function(elm) {
+                  if(elm.detail.tabEl === undefined) return;
+                  var id = elm.detail.tabEl.id;
+                  document.querySelectorAll("webview").forEach((elm) => {
+                     elm.style.width = 0;
+                  });
+                  document.getElementById("editor").style.display = "none";
+                  document.getElementById("navBar").style.visibility = "collapse";
+                  if(id != ""){
+                     if(items_source[id].type == "ace"){
+                        setEditSession(id);
+                        document.getElementById("editor").style.display = "block";
+                     }else{
+                        document.getElementById("navBarInput").value = items_source[id].data.webview.src;
+                        document.getElementById("navBar").style.visibility = "visible";
+                        //document.getElementById("editor").style.width = "100%";
+                        items_source[id].data.webview.style.width = "100%";
+                     }
+                  }
+                 // else{
+                 //   console.log(elm);
+                 // }
+               });
+               
+               el.addEventListener('tabRemove', function(elm) {
+                  var id = elm.detail.tabEl.id;
+                 if(id != ""){
+                   if(items_source[id].type === "web"){
+                      items_source[id].data.webview.remove();
+                   }else 
+                   if(items_source[id].type === "ace"){ 
+                     delete open_tabs[items_source[id].data['path']];
+                   }
+                   delete items_source[id];
+
+                   if(Object.keys(items_source).length === 0 && items_source.constructor === Object){
+                     // If it is empty
+                     if(editor){
+                       document.getElementById("editor").style.display = "none";
+                       document.getElementById("navBar").style.visibility = "collapse";
+                     }
+                   }
+                   chromeTabs.removeTab(elm.detail.tabEl);
+                 }
+               });
+               var ctrlPressed = false;
+               window.addEventListener('keydown', (event) => {
+                 if (event.ctrlKey && event.key === 'n') {
+                   createNewFile();
+                 }
+                 else if (event.ctrlKey && event.key === 's') {
+                   saveCurrentFile();
+                 }
+                 if (event.ctrlKey) {
+                  ctrlPressed = true;
+                 }
+               });
+               window.addEventListener('keyup', (event) => {
+                 if (event.ctrlKey) {
+                  ctrlPressed = false;
+                 }
+               });
+               window.addEventListener('wheel', (event) => {
+                  if(ctrlPressed){
+                     // if(event.deltaY > 0)
+                     // currentWebBrowserZoomIn();
+                     // if(event.deltaY < 0)
+                     // currentWebBrowserZoomOut();
+                  }
+               });
+            </script>
+         </div>
+         <pre id="editor">function main(){
+            // Hello world.	
+            }
+         </pre>
+		 <script>
+			ace.document = document;
+			ace.require("ace/ext/languag2e_tools");
+			editor = ace.edit("editor", {
+				mode: "ace/mode/javascript",
+				selectionStyle: "text"
+			});
+			editor.getSession().setMode("ace/mode/javascript");
+			editor.setTheme("ace/theme/merbivore_soft");
+			editor.setFontSize(16)
+			editor.setOptions({
+			enableBasicAutocompletion: true,
+			enableSnippets: true,
+			enableLiveAutocompletion: true
+			});
+		 </script>
+      </div>
+   </body>
+</html>

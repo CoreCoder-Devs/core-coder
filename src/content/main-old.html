@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Core Coder v0.1 beta</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="lib/css/chrome-tabs.css" rel="stylesheet">
+		<link href="lib/css/chrome-tabs-dark-theme.css" rel="stylesheet">
+		<link href="editor.css" rel="stylesheet">
+		<link href="dialogs.css" rel="stylesheet">
+		<link href="controls.css" rel="stylesheet">
+		<link href="../styles/scrollbar-dark.css" rel="stylesheet">
+	</head>
+	<script type="text/javascript" src="util.js"></script>
+  <script type="text/javascript" src="util/Preferences.js"></script>
+	<body>
+		
+		<div style="top: 30px; width: 100%; bottom: 0; position: absolute">
+		<div w3-include-html="dialogs.html"></div>
+		<div class="sidenav" style="display: flex; flex-direction: column">
+			<!-- <a href="#" onclick="createNewFile()">
+				<img  src="images/025-files-and-folders.png"></img>
+				<span class="tooltiptext">Create new file</span>
+				</a> -->
+			<a href="#" onclick="openBrowser(1)" id="openBPBrowser">
+				<img src="images/folder_bp.png"></img>
+				<span class="tooltiptext">Behavior browser</span>
+			</a>
+			<a href="#" onclick="openBrowser(0)" id="openRPBrowser">
+				<img src="images/folder_rp.png"></img>
+				<span class="tooltiptext">Resource browser</span>
+			</a>
+			<a href="#" onclick="saveCurrentFile()">
+				<img src="images/016-save.png"></img>
+				<span class="tooltiptext">Save file</span>
+			</a>
+			<!-- <a href="#" onclick="openWebBrowser();">
+				<img src="images/web.png"></img>
+				<span class="tooltiptext">Web Browser</span>
+			</a> -->
+			<!-- <a href="#" onclick="openPrefModal()">
+			<img src="images/011-adjust.png"></img>
+			<span class="tooltiptext">Settings</span>
+			</a> -->
+			<a href="#" style="flex-grow: 1"></a>
+
+			<a href="#" onclick="window.location = '../project_manager.html'">
+				<img src="images/027-real-estate.png"></img>
+				<span class="tooltiptext">Project Menu</span>
+			</a>
+		</div>
+		<div class="mid_panel" id="midpane" style="display:none;">
+			<a id="browserpath"></a>
+			<div id="browsercontent" style="position: absolute;left: 0; top: 64px; bottom: 0; right: 0; overflow-y:scroll; overflow-x: hidden;">
+				<!-- Content generated -->
+			</div>
+			<div class="browsercontext" id="contextFile">
+				<!-- The item detail -->
+				<div class="flex-hor label" id="fileStat">
+					<img src="images/015-folder.png"/>
+					<a>FILENAME</a>
+					<a style="flex-grow: 1"></a>
+					<a>3.4kb</a>
+				</div>
+				<div class="sep"></div>
+				<!-- Actions -->
+				
+				<div class="flex-hor item" onclick="cutClicked()">
+					<img src="images/scissors.png"/>
+					<a>Cut</a>
+				</div>
+				<div class="flex-hor item" onclick="copyClicked()">
+					<img src="images/013-content.png"/>
+					<a>Copy</a>
+				</div>
+				<div class="flex-hor item" onclick="pasteClicked()" id="contextPaste" disabled>
+					<img src="images/register.png"/>
+					<a>Paste Here</a>
+				</div>
+
+				<div class="sep"></div>
+				
+				<div class="flex-hor item" onclick="revealClicked()">
+					<img src="images/015-folder.png"/>
+					<a>Reveal in explorer</a>
+				</div>
+				<div class="flex-hor item" onclick="dupplicateClicked()">
+					<img src="images/013-content.png"/>
+					<a>Dupplicate</a>
+				</div>
+				<div class="flex-hor item" onclick="deleteClicked()">
+					<img src="images/007-rubbish-bin-delete-button.png"/>
+					<a>Delete</a>
+				</div>
+			</div>
+			<div class="browsercontext" id="contextNonFile">
+				<!-- Context menu for non item click -->
+				<!-- Actions -->
+				<div class="flex-hor item" onclick="pasteCurrentFolder()" id="contextPaste" disabled>
+					<img src="images/register.png"/>
+					<a>Paste Here</a>
+				</div>
+
+				<div class="sep"></div>
+				
+				<div class="flex-hor item" onclick="revealCurrentFolder()">
+					<img src="images/015-folder.png"/>
+					<a>Reveal in explorer</a>
+				</div>
+			</div>
+			<!-- Toolbbar -->
+			<div class="toolbar">
+				<p class="label" style="flex-grow: 1;" id="midpaneTitle">File Browser</a>
+				<div href="#" onclick="regenerateTree()">
+					<img src="images/synchronize.png"></img>
+					<span class="tooltiptext">Refresh</span>
+				</div>
+				<div href="#" onclick="createNewFolder()">
+					<img src="images/015-folder.png"></img>
+					<span class="tooltiptext">Create Folder</span>
+				</div>
+				<div href="#" onclick="createNewFile()">
+					<img src="images/025-files-and-folders.png"></img>
+					<span class="tooltiptext">Create File</span>
+				</div>
+			</div>
+		</div>
+		<div class="content" id="content">
+			<div class="content_center">
+				<p>No files opened. Create new file by clicking (+) button or open it from file manager</p>
+			</div>
+			<div class="tabbar">
+				<div class="chrome-tabs" style="--tab-content-margin: 9px">
+					<div class="chrome-tabs-content">
+					</div>
+				</div>
+			</div>
+			<script>
+				includeHTML();
+				const ChromeTabs = require("chrome-tabs");
+				var el = document.querySelector('.chrome-tabs');
+				chromeTabs = new ChromeTabs()
+				document.documentElement.classList.add('dark-theme');
+				el.classList.add('chrome-tabs-dark-theme');
+				
+				chromeTabs.init(el);
+				/*el.addEventListener('activeTabChange', ({ detail }) => console.log('Active tab changed', detail.tabEl))
+				el.addEventListener('tabAdd', ({ detail }) => console.log('Tab added', detail.tabEl))
+				el.addEventListener('tabRemove', ({ detail }) => console.log('Tab removed', detail.tabEl))
+				
+				document.querySelector('button[data-add-tab]').addEventListener('click', _ => {
+				  chromeTabs.addTab({
+				    title: 'New Tab',
+				    favicon: false
+				  })
+				})
+				
+				document.querySelector('button[data-add-background-tab]').addEventListener('click', _ => {
+				  chromeTabs.addTab({
+				    title: 'New Tab',
+				    favicon: false
+				  }, {
+				    background: true
+				  })
+				})
+				
+				document.querySelector('button[data-remove-tab]').addEventListener('click', _ => {
+				  chromeTabs.removeTab(chromeTabs.activeTabEl)
+				})
+				
+				document.querySelector('button[data-theme-toggle]').addEventListener('click', _ => {
+				  if (el.classList.contains('chrome-tabs-dark-theme')) {
+				    document.documentElement.classList.remove('dark-theme')
+				    el.classList.remove('chrome-tabs-dark-theme')
+				  } else {
+				    document.documentElement.classList.add('dark-theme')
+				    el.classList.add('chrome-tabs-dark-theme')
+				  }
+				})*/
+				
+				el.addEventListener('activeTabChange', function(elm) {
+				  var id = elm.detail.tabEl.id;
+				  if(id != ""){
+					if(tab_content[id].type=="editor")
+						setEditSession(id);
+					print(tab_content[id].type);
+				  }
+				});
+				
+				el.addEventListener('tabRemove', function(elm) {
+				  var id = elm.detail.tabEl.id;
+				  if(id != ""){
+				    delete open_tabs[items_source[id]['path']];
+				    delete items_source[id];
+				    if(Object.keys(items_source).length === 0 && items_source.constructor === Object){
+				      // If it is empty
+				      if(editor){
+				        document.getElementById("editor").style.display = "none";
+				      }
+				    }
+				  }
+				});
+				
+				window.addEventListener('keydown', (event) => {
+				  if (event.ctrlKey && event.key === 'n') {
+				    createNewFile();
+				  }
+				});
+				window.addEventListener('keydown', (event) => {
+				  if (event.ctrlKey && event.key === 's') {
+				    saveCurrentFile();
+				  }
+				});
+			</script>
+		</div>
+		<pre id="editor">function foo(items) {
+var i;
+for (i = 0; i &lt; items.length; i++) {
+    alert("Ace Rocks " + items[i]);
+}
+}</pre>
+	  
+<script src="../../lib/ace/ace.js"></script>
+<script src="../../lib/ace/mode-javascript.js"></script>
+<script src="../../lib/ace/theme-merbivore_soft.js"></script>
+<script src="../../lib/ace/ext-language_tools.js"></script>
+	<!-- <script src="src/"></script> -->
+		<!-- <script src="lib/ace/edit_session.js" type="text/javascript" charset="utf-8"></script> -->
+		<script type="text/javascript" src="editor.js"></script>
+		<script>
+			ace.require("ace/ext/languag2e_tools");
+			editor = ace.edit("editor");
+			editor.setTheme("ace/theme/merbivore_soft");
+			editor.setFontSize(16)
+			editor.setOptions({
+			  enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: true
+      });
+    // editor.commands.bindKey("ctrl-space", "startAutocomplete") // do nothing on ctrl-space
+	// editor.commands.addCommand({
+	// 	name: "autocompleteCustom",
+	// 	bindKey : {win: "\""},
+	// 	exec: function(e){
+	// 		autocomplete();
+	// 		e.commands.byName.startAutocomplete.exec(e);
+	// 	}
+	// });
+
+	// autocomplete = function(){
+	// 	var staticWordCompleter = {
+	// 		  getCompletions: function(editor, session, pos, prefix, callback) {
+	// 		      var wordList = [JSON.stringify(pos), String(prefix), "foo", "bar", "baz"];
+	// 		      callback(null, wordList.map(function(word) {
+	// 		          return {
+	// 		              caption: word,
+	// 		              value: word,
+	// 		              meta: "static"
+	// 		          };
+	// 		      }));
+			
+	// 		  }
+	// 		}
+	// 		editor.completers = [staticWordCompleter]
+	// }
+			init();
+		</script>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,392 @@
+:root {
+  --left_panel_size : 50px;
+  --top_padding :0px;
+  --tabs_height : 43px;
+  --mid_panel_size : 256px;
+  --mid_panel_size_default : 256px;
+  --left_padding : 280px;/*calc(var(--left_panel_size) + var(--mid_panel_size));*/
+  --webnavheight : 40px;
+
+  --default_bgcolor : rgb(26, 26, 26);
+  --default_bgcolordark : rgb(22, 22, 22);
+  --default_bgcolorlight : rgb(37, 37, 37);
+  --default_tooltipbgcol : rgba(17, 17, 17, 0.849);
+  --default_textcol : rgb(255, 255, 255);
+  --default_subtextcol : rgb(226, 226, 226);
+  --default_accentcol : rgb(0, 212, 113);
+  --default_subcol : rgb(0, 212, 194);
+  --default_contextcol : rgba(17, 17, 17, 0.849);
+  --default_bordercol : rgb(49, 49, 49);
+  --default_contextitemcol : rgba(36,36,36,0.5);
+  --default_contextitemcolhover : rgba(95, 95, 95, 0.5);
+
+  --default_roundradius : 4px;
+}
+.titlebar, .window-appicon {
+  display:block;
+}
+
+.sidenav, .sidenav a:hover {
+	-webkit-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-app-region: no-drag;
+}
+/*
+.sidenav a .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 100%; 
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgb(7, 7, 7) transparent transparent transparent;
+  z-index: 1;
+}
+*/
+.tabcontent{
+  right: 0;
+  position: absolute; 
+  z-index: 4; 
+  top: var(--webnavheight);
+  /* var(--tabs_height); */
+  bottom: 0;
+  left: 0;
+  /* var(--left_panel_size); */
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--default_bgcolor);
+  height: 100%;
+}
+
+/* Style the side navigation */
+.sidenav {
+  /* height: 100%; */
+  width: var(--left_panel_size);
+  position: fixed;
+  top: var(--top_padding);
+  bottom: 0;
+  left: 0;
+  background-color: var(--default_bgcolordark);
+  overflow-x: visible;
+  z-index: 5;
+  border: 1px solid var(--default_bordercol);
+}
+
+.sidenav a:hover .tooltiptext{
+  visibility: visible;
+}
+.sidenav a:hover .tooltiptext:hover{
+  visibility: hidden;
+}
+
+
+.sidenav .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: var(--default_bgcolordark); /* Fallback color */
+  background-color: var(--default_tooltipbgcol);
+  color: var(--default_subtextcol);
+  text-align: center;
+  padding: 5px 0;
+  border-radius: var(--default_roundradius);
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 100;
+  top: 25%;
+  left: 110%;
+}
+
+
+/* Side navigation links */
+.sidenav img {
+  width:20px;
+  height:20px;
+  pointer-events: none;
+  transition: transform .2s; /* Animation */
+  margin: 0 auto;
+}
+.sidenav a:hover img {
+  pointer-events: none;
+  transform: scale(1.5);
+}
+.sidenav a:active img {
+  pointer-events: none;
+  transform: scale(1);
+}
+.sidenav a {
+  color: var(--default_subtextcol);
+  padding: 16px;
+  text-decoration: none;
+  display: block;
+  filter: opacity(25%);
+}
+
+/* Change color on hover */
+.sidenav a:hover {
+  filter: opacity(100%);
+}
+.sidenav .active {
+  filter: opacity(100%);
+}
+
+/* Style the content */
+.content {
+  /*margin-left: var(--left_padding);
+  padding-left: 20px;
+  padding-top: var(--top_padding);*/
+  background-color: var(--default_bgcolordark);
+  position: absolute;
+  top: 0;/*calc(var(--top_padding) + var(--tabs_height));*/
+  bottom: 0;
+  left: var(--left_panel_size);
+  right: 0;
+}
+
+#editor {
+        margin: 0;
+        position: absolute;
+        top: var(--tabs_height); /* calc(var(--top_padding) + var(--tabs_height));*/
+        bottom: 0;
+        left: var(--left_panel_size);
+        right: 0;
+        z-index: 2;
+}
+.tabbar {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  bottom: calc(var(--top_padding) + var(--tabs_height));
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.mid_panel {
+  width: var(--mid_panel_size);
+  position: fixed;
+  top: var(--top_padding);
+  bottom: 0;
+  left: var(--left_panel_size);
+  background-color: var(--default_bgcolordark);
+  padding-top: var(--top_padding);
+  z-index: 3;
+  border: 1px solid var(--default_bordercol);
+}
+
+.mid_panel a {
+  color: white;
+  padding-left : 16px;
+  position: absolute;
+  top: 40px;
+	-webkit-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-app-region: no-drag;
+}
+
+
+.content_center {
+  position: absolute;
+  top: var(--tabs_height);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: var(--default_subtextcol);
+}
+
+.content_center p {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.flex-hor {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow: auto;
+}
+
+.filebrowseritem {
+  height: 24px;
+  cursor: pointer;
+	-webkit-user-select: none;
+	-webkit-user-drag: none;
+  -webkit-app-region: no-drag;
+  overflow-x: hidden;
+  transition: padding-left .2s;
+}
+.filebrowseritem:hover {
+  background-color: var(--default_bgcolor);
+  padding-left: 8px;
+}
+.filebrowseritem:active {
+  background-color:var(--default_bgcolorlight);
+}
+
+.filebrowseritem a{
+  line-height: 16px;
+  padding: 0; margin: 0;
+  position: relative;
+  top: 0;
+  flex-grow: 1;
+}
+
+.filebrowseritem img {
+  height: 16px;
+  width: 16px;
+  margin: 4px;
+  padding-right: 4px;
+}
+
+#browserpath{
+  background-color: var(--default_bgcolorlight);
+  height: 32px;
+  overflow-x:hidden; 
+  /* white-space: nowrap;  */
+  width: 100%; 
+  padding: 0; 
+  font-size: 12px;
+  top: 32px;
+}
+
+.browsercontext {
+  background-color: var(--default_contextcol);
+
+  border-radius: 2px 2px 2px 2px; 
+  border: 1px solid var(--default_bordercol);
+  width: 256px;
+  height: auto;
+  position: absolute;
+  left: 0; top: 0;
+  display: none;
+}
+
+.browsercontext .item {
+  height: 24px;
+  cursor: pointer;
+	-webkit-user-select: none;
+	-webkit-user-drag: none;
+  -webkit-app-region: no-drag;
+  overflow-x: hidden;
+  transition: background-color .2s;
+}
+.browsercontext .item:hover {
+  background-color: var(--default_contextitemcolhover);
+}
+.browsercontext .item:hover.locked {
+  background-color: var(--default_tooltipbgcol);
+  cursor: default;
+}
+.browsercontext .item:active {
+  background-color: var(--default_contextitemcol);
+}
+
+.browsercontext .item a{
+  line-height: 24px;
+  padding: 0; margin: 0;
+  position: relative;
+  top: 0;
+  flex-grow: 1;
+}
+
+.browsercontext .item img {
+  height: 16px;
+  width: 16px;
+  margin: 4px;
+  padding-right: 4px;
+}
+.browsercontext .locked{
+  filter: opacity(50%);
+}
+.browsercontext :not(.locked){
+  filter: opacity(100%);
+}
+
+.browsercontext .label {
+  height: 24px;
+	-webkit-user-select: none;
+	-webkit-user-drag: none;
+  -webkit-app-region: no-drag;
+  overflow-x: hidden;
+  transition: background-color .2s;
+}
+.browsercontext .label a{
+  line-height: 24px;
+  padding: 0; margin: 0;
+  position: relative;
+  top: 0;
+  flex-grow: 1;
+  color: var(--default_subtextcol);
+}
+
+.browsercontext .label img {
+  height: 16px;
+  width: 16px;
+  margin: 4px;
+  padding-right: 4px;
+  filter: opacity(75%);
+}
+
+.browsercontext .sep {
+  height: 2px;
+  background-color: var(--default_bordercol);
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.browserinput {
+  outline: none;
+  width: 100%;
+  height: 24px;
+  background-color: transparent;
+  color: var(--default_textcol);
+}
+
+.nav_bar {
+  background-color : var(--default_bgcolorlight);
+  display: flex;
+  flex-direction: row;
+
+  position: absolute;
+  top: var(--tabs_height);
+  left: 2px;
+  right: 0;
+  height: var(--webnavheight);
+  z-index : 6;
+
+  border-bottom: 1px solid var(--default_bordercol);
+}
+.nav_button{
+  width: 16px;
+  height: 16px;
+  padding: 10px;
+  margin: 2px;
+  opacity: 70%;
+  transition: background-color .1s ease;
+  -webkit-user-drag: none;
+}
+.nav_button:hover{
+  background-color: #5c5c5c70;
+}
+.nav_button:active{
+  background-color: #00000070;
+}
+.nav_bar input{
+  background-color: var(--default_bgcolordark);
+  color: var(--default_textcol);
+  border: none;
+  outline: none;
+  margin: 2px;
+  flex-grow: 1;
+}
+
+webview {
+  background-color: rgb(228, 228, 228);
+}

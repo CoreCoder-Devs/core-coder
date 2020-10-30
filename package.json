@@ -1,0 +1,54 @@
+{
+  "name": "corecoder",
+  "main": "main.js",
+  "version": "1.0.0",
+  "description": "Made by Hanprogramer. https://itch.io/core-coder",
+  "dependencies": {
+    "@popperjs/core": "^2.4.4",
+    "a-color-picker": "^1.2.1",
+    "chrome-tabs": "~5.4.0",
+    "cryptojs": "^2.5.3",
+    "custom-electron-titlebar": "^3.2.2-hotfix62",
+    "draggabilly": "^2.3.0",
+    "follow-redirects": "^1.12.1",
+    "get-title-at-url": "^1.1.8",
+    "get-website-favicon": "0.0.7",
+    "getmac": "^5.13.0",
+    "image-size": "^0.8.3",
+    "is-electron": "^2.2.0",
+    "is-valid-uuid-v4": "^1.2.0",
+    "jquery": "^3.5.1",
+    "json-tokenizer": "^1.1.0",
+    "ncp": "^2.0.0",
+    "node-fetch": "^2.6.0",
+    "node-fetch-progress": "^1.0.2",
+    "node-unique-machine-id": "^1.1.0",
+    "open": "^7.1.0",
+    "uuid": "^8.2.0",
+    "webpack": "^4.44.1"
+  },
+  "devDependencies": {
+    "electron": "^10.1.5",
+    "file-loader": "^6.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dist": "build --tasks win-x86,win-x64 --mirror https://dl.nwjs.io/ .",
+    "start": "node_modules/.bin/electron main.js"
+  },
+  "excludes": [
+    "**/src",
+    "**/src/**/*"
+  ],
+  "keywords": [
+    "minecraft"
+  ],
+  "author": "Hanprogramer",
+  "license": "ISC",
+  "build": {
+    "nwVersion": "0.47.2"
+  },
+  "window": {
+    "icon": "runtime/resources/icon.png"
+  }
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Core Coder v0.1 beta</title>
+    <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" /> -->
+
+    <!-- our css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/welcome.css">
+  </head>
+  <!-- Controls begin -->
+  <body>
+    <script type="text/javascript" src="scripts/check_electron.js"></script>
+    <script type="text/javascript" src="./content/util/unique.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <div style="position: absolute; top: 30px; bottom: 0; width: 100%;">
+      <div class="center" style="position: relative; height:100%;">
+        <div class="panel">
+          <a>Oops! Looks like you haven't purchased CoreCoder yet. Please consider so.</a>
+          <img src="content\images\icon.png" style="width: 100px; height: 100px; margin: auto">
+          <div class="custom_button" onclick="open(`http://www.google.com`);">Open Itch.io page</div>
+        </div>
+      </div>
+    </div>
+  </body>
+    
+
+</html>

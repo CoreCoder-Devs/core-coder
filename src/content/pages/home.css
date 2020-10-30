@@ -1,0 +1,53 @@
+:root{
+    --var_default_bg: rgb(34, 34, 34);
+}
+html, body {
+    margin: 0;
+    height: 99%;
+}
+.center_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+body {
+    background-color: var(--var_default_bg);
+    width: 100%;
+    height: 100%;
+}
+
+
+.card {
+    width: 128px;
+    height: 150px;
+    background-color: rgba(29, 28, 28, 0.74);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 0;
+    transition: all .3s;
+}
+.card img{
+    width: 48px;
+    height: 48px;
+    margin-left: 40px;
+    margin-top: 32px;
+    padding: auto;
+    -webkit-user-drag: none;
+}
+.card:hover{
+    background-color: rgba(49, 49, 49, 0.418);
+    margin-bottom: 8px;
+}
+
+.card h1 {
+    font-size: 12pt;
+    user-select: none;
+    text-align: center;
+    width: 90%;
+    margin-left: 5%;
+}
