@@ -6,7 +6,6 @@
   "dependencies": {
     "@popperjs/core": "^2.4.4",
     "a-color-picker": "^1.2.1",
-    "chrome-tabs": "~5.4.0",
     "cryptojs": "^2.5.3",
     "custom-electron-titlebar": "^3.2.2-hotfix62",
     "draggabilly": "^2.3.0",
