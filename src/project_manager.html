@@ -136,6 +136,7 @@
 						<button class="tablinks" onclick="openPanel(event, 'General')" id="general">General</button>
 						<button class="tablinks" onclick="openPanel(event, 'Customization')">Theme</button>
 						<button class="tablinks" onclick="openPanel(event, 'Editor')">Editor</button>
+						<button class="tablinks" onclick="openPanel(event, 'AutoUpdate')">Experimental options</button>
 					</div>
 					<div id="General" class="tabcontent">
                         <h3>General Settings</h3>
@@ -183,7 +184,15 @@
 						<div class="settingsitem themeeditor" id="var_sidebarColor"></div>
 						<div class="settingsitem themeeditor" id="var_iconColor"></div>
 						<div class="settingsitem themeeditor" id="var_iconColorActive"></div>
-					</div>
+				</div>
+
+				<div id="AutoUpdate" class="tabcontent">
+					<label class="container">AutoUpdate
+					  <input type="checkbox"
+					  checked="checked">
+					  <span class="checkmark"></span>
+					</label>
+
 					<div id="Editor" class="tabcontent">
 						<h3>Editor Settings</h3>
 						<div id="themeDropdown" class="themeList">
