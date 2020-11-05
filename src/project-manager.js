@@ -794,3 +794,75 @@ function setLayoutMode(id) {
     LAYOUT_MODE = id;
     refreshProjectMap();
 }
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function toggleDropdown1() {
+    document.getElementById("themeDropdown").classList.toggle("show");
+  }
+  
+  // Close the dropdown menu if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+function set_ace_theme(name){
+    // console.log(name);
+    editor.setTheme("ace/theme/" + name);
+    var elm = document.getElementById("themeDropdown");
+    elm.querySelectorAll("a").forEach(elm=>{elm.classList.remove("selected")}); 
+    var self = document.getElementById("theme-" + name);
+    self.classList.add("selected");
+    GlobalSettings.ace_theme = name;
+    saveSettings();
+}
+function load_ace_themes(){
+    var themelist = ace.require("ace/ext/themelist")
+    var themes = themelist.themesByName //object hash of theme objects by name
+    
+    var elm = document.getElementById("themeDropdown");
+    elm.innerHTML = "";
+    Object.entries(themes).forEach(e=>{
+        elm.innerHTML += `<a href="#" id="theme-${e[0]}" onclick="set_ace_theme('${e[0]}')">${e[1]["caption"]}</a>`
+    });
+}
+
+function init_ace_themes(){
+    set_ace_theme(GlobalSettings.ace_theme);
+    load_themes();
+}
+
+var THEMES = {};
+function load_themes(){
+    fs.readdirSync("C:\\CoreCoder\\themes\\").forEach(file=>{
+        if(file.endsWith(".json")){
+            // Loads the theme
+            var theme = file.split(".");
+            theme.pop(); // remove the file extension
+            THEMES[theme] = JSON.parse(fs.readFileSync("C:\\CoreCoder\\themes\\" + file));
+        }
+    });
+    
+    var elm = document.getElementById("themeChooser");
+    elm.innerHTML = "";
+    elm.innerHTML += `<a href="#" onclick="set_core_theme('default')">default</a>`
+    Object.entries(THEMES).forEach(e=>{
+        elm.innerHTML += `<a href="#" onclick="set_core_theme('${e[0]}')">${e[0]}</a>`
+    });
+}
+
+function set_core_theme(name){
+    if(name === "default")
+        Object.assign(GlobalSettings,DefaultGlobalSettings);
+    else
+        Object.assign(GlobalSettings,THEMES[name]);
+    set_ace_theme(GlobalSettings.ace_theme);
+    initGlobalTheme();
+}

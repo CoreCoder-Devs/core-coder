@@ -55,7 +55,7 @@ ul, .treeView {
 
 
 .toolbar {
-    background-color: rgb(31, 31, 31);
+    background-color: var(--var_backgroundColorLighter);
     position: absolute;
     left: 0;
     right: 0;
@@ -92,7 +92,7 @@ ul, .treeView {
     line-height: 32px;
     /* vertical-align: center; */
     margin-left: 8px;
-    color: white;
+    color: var(--var_textColor);
 	-webkit-user-select: none;
 	-webkit-user-drag: none;
     -webkit-app-region: no-drag;

@@ -23,6 +23,7 @@ GlobalSettings = {
     fullscreen : false,
 
     // Themes
+    ace_theme : "merbivore",
     theme:{
         var_backgroundColor : rgb(29, 29, 29),
         var_backgroundColorDarker : rgb(19, 19, 19),
@@ -40,6 +41,7 @@ GlobalSettings = {
     }
 }
 
+DefaultGlobalSettings = Object.assign({}, GlobalSettings);
 
 var settingsPath = "C:\\CoreCoder\\settings.json";
 function saveSettings(){
@@ -57,7 +59,7 @@ function loadSettings(){
         saveSettings();
     }
 
-    GlobalSettings = result;
+    GlobalSettings = Object.assign(GlobalSettings,result);
     initGlobalTheme();
 }
 
