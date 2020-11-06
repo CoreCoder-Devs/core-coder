@@ -27,14 +27,14 @@ const toolbarTemplate = `<div class=toolbar>
 
 function generateProjectHTML(proj_name, proj_folder, project_data, proj_ver) {
     var string_data = escape(JSON.stringify(project_data));
-    var img = "content\\images\\024-question.png";
-    var filter = true; // wether or not to filter linearly
+    var img = "content\\images\\missing_texture.png";
+    var filter = false; // wether or not to filter linearly
     var pack_icon_path = Preferences.COM_MOJANG_PATH + '\\' + proj_folder + '\\' + 'pack_icon.png';
     // console.log(pack_icon_path);
     if (fs.existsSync(pack_icon_path)) {
         var size = imageSize(pack_icon_path);
-        if (size.width < 128 || size.height < 128)
-            filter = false;
+        if (size.width > 128 || size.height > 128)
+            filter = true;
         img = pack_icon_path;
     }
     var desc = project_data['description'];
@@ -46,7 +46,7 @@ function generateProjectHTML(proj_name, proj_folder, project_data, proj_ver) {
     <div class="panel-back" data-project=` + string_data + `  onclick="window.location='./content/main.html'; localStorage.setItem('project_data', '` + string_data + `')">
         <div class="panel">
             <img class="minibutton" src="content/images/012-more.png" onclick="event.stopPropagation();openDeleteDlg(this)"/>
-            <img class="icon" src="` + img + `" style="margin: 8px; min-width: 60px; height: 60px ` + (filter ? '' : "; image-rendering: pixelated") + `"></img>
+            <img class="icon" src="` + img + `" style="min-width: 60px; height: 60px ` + (filter ? '' : "; image-rendering: pixelated") + `"></img>
             <div class="btnText"><strong>` + proj_name + `</strong> <i>v` + proj_ver.join('.') + `</i>
                 <span>` + desc + `</span>
             </div>
