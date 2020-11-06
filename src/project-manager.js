@@ -17,7 +17,6 @@ PREFERENCES = {
     "resource_folder": 'development_resource_packs'
 }
 
-const tippy = require('tippy.js')
 
 function getProjectDirs(name) {
     // Get project full path from com.mojang using the pack name
@@ -45,20 +44,22 @@ function generateProjectHTML(proj_name, proj_folder, project_data, proj_ver) {
         desc += "...";
     }
     var template = `
-    <div class="panel-back" data-project=` + string_data + `  onclick="window.location='./content/main.html'; localStorage.setItem('project_data', '` + string_data + `')">
-        <div class="panel" id=${project_data.uuid}>
+    <div class="panel-back" data-project=` + string_data + `  onclick="window.location='./content/main.html'; localStorage.setItem('project_data', '` + string_data + `')" >
+        <div class="panel">
             <img class="minibutton" src="content/images/012-more.png" onclick="event.stopPropagation();openDeleteDlg(this)"/>
             <img class="icon" src="` + img + `" style="min-width: 60px; height: 60px ` + (filter ? '' : "; image-rendering: pixelated") + `"></img>
             <div class="btnText"><strong>` + proj_name + `</strong> <i>v` + proj_ver.join('.') + `</i>
                 <span>` + desc + `</span>
             </div>
+            <script>
+            tippy('#' + project_data.uuid, {
+                "content": project_data['description']
+            })
+            </script>
             <!-- <img class="minibutton" src="content/images/012-more.png" onclick="openRenameDlg()"/> -->
         </div>
     </div>
     `
-    tippy('#' + project_data.uuid, {
-        "content": project_data['description']
-    })
     return template;
 }
 
