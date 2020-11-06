@@ -192,13 +192,23 @@ function refreshBPMap(directoryPath) {
     for (const p in projects) {
         const project = projects[p]
         tippy('#a' + project.uuid, {
-            "content": `/${project.folder.replace('/behaviour_packs','')}\n${project['description']}\n`
+            "content": `<i style="color: #b8b8b8;">\
+            ${project.uuid}<br>\
+            /${project.folder.slice(15)}<br>\
+            ${project.dependencies.length} Dependencies</i><br>\
+            ${project['description']}\n`,
+            "allowHTML": true
         })
     }
     for (const p in projects_dev) {
         const project = projects[p]
         tippy('#a' + project.uuid, {
-            "content": `/${project.folder.replace('/behaviour_packs','')}\n${project['description']}\n`
+            "content": `<i style="color: #b8b8b8;">\
+            ${project.uuid}<br>\
+            /${project.folder.slice(15)}<br>\
+            ${project.dependencies.length} Dependencies</i><br>\
+            ${project['description']}\n`,
+            "allowHTML": true
         })
     }
 }
