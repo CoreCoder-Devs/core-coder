@@ -93,31 +93,33 @@ function refreshBPMap(directoryPath) {
     var nodev_files = listFiles(directoryPath + '\\behavior_packs\\');
     var projects = [];
     var projects_dev = [];
-
+    
     // Just showcasing 2 ways of doing foreach
     dev_files.forEach(function(val) {
         var data = getProjectManifestJSON('development_behavior_packs\\' + val);
         var dependencies = [];
         var desc = '';
         var name = '';
+        var version = [];
         if (data != null) {
             if (data['dependencies'])
-                data['dependencies'].forEach(d => {
-                    if (d['uuid']) {
-                        var uuid = d['uuid'];
-                        var p = getProjectWithUUID(PROJECTS_RP, uuid);
-                        if (p != null) {
-                            dependencies.push(p);
-                        } else {
-                            dependencies.push(uuid);
-                        }
+            data['dependencies'].forEach(d => {
+                if (d['uuid']) {
+                    var uuid = d['uuid'];
+                    var p = getProjectWithUUID(PROJECTS_RP, uuid);
+                    if (p != null) {
+                        dependencies.push(p);
+                    } else {
+                        dependencies.push(uuid);
                     }
-                });
-
+                }
+            });
+            
             if (data["header"]["description"]) {
                 // Remove minecraft color code
                 desc = (data["header"]["description"]).replace(/\u00A7[0-9A-FK-OR]/ig, '');
                 name = (data["header"]["name"]).replace(/\u00A7[0-9A-FK-OR]/ig, '');
+                version = (data["header"]["version"]);
             }
         }
         projects_dev.push({
@@ -125,7 +127,8 @@ function refreshBPMap(directoryPath) {
             'folder': 'development_behavior_packs\\' + val,
             'uuid': data == null ? null : data["header"]["uuid"],
             'dependencies': dependencies,
-            'description': desc
+            'description': desc,
+            'version': version
         });
     });
 
