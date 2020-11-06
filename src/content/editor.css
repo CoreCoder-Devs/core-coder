@@ -7,20 +7,18 @@
   --left_padding : 280px;/*calc(var(--left_panel_size) + var(--mid_panel_size));*/
   --webnavheight : 40px;
 
-  --default_bgcolor : rgb(26, 26, 26);
-  --default_bgcolordark : rgb(22, 22, 22);
-  --default_bgcolorlight : rgb(37, 37, 37);
-  --default_tooltipbgcol : rgba(17, 17, 17, 0.849);
-  --default_textcol : rgb(255, 255, 255);
-  --default_subtextcol : rgb(226, 226, 226);
-  --default_accentcol : rgb(0, 212, 113);
-  --default_subcol : rgb(0, 212, 194);
-  --default_contextcol : rgba(17, 17, 17, 0.849);
-  --default_bordercol : rgb(49, 49, 49);
-  --default_contextitemcol : rgba(36,36,36,0.5);
-  --default_contextitemcolhover : rgba(95, 95, 95, 0.5);
+  --var_backgroundColor : rgb(26, 26, 26);
+  --var_backgroundColorDarker : rgb(22, 22, 22);
+  --var_backgroundColorLighter : rgb(37, 37, 37);
 
+  --var_textColor : rgb(255, 255, 255);
+  --var_textColorDarker : rgb(226, 226, 226);
+  --var_colorAccent : rgb(0, 212, 113);
+  --var_colorAccentDarker : rgb(0, 212, 194);
   --default_roundradius : 4px;
+	--var_sidebarColor: rgb(44, 44, 44);
+	--var_iconColor: rgb(168, 164, 164);
+	--var_iconColorActive: rgb(255, 255, 255);
 }
 .titlebar, .window-appicon {
   display:block;
@@ -58,7 +56,7 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: var(--default_bgcolor);
+  background-color: var(--var_backgroundColor);
   height: 100%;
 }
 
@@ -70,10 +68,10 @@ body {
   top: var(--top_padding);
   bottom: 0;
   left: 0;
-  background-color: var(--default_bgcolordark);
+  background-color: var(--var_sidebarColor);
   overflow-x: visible;
   z-index: 5;
-  border: 1px solid var(--default_bordercol);
+  border: 1px solid var(--var_backgroundColorLighter);
 }
 
 .sidenav a:hover .tooltiptext{
@@ -87,9 +85,9 @@ body {
 .sidenav .tooltiptext {
   visibility: hidden;
   width: 120px;
-  background-color: var(--default_bgcolordark); /* Fallback color */
-  background-color: var(--default_tooltipbgcol);
-  color: var(--default_subtextcol);
+  background-color: var(--var_backgroundColorDarker);
+  border: 1px solid var(--var_textColor);
+  color: var(--var_textColor);
   text-align: center;
   padding: 5px 0;
   border-radius: var(--default_roundradius);
@@ -103,23 +101,24 @@ body {
 
 
 /* Side navigation links */
-.sidenav img {
+.sidenav .sidenavbutton {
   width:20px;
   height:20px;
   pointer-events: none;
   transition: transform .2s; /* Animation */
   margin: 0 auto;
+  background-color: var(--var_iconColor)
 }
-.sidenav a:hover img {
+.sidenav a:hover .sidenavbutton {
   pointer-events: none;
   transform: scale(1.5);
 }
-.sidenav a:active img {
+.sidenav a:active .sidenavbutton {
   pointer-events: none;
   transform: scale(1);
 }
 .sidenav a {
-  color: var(--default_subtextcol);
+  color: var(--var_textColorDarker);
   padding: 16px;
   text-decoration: none;
   display: block;
@@ -139,7 +138,7 @@ body {
   /*margin-left: var(--left_padding);
   padding-left: 20px;
   padding-top: var(--top_padding);*/
-  background-color: var(--default_bgcolordark);
+  background-color: var(--var_backgroundColorDarker);
   position: absolute;
   top: 0;/*calc(var(--top_padding) + var(--tabs_height));*/
   bottom: 0;
@@ -172,10 +171,10 @@ body {
   top: var(--top_padding);
   bottom: 0;
   left: var(--left_panel_size);
-  background-color: var(--default_bgcolordark);
+  background-color: var(--var_backgroundColorDarker);
   padding-top: var(--top_padding);
   z-index: 3;
-  border: 1px solid var(--default_bordercol);
+  border: 1px solid var(--var_backgroundColorLighter);
 }
 
 .mid_panel a {
@@ -195,7 +194,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  color: var(--default_subtextcol);
+  color: var(--var_textColorDarker);
 }
 
 .content_center p {
@@ -223,11 +222,11 @@ body {
   transition: padding-left .2s;
 }
 .filebrowseritem:hover {
-  background-color: var(--default_bgcolor);
+  background-color: var(--var_backgroundColor);
   padding-left: 8px;
 }
 .filebrowseritem:active {
-  background-color:var(--default_bgcolorlight);
+  background-color:var(--var_backgroundColorLighter);
 }
 
 .filebrowseritem a{
@@ -236,6 +235,7 @@ body {
   position: relative;
   top: 0;
   flex-grow: 1;
+  color: var(--var_textColor);
 }
 
 .filebrowseritem img {
@@ -246,8 +246,9 @@ body {
 }
 
 #browserpath{
-  background-color: var(--default_bgcolorlight);
+  background-color: var(--var_backgroundColor);
   height: 32px;
+  color: var(--var_textColor);
   overflow-x:hidden; 
   /* white-space: nowrap;  */
   width: 100%; 
@@ -257,10 +258,10 @@ body {
 }
 
 .browsercontext {
-  background-color: var(--default_contextcol);
+  background-color: var(--var_backgroundColor);
 
   border-radius: 2px 2px 2px 2px; 
-  border: 1px solid var(--default_bordercol);
+  border: 1px solid var(--var_backgroundColorLighter);
   width: 256px;
   height: auto;
   position: absolute;
@@ -278,14 +279,14 @@ body {
   transition: background-color .2s;
 }
 .browsercontext .item:hover {
-  background-color: var(--default_contextitemcolhover);
+  background-color: var(--var_backgroundColorLighter);
 }
 .browsercontext .item:hover.locked {
-  background-color: var(--default_tooltipbgcol);
+  background-color: var(--var_backgroundColorDarker);
   cursor: default;
 }
 .browsercontext .item:active {
-  background-color: var(--default_contextitemcol);
+  background-color: var(--var_backgroundColor);
 }
 
 .browsercontext .item a{
@@ -323,7 +324,7 @@ body {
   position: relative;
   top: 0;
   flex-grow: 1;
-  color: var(--default_subtextcol);
+  color: var(--var_textColorDarker);
 }
 
 .browsercontext .label img {
@@ -336,7 +337,7 @@ body {
 
 .browsercontext .sep {
   height: 2px;
-  background-color: var(--default_bordercol);
+  background-color: var(--var_backgroundColorLighter);
   margin-top: 4px;
   margin-bottom: 4px;
 }
@@ -346,11 +347,11 @@ body {
   width: 100%;
   height: 24px;
   background-color: transparent;
-  color: var(--default_textcol);
+  color: var(--var_textColor);
 }
 
 .nav_bar {
-  background-color : var(--default_bgcolorlight);
+  background-color : var(--var_backgroundColorLighter);
   display: flex;
   flex-direction: row;
 
@@ -361,7 +362,7 @@ body {
   height: var(--webnavheight);
   z-index : 6;
 
-  border-bottom: 1px solid var(--default_bordercol);
+  border-bottom: 1px solid var(--var_backgroundColorLighter);
 }
 .nav_button{
   width: 16px;
@@ -379,8 +380,8 @@ body {
   background-color: #00000070;
 }
 .nav_bar input{
-  background-color: var(--default_bgcolordark);
-  color: var(--default_textcol);
+  background-color: var(--var_backgroundColorDarker);
+  color: var(--var_textColor);
   border: none;
   outline: none;
   margin: 2px;

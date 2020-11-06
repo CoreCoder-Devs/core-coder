@@ -4,8 +4,8 @@
       <title>Core Coder v0.1 beta</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link href="lib/css/chrome-tabs.css" rel="stylesheet">
-      <link href="lib/css/chrome-tabs-dark-theme.css" rel="stylesheet">
+      <link href="../../lib/chrome-tabs-custom/css/chrome-tabs.css" rel="stylesheet">
+      <link href="../../lib/chrome-tabs-custom/css/chrome-tabs-dark-theme.css" rel="stylesheet">
       <link href="editor.css" rel="stylesheet">
       <link href="dialogs.css" rel="stylesheet">
       <link href="controls.css" rel="stylesheet">
@@ -18,6 +18,7 @@
      
      <script src="../../lib/chrome-tabs-custom/node_modules/draggabilly/dist/draggabilly.pkgd.min.js"></script>
      <script src="../../lib/chrome-tabs-custom/js/chrome-tabs.js"></script>
+     <script src="../global_settings.js"></script>
 	  
    </head>
    <body onload="init();">
@@ -39,26 +40,26 @@
          <div class="sidenav" style="display: flex; flex-direction: column">
             <!-- <a href="#" onclick="createNewFile()"><img  src="images/025-files-and-folders.png"></img><span class="tooltiptext">Create new file</span></a> -->
             <a href="#" onclick="openBrowser(1)" id="openBPBrowser">
-            <img src="images/folder_bp.png">
-            <span class="tooltiptext">Behavior browser</span>
+               <div class="sidenavbutton" style="-webkit-mask-box-image: url(images/folder_bp.png)"></div>
+               <span class="tooltiptext">Behavior browser</span>
             </a>
             <a href="#" onclick="openBrowser(0)" id="openRPBrowser">
-            <img src="images/folder_rp.png">
-            <span class="tooltiptext">Resource browser</span>
+               <div class="sidenavbutton" style="-webkit-mask-box-image: url(images/folder_rp.png)"></div>
+               <span class="tooltiptext">Resource browser</span>
             </a>
             <a href="#" onclick="saveCurrentFile()">
-            <img src="images/016-save.png">
-            <span class="tooltiptext">Save file</span>
+               <div class="sidenavbutton" style="-webkit-mask-box-image: url(images/016-save.png)"></div>
+               <span class="tooltiptext">Save file</span>
             </a>
             <a href="#" onclick="openWebBrowser('file://' + __dirname + '\\pages\\home.html');">
-               <img src="images/web.png">
+               <div class="sidenavbutton" style="-webkit-mask-box-image: url(images/web.png)"></div>
                <span class="tooltiptext">Web Browser</span>
             </a>
             <!-- <a href="#" onclick="openPrefModal()"><img src="images/011-adjust.png"></img><span class="tooltiptext">Settings</span></a> -->
             <a href="#" style="flex-grow: 1"></a>
             <a href="#" onclick="window.location = '../project_manager.html'">
-            <img src="images/027-real-estate.png">
-            <span class="tooltiptext">Project Menu</span>
+               <div class="sidenavbutton" style="-webkit-mask-box-image: url(images/027-real-estate.png)"></div>
+               <span class="tooltiptext">Project Menu</span>
             </a>
          </div>
          <div class="mid_panel" id="midpane" style="display:none;">
@@ -153,7 +154,7 @@
             </div>
             <script>
                includeHTML();
-               const ChromeTabs = require("chrome-tabs");
+               const ChromeTabs = require("../../lib/chrome-tabs-custom");
                var el = document.querySelector('.chrome-tabs');
                chromeTabs = new ChromeTabs();
                document.documentElement.classList.add('dark-theme');
@@ -272,13 +273,13 @@
          </pre>
 		 <script>
 			ace.document = document;
-			ace.require("ace/ext/languag2e_tools");
+			ace.require("ace/ext/language_tools");
 			editor = ace.edit("editor", {
 				mode: "ace/mode/javascript",
 				selectionStyle: "text"
 			});
 			editor.getSession().setMode("ace/mode/javascript");
-			editor.setTheme("ace/theme/merbivore_soft");
+			editor.setTheme("ace/theme/" + GlobalSettings.ace_theme);
 			editor.setFontSize(16)
 			editor.setOptions({
 			enableBasicAutocompletion: true,

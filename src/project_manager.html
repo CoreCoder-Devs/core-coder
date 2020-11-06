@@ -13,8 +13,13 @@
 				position: absolute; top: 0; left: 0; right: 0; bottom: 0;
 			}
 		</style>
+		<script src="../lib/ace/ace.js"></script>
+		<script src="../lib/ace/mode-javascript.js"></script>
+		<script src="../lib/ace/theme-merbivore_soft.js"></script>
+	   <script src="../lib/ace/ext-language_tools.js"></script>
+	   <script src="../lib/ace/ext-themelist.js"></script>
 	</head>
-	<body style="margin: 0;" class="fillEntire">
+	<body style="margin: 0;" class="fillEntire" onload="init_ace_themes()">
 		<!--COMP#DISABLE-->
 		<script src="content/util/Preferences.js"></script>
 		<script src="project-manager.js"></script>
@@ -129,8 +134,9 @@
 				<div id="page2content" style="width: 100%; height: 100%; display: none">
 					<div class="tab">
 						<button class="tablinks" onclick="openPanel(event, 'General')" id="general">General</button>
-						<button class="tablinks" onclick="openPanel(event, 'Customization')">Customization</button>
+						<button class="tablinks" onclick="openPanel(event, 'Customization')">Theme</button>
 						<button class="tablinks" onclick="openPanel(event, 'Editor')">Editor</button>
+						<button class="tablinks" onclick="openPanel(event, 'AutoUpdate')">Experimental options</button>
 					</div>
 					<div id="General" class="tabcontent">
                         <h3>General Settings</h3>
@@ -160,21 +166,52 @@
                         </div>
 					</div>
 					<div id="Customization" class="tabcontent">
-						<h3>Customization Settings</h3>
-						<div class="settingsitem" id="var_backgroundColor"></div>
-						<div class="settingsitem" id="var_backgroundColorDarker"></div>
-						<div class="settingsitem" id="var_backgroundColorLighter"></div>
-						<div class="settingsitem" id="var_textColor"></div>
-						<div class="settingsitem" id="var_textColorDarker"></div>
-						<div class="settingsitem" id="var_colorAccent"></div>
-						<div class="settingsitem" id="var_colorAccentDarker"></div>
-						<div class="settingsitem" id="var_colorAccentLighter"></div>
-						<div class="settingsitem" id="var_sidebarColor"></div>
-						<div class="settingsitem" id="var_iconColor"></div>
-						<div class="settingsitem" id="var_iconColorActive"></div>
-					</div>
+						<h3>Themes</h3>
+						<div id="themeChooser" class="themeList">
+							<a href="#" onclick="">Link 1</a>
+							<a href="#">Link 2</a>
+							<a href="#">Link 3</a>
+						</div>
+						<h3>Customize Theme</h3>
+						<div class="settingsitem themeeditor" id="var_backgroundColor"></div>
+						<div class="settingsitem themeeditor" id="var_backgroundColorDarker"></div>
+						<div class="settingsitem themeeditor" id="var_backgroundColorLighter"></div>
+						<div class="settingsitem themeeditor" id="var_textColor"></div>
+						<div class="settingsitem themeeditor" id="var_textColorDarker"></div>
+						<div class="settingsitem themeeditor" id="var_colorAccent"></div>
+						<div class="settingsitem themeeditor" id="var_colorAccentDarker"></div>
+						<div class="settingsitem themeeditor" id="var_colorAccentLighter"></div>
+						<div class="settingsitem themeeditor" id="var_sidebarColor"></div>
+						<div class="settingsitem themeeditor" id="var_iconColor"></div>
+						<div class="settingsitem themeeditor" id="var_iconColorActive"></div>
+				</div>
+
+				<div id="AutoUpdate" class="tabcontent">
+					<label class="container">AutoUpdate
+					  <input type="checkbox"
+					  checked="checked">
+					  <span class="checkmark"></span>
+					</label>
+				</div>
 					<div id="Editor" class="tabcontent">
 						<h3>Editor Settings</h3>
+						<div id="themeDropdown" class="themeList">
+							<a href="#" onclick="">Link 1</a>
+							<a href="#">Link 2</a>
+							<a href="#">Link 3</a>
+						</div>
+						<div id="aceeditor" style="min-height: 256px">function foo(items) {
+							var x = "All this is syntax highlighted";
+							return x;
+						}</div>
+							
+						<!-- <script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script> -->
+						<script>
+							var editor = ace.edit("aceeditor");
+							editor.setTheme("ace/theme/monokai");
+							editor.session.setMode("ace/mode/javascript");
+							load_ace_themes();
+						</script>
 					</div>
 					<script>
 						function openPanel(evt, panelName) {
@@ -211,7 +248,7 @@
 							// 	root.style.setProperty('--' + key, GlobalSettings["theme"][key]);
 							// });
 							// Initalize settingsitem name
-							document.getElementById("Customization").querySelectorAll(".settingsitem").forEach((e)=>{
+							document.getElementById("Customization").querySelectorAll(".settingsitem.themeeditor").forEach((e)=>{
 								// loop throuogh every settingsitem and give labels
 								var text = document.createElement("a");
 								text.classList.add("text");
