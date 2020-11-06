@@ -765,8 +765,7 @@ function openFile(_path) {
 		try{
 			var obj = readJSONUncomment(content);
 			
-			if(obj["format_version"] === "1.16.100"){
-				if(obj["minecraft:item"]["description"]["identifier"])
+			if(obj["format_version"] === "1.16.100" && obj["minecraft:item"]["description"]["identifier"]){ 
 					img = itemNamespaceToTexturePath_1_16_100(obj["minecraft:item"]["components"]["minecraft:icon"]["texture"]);
 					favicon_path = normalizePath(unescape(itemNamespaceToTexturePath_1_16_100(getItemIcon(obj)))).replace(/\\/gi, "\\\\");
 			}else
