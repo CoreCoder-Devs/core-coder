@@ -190,26 +190,28 @@ function refreshBPMap(directoryPath) {
     PROJECTS_BP = projects;
     
     for (const p in projects) {
-        const project = projects[p]
+        const project = projects[p];
+
         tippy('#a' + project.uuid, {
             "content": `<i style="color: #b8b8b8;">\
             ${project.uuid}<br>\
-            /${project.folder.slice(15)}<br>\
+            ${project.folder.slice(15)}<br>\
             ${project.dependencies.length} Dependencies</i><br>\
             ${project['description']}\n`,
             "allowHTML": true
         })
     }
     for (const p in projects_dev) {
-        const project = projects[p]
+        const project = projects[p];
+
         tippy('#a' + project.uuid, {
             "content": `<i style="color: #b8b8b8;">\
-            ${project.uuid}<br>\
-            /${project.folder.slice(15)}<br>\
-            ${project.dependencies.length} Dependencies</i><br>\
-            ${project['description']}\n`,
+                            ${project.uuid}<br>\
+                            ${project.folder.slice(15)}<br>\
+                            ${project.dependencies.length} Dependencies</i><br>\
+                            ${project['description']}\n`,
             "allowHTML": true
-        })
+        });
     }
 }
 
