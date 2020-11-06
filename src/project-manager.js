@@ -39,18 +39,14 @@ function generateProjectHTML(proj_name, proj_folder, project_data, proj_ver) {
             filter = true;
         img = pack_icon_path;
     }
-    var desc = project_data['description'];
-    if(desc.length > 13){
-        desc = desc.substr(0,13);
-        desc += "...";
-    }
+
     var template = `
     <div class="panel-back" data-project=` + string_data + `  onclick="window.location='./content/main.html'; localStorage.setItem('project_data', '` + string_data + `')"  id="a${project_data.uuid}">
         <div class="panel">
             <img class="minibutton" src="content/images/012-more.png" onclick="event.stopPropagation();openDeleteDlg(this)"/>
             <img class="icon" src="` + img + `" style="min-width: 60px; height: 60px ` + (filter ? '' : "; image-rendering: pixelated") + `"></img>
-            <div class="btnText"><strong>` + proj_name + `</strong> <i>v` + proj_ver.join('.') + `</i>
-                <span>` + desc + `</span>
+            <div class="btnText"><strong>` + proj_name + `</strong> 
+                <span><i style="color: #b8b8b8;">` + proj_ver.join('.') + `</i></span>
             </div>
             <!-- <img class="minibutton" src="content/images/012-more.png" onclick="openRenameDlg()"/> -->
             </div>
@@ -195,12 +191,12 @@ function refreshBPMap(directoryPath) {
     
     for (const project in projects) {
         tippy('#a' + projects[project].uuid, {
-            "content": `${projects[project]['description']}`
+            "content": `${projects[project]['description']}\n`
         })
     }
     for (const project in projects_dev) {
         tippy('#a' + projects[project].uuid, {
-            "content": `${projects[project]['description']}`
+            "content": `${projects[project]['description']}\n`
         })
     }
 }
