@@ -189,14 +189,16 @@ function refreshBPMap(directoryPath) {
     container.innerHTML = contstr;
     PROJECTS_BP = projects;
     
-    for (const project in projects) {
-        tippy('#a' + projects[project].uuid, {
-            "content": `${projects[project]['description']}\n`
+    for (const p in projects) {
+        const project = projects[p]
+        tippy('#a' + project.uuid, {
+            "content": `/${project.folder.replace('/behaviour_packs','')}\n${project['description']}\n`
         })
     }
-    for (const project in projects_dev) {
-        tippy('#a' + projects_dev[project].uuid, {
-            "content": `${projects_dev[project]['description']}\n`
+    for (const p in projects_dev) {
+        const project = projects[p]
+        tippy('#a' + project.uuid, {
+            "content": `/${project.folder.replace('/behaviour_packs','')}\n${project['description']}\n`
         })
     }
 }
