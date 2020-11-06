@@ -21,5 +21,8 @@
     "manager.createnew.create": "Create",
     "manager.createnew.invalid.shortname": "Name is too short",
     "manager.createnew.invalid.UUID": "Invalid UUID",
-    "manager.createnew.invalid.shortdesc": "Description is too short"
+    "manager.createnew.invalid.shortdesc": "Description is too short",
+    "manager.deleteproj.title": "Delete this project?",
+    "manager.deleteproj.msg": "The following folder will be deleted:",
+    "manager.deleteproj.delete": "Delete"
 }

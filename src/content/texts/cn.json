@@ -21,5 +21,8 @@
     "manager.createnew.create": "创建",
     "manager.createnew.invalid.shortname": "名称太短",
     "manager.createnew.invalid.UUID": "UUID无效",
-    "manager.createnew.invalid.shortdesc": "描述太短"
+    "manager.createnew.invalid.shortdesc": "描述太短",
+    "manager.deleteproj.title": "删除此作品",
+    "manager.deleteproj.msg": "以下文件夹将被删除：",
+    "manager.deleteproj.delete": "确认删除"
 }
