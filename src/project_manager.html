@@ -21,12 +21,13 @@
 	   <script src="../lib/popper.js"></script>
 	   <script src="../lib/tippy.js"></script>
 	</head>
-	<body style="margin: 0;" class="fillEntire" onload="init_ace_themes()">
+	<body style="margin: 0;" class="fillEntire" onload="init_ace_themes();translateDocument();">
 		<!--COMP#DISABLE-->
 		<script src="content/util/Preferences.js"></script>
+		<script src="global_settings.js"></script>
 		<script src="project-manager.js"></script>
 		<script src="content/util.js"></script>
-		<script src="global_settings.js"></script>
+
 		<!--COMP#DISABLE-->
 
 		<!--COMP#ENABLE-->
@@ -78,15 +79,15 @@
 			<div class="sidebar">
 				<!-- The navigation icons -->
 				<div id="btnhome"     class="selected mainminibutton" style="-webkit-mask-box-image: url(content/images/027-real-estate.png)" onclick="openPage('page1', this)"></div>
-				<div id="btnhome-tootlip"><div class="tooltip" >Home</div></div>
+				<div id="btnhome-tootlip"><div class="tooltip" data-translation="manager.tooltips.home">Home</div></div>
 				<div id="btnsettings" class="mainminibutton"          style="-webkit-mask-box-image: url(content/images/011-adjust.png)" onclick="openPage('page2', this)"></div>
-				<div id="btnsettings-tootlip"><div class="tooltip" >Settings</div></div>
+				<div id="btnsettings-tootlip"><div class="tooltip" data-translation="manager.tooltips.settings">Settings</div></div>
 			</div>
 			<div style="flex-grow: 1">
 				<div id="page1content" style="overflow-y:hidden; position: absolute; bottom: 0; top: 0px; left: 46px; right: 0">
 					<div style="width: 100%; height: 100%; display: flex; overflow-y: hidden; flex-direction:column">
 						<div class=toolbar>
-							<a style="flex-grow: 1">Projects</a>
+							<a style="flex-grow: 1" data-translation="manager.projects.title">Projects</a>
 							<img class="minibutton" src="content/images/menu.png" onclick="setLayoutMode(0);"/>
 							<img class="minibutton" src="content/images/grid.png" onclick="setLayoutMode(1)"/>
 							<img class="minibutton" src="content/images/006-add-plus-button.png" onclick="openCreateDlg()"/>
@@ -135,13 +136,13 @@
 				</div>
 				<div id="page2content" style="width: 100%; height: 100%; display: none">
 					<div class="tab">
-						<button class="tablinks" onclick="openPanel(event, 'General')" id="general">General</button>
-						<button class="tablinks" onclick="openPanel(event, 'Customization')">Theme</button>
-						<button class="tablinks" onclick="openPanel(event, 'Editor')">Editor</button>
-						<button class="tablinks" onclick="openPanel(event, 'AutoUpdate')">Experimental options</button>
+						<button class="tablinks" onclick="openPanel(event, 'General')" id="general" data-translation="manager.settings.general">General</button>
+						<button class="tablinks" onclick="openPanel(event, 'Customization')" data-translation="manager.settings.theme">Theme</button>
+						<button class="tablinks" onclick="openPanel(event, 'Editor')" data-translation="manager.settings.editor">Editor</button>
+						<button class="tablinks" onclick="openPanel(event, 'AutoUpdate')" data-translation="manager.settings.exp">Experimental options</button>
 					</div>
 					<div id="General" class="tabcontent">
-                        <h3>General Settings</h3>
+                        <h3 data-translation="manager.settings.general">General Settings</h3>
                         <div class="settingsitem">
                             <!-- <a class="text">com.mojang directory
 								<span id="commojangdirvalue">C:\Users\Hanprog\com.mojang</span>
@@ -168,7 +169,7 @@
                         </div>
 					</div>
 					<div id="Customization" class="tabcontent">
-						<h3>Themes</h3>
+						<h3 data-translation="manager.settings.theme">Themes</h3>
 						<div id="themeChooser" class="themeList">
 							<a href="#" onclick="">Link 1</a>
 							<a href="#">Link 2</a>
@@ -189,14 +190,14 @@
 				</div>
 
 				<div id="AutoUpdate" class="tabcontent">
-					<label class="container">AutoUpdate
+					<label class="container" data-translation="manager.settings.exp.aupdate">AutoUpdate
+					</label>
 					  <input type="checkbox"
 					  checked="checked">
 					  <span class="checkmark"></span>
-					</label>
 				</div>
 					<div id="Editor" class="tabcontent">
-						<h3>Editor Settings</h3>
+						<h3 data-translation="manager.settings.editor">Editor Settings</h3>
 						<div id="themeDropdown" class="themeList">
 							<a href="#" onclick="">Link 1</a>
 							<a href="#">Link 2</a>
@@ -348,4 +349,7 @@
 			</script>
 		</div>
 	</body>
+	<script>
+		translateDocument()
+	</script>
 </html>

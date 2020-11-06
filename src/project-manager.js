@@ -9,7 +9,7 @@ const util = require('util');
 const Progress = require('node-fetch-progress/dist');
 const streamPipeline = util.promisify(require('stream').pipeline);
 const { createPopper } = require('@popperjs/core');
-const translations = require('./content/texts/en.json')
+const translations = require(`./content/texts/${GlobalSettings.lang}.json`)
 
 PROJECTS_BP = [];
 PROJECTS_RP = [];
