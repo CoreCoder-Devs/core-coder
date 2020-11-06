@@ -54,12 +54,11 @@ function generateProjectHTML(proj_name, proj_folder, project_data, proj_ver) {
             <!-- <img class="minibutton" src="content/images/012-more.png" onclick="openRenameDlg()"/> -->
             </div>
             </div>
-            <script>
-            tippy('#a${project_data.uuid}', {
-                "content": \`${project_data['description']}\`
-            })
-            </script>
     `
+    
+    tippy("[data-project='"+string_data+"']", {
+        "content": project_data['description']
+    });
     //TODO: The script element is not executed for some reason.
     return template;
 }
@@ -181,7 +180,7 @@ function refreshBPMap(directoryPath) {
     contstr += "<h2>Development Packs</h2>";
     if(projects_dev.length) {
         for (var p in projects_dev) {
-            contstr += generateProjectHTML(projects_dev[p].name, projects_dev[p].folder, projects_dev[p], projects[p].version);
+            contstr += generateProjectHTML(projects_dev[p].name, projects_dev[p].folder, projects_dev[p], projects_dev[p].version);
         }
     } else contstr += `<p>Oh no, we could not find any packs! Try checking the settings and see if it points to your addons.</p>`
     contstr += "<h2>Behavior Packs</h2>";
