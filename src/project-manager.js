@@ -25,7 +25,7 @@ const toolbarTemplate = `<div class=toolbar>
     <img class="minibutton" src="content/images/006-add-plus-button.png" onclick="openCreateDlg()"/>
 </div>`;
 
-function generateProjectHTML(proj_name, proj_folder, project_data) {
+function generateProjectHTML(proj_name, proj_folder, project_data, proj_ver) {
     var string_data = escape(JSON.stringify(project_data));
     var img = "content\\images\\024-question.png";
     var filter = true; // wether or not to filter linearly
@@ -47,7 +47,7 @@ function generateProjectHTML(proj_name, proj_folder, project_data) {
         <div class="panel">
             <img class="minibutton" src="content/images/012-more.png" onclick="event.stopPropagation();openDeleteDlg(this)"/>
             <img class="icon" src="` + img + `" style="margin: 8px; min-width: 60px; height: 60px ` + (filter ? '' : "; image-rendering: pixelated") + `"></img>
-            <div class="btnText">` + proj_name + `
+            <div class="btnText"><strong>` + proj_name + `</strong> <i>v` + proj_ver.join('.') + `</i>
                 <span>` + desc + `</span>
             </div>
             <!-- <img class="minibutton" src="content/images/012-more.png" onclick="openRenameDlg()"/> -->
@@ -134,6 +134,7 @@ function refreshBPMap(directoryPath) {
         var dependencies = [];
         var desc = '';
         var name = '';
+        var version = [];
         if (data != null) {
             if (data['dependencies'])
                 data['dependencies'].forEach(d => {
@@ -152,6 +153,7 @@ function refreshBPMap(directoryPath) {
                 // Remove minecraft color code
                 desc = (data["header"]["description"]).replace(/\u00A7[0-9A-FK-OR]/ig, '');
                 name = (data["header"]["name"]).replace(/\u00A7[0-9A-FK-OR]/ig, '');
+                version = (data["header"]["version"]);
             }
         }
         projects.push({
@@ -159,7 +161,8 @@ function refreshBPMap(directoryPath) {
             'folder': 'behavior_packs\\' + nodev_files[i],
             'uuid': data == null ? null : data["header"]["uuid"],
             'dependencies': dependencies,
-            'description': desc
+            'description': desc,
+            'version': version
         });
     }
 
@@ -167,11 +170,11 @@ function refreshBPMap(directoryPath) {
     // Reading the pack name 
     contstr += "<h2>Development Packs</h2>";
     for (var p in projects_dev) {
-        contstr += generateProjectHTML(projects_dev[p].name, projects_dev[p].folder, projects_dev[p]);
+        contstr += generateProjectHTML(projects_dev[p].name, projects_dev[p].folder, projects_dev[p], projects[p].version);
     }
     contstr += "<h2>Behavior Packs</h2>";
     for (var p in projects) {
-        contstr += generateProjectHTML(projects[p].name, projects[p].folder, projects[p]);
+        contstr += generateProjectHTML(projects[p].name, projects[p].folder, projects[p], projects[p].version);
     }
 
     var container = document.getElementById("proj_container");
