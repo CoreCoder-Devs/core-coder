@@ -10,3 +10,6 @@ An IDE specifically made to edit Minecraft Bedrock Edition addon files. Original
 
 ## How to build
 Coming soon
+
+# Website
+Coming soon
