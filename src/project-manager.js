@@ -202,7 +202,7 @@ function refreshBPMap(directoryPath) {
         })
     }
     for (const p in projects_dev) {
-        const project = projects[p];
+        const project = projects_dev[p];
 
         tippy('#a' + project.uuid, {
             "content": `<i style="color: #b8b8b8;">\
