@@ -9,6 +9,7 @@ const util = require('util');
 const Progress = require('node-fetch-progress/dist');
 const streamPipeline = util.promisify(require('stream').pipeline);
 const { createPopper } = require('@popperjs/core');
+const translations = require('./content/texts/en.json')
 
 PROJECTS_BP = [];
 PROJECTS_RP = [];
@@ -169,20 +170,20 @@ function refreshBPMap(directoryPath) {
         });
     }
 
-    var contstr = '<h1>Welcome to Core Coder. Ready to create something exciting?</h1>';
+    var contstr = '<h1>' + translations['manager.welcome.title'] + '</h1>';
     // Reading the pack name
-    contstr += "<h2>Projects</h2>";
+    contstr += `<h2>${translations["manager.projects.title"]}</h2>`;
     if(projects.length) {
         for (var p in projects) {
             contstr += generateProjectHTML(projects[p].name, projects[p].folder, projects[p], projects[p].version);
         }
-    } else contstr += `<p>Oh no, we could not find anything! Try checking the settings and see if it points to your addons.</p>`
-    contstr += "<h2>Development Projects</h2>";
+    } else contstr += `<p>${translations["manager.projects.empty"]}</p>`
+    contstr += `<h2>${translations["manager.devprojects.title"]}</h2>`;
     if(projects_dev.length) {
         for (var p in projects_dev) {
             contstr += generateProjectHTML(projects_dev[p].name, projects_dev[p].folder, projects_dev[p], projects_dev[p].version);
         }
-    } else contstr += `<p>Oh no, we could not find anything! Try checking the settings and see if it points to your addons.</p>`
+    } else contstr += `<p>${translations["manager.projects.empty"]}</p>`
 
     var container = document.getElementById("proj_container");
     // console.log(container);
@@ -196,7 +197,7 @@ function refreshBPMap(directoryPath) {
             "content": `<i style="color: #b8b8b8;">\
             ${project.uuid}<br>\
             \\${project.folder.slice(15)}<br>\
-            ${project.dependencies.length} Dependencies</i><br>\
+            ${project.dependencies.length} ${translations['manager.projects.dependencies']}</i><br>\
             ${project['description']}\n`,
             "allowHTML": true,
             "arrow": false
