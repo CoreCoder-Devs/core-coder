@@ -74,7 +74,7 @@ body {
 	border-radius: 8px;
 	/* margin: 2px; */
 	transition: all 0.3s;
-	width: 190px;
+	width: 185px;
 	height: 100%;
 	cursor: pointer;
 
@@ -117,8 +117,8 @@ body {
 	left: 60px;
 }
 .panel-back{
-	margin: 2px;
-	height: 160px;
+	margin: 3px;
+	height: 128px;
 	transition: transform .2s;
 }
 .panel-back:hover{
