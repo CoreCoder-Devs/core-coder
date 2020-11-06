@@ -44,22 +44,23 @@ function generateProjectHTML(proj_name, proj_folder, project_data, proj_ver) {
         desc += "...";
     }
     var template = `
-    <div class="panel-back" data-project=` + string_data + `  onclick="window.location='./content/main.html'; localStorage.setItem('project_data', '` + string_data + `')" >
+    <div class="panel-back" data-project=` + string_data + `  onclick="window.location='./content/main.html'; localStorage.setItem('project_data', '` + string_data + `')"  id="a${project_data.uuid}">
         <div class="panel">
             <img class="minibutton" src="content/images/012-more.png" onclick="event.stopPropagation();openDeleteDlg(this)"/>
             <img class="icon" src="` + img + `" style="min-width: 60px; height: 60px ` + (filter ? '' : "; image-rendering: pixelated") + `"></img>
             <div class="btnText"><strong>` + proj_name + `</strong> <i>v` + proj_ver.join('.') + `</i>
                 <span>` + desc + `</span>
             </div>
+            <!-- <img class="minibutton" src="content/images/012-more.png" onclick="openRenameDlg()"/> -->
+            </div>
+            </div>
             <script>
-            tippy('#' + project_data.uuid, {
-                "content": project_data['description']
+            tippy('#a${project_data.uuid}', {
+                "content": \`${project_data['description']}\`
             })
             </script>
-            <!-- <img class="minibutton" src="content/images/012-more.png" onclick="openRenameDlg()"/> -->
-        </div>
-    </div>
     `
+    //TODO: The script element is not executed for some reason.
     return template;
 }
 
