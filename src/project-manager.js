@@ -195,7 +195,7 @@ function refreshBPMap(directoryPath) {
         tippy('#a' + project.uuid, {
             "content": `<i style="color: #b8b8b8;">\
             ${project.uuid}<br>\
-            ${project.folder.slice(15)}<br>\
+            \\${project.folder.slice(15)}<br>\
             ${project.dependencies.length} Dependencies</i><br>\
             ${project['description']}\n`,
             "allowHTML": true
@@ -207,7 +207,7 @@ function refreshBPMap(directoryPath) {
         tippy('#a' + project.uuid, {
             "content": `<i style="color: #b8b8b8;">\
                             ${project.uuid}<br>\
-                            ${project.folder.slice(15)}<br>\
+                            \\${project.folder.slice(15)}<br>\
                             ${project.dependencies.length} Dependencies</i><br>\
                             ${project['description']}\n`,
             "allowHTML": true
