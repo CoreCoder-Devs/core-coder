@@ -9,4 +9,4 @@ An IDE specifically made to edit Minecraft Bedrock Edition addon files. Original
 5. Do `npm start` to run the app
 
 ## How to build
--
+Coming soon
