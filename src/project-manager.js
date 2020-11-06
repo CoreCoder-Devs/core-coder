@@ -9,6 +9,7 @@ const util = require('util');
 const Progress = require('node-fetch-progress/dist');
 const streamPipeline = util.promisify(require('stream').pipeline);
 const { createPopper } = require('@popperjs/core');
+
 PROJECTS_BP = [];
 PROJECTS_RP = [];
 PREFERENCES = {
@@ -56,9 +57,6 @@ function generateProjectHTML(proj_name, proj_folder, project_data, proj_ver) {
             </div>
     `
     
-    tippy("[data-project='"+string_data+"']", {
-        "content": project_data['description']
-    });
     //TODO: The script element is not executed for some reason.
     return template;
 }
@@ -194,6 +192,17 @@ function refreshBPMap(directoryPath) {
     // console.log(container);
     container.innerHTML = contstr;
     PROJECTS_BP = projects;
+    
+    for (const project in projects) {
+        tippy('#a' + projects[project].uuid, {
+            "content": `${projects[project]['description']}`
+        })
+    }
+    for (const project in projects_dev) {
+        tippy('#a' + projects[project].uuid, {
+            "content": `${projects[project]['description']}`
+        })
+    }
 }
 
 function refreshRPMap(directoryPath) {
