@@ -46,7 +46,7 @@ const DefaultGlobalSettings = Object.assign({}, GlobalSettings);
 
 var settingsPath = "C:\\CoreCoder\\settings.json";
 function saveSettings(){
-    _fs.writeFileSync(settingsPath, JSON.stringify(GlobalSettings));
+    _fs.writeFileSync(settingsPath, JSON.stringify(GlobalSettings, null, '\t'));
 }
 function loadSettings(){
     var result = GlobalSettings;
@@ -71,6 +71,7 @@ loadSettings();
 function translateDocument() {
     const translatedElements = document.querySelectorAll("[data-translation]");
     for(const element of translatedElements) {
+        if(!translations[element.attributes["data-translation"].nodeValue]) return
         element.innerText = translations[element.attributes["data-translation"].nodeValue]
     }
 }

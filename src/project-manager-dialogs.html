@@ -1,3 +1,5 @@
+<script src="./global_settings.js"></script>
+<script src="./project-manager.js"></script>
 <!-- Rename Dialog -->
 <div id="renamedlg" class="modal">
 
@@ -10,7 +12,7 @@
       <div class="modal-body">
         <div style="display: flex; flex-flow: column nowrap;">
             <div class="dialogitems">
-                <a>Pack Name</a>
+                <a data-translation="manager.createnew.packname">Pack Name</a>
                 <input class="textinput" type="text" placeholder="Pack Name">
             </div>
             <div class="dialogitems">
@@ -77,24 +79,24 @@
     <div class="modal-content">
       <div class="modal-header">
           <span class="close">&times;</span>
-          <p>Create New Project</p>
+          <p data-translation="manager.createnew.title">Create New Project</p>
       </div>
       <div class="modal-body">
         <div style="display: flex; flex-flow: column nowrap;">
             <div class="dialogitems">
-                <a>Pack Name</a>
+                <a data-translation="manager.createnew.packname">Pack Name</a>
                 <input id="input-create-name" class="textinput" type="text" placeholder="Pack Name">
             </div>
             <div class="dialogitems">
-                <a>Pack Description</a>
+                <a data-translation="manager.createnew.packdesc">Pack Description</a>
                 <input id="input-create-desc" class="textinput" type="text" placeholder="Pack Description">
             </div>
             <div class="dialogitems">
-                <a>Pack UUID</a>
+                <a data-translation="manager.createnew.packuuid">Pack UUID</a>
                 <input id="input-create-uuid" class="textinput" type="text" placeholder="Pack-UUID">
             </div>
             <div class="dialogitems">
-                <a>With Resource Pack</a>
+                <a data-translation="manager.createnew.withres">With Resource Pack</a>
                 <label class="switch">
                     <input id="input-create-rp" type="checkbox">
                     <span class="slider round"></span>
@@ -102,8 +104,8 @@
             </div>
             <div class="dialogitems">
                 <a id="validator" style="color: red;"></a>
-                <button id='button-generate' onclick='generateCreateUUID()'>Generate UUID</button>
-                <button id='button-create'>Create</button>
+                <button id='button-generate' onclick='generateCreateUUID()' data-translation="manager.createnew.genuuid">Generate UUID</button>
+                <button id='button-create' data-translation="manager.createnew.create">Create</button>
             </div>
         </div>
       </div>
