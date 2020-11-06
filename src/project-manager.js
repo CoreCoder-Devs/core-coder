@@ -195,8 +195,8 @@ function refreshBPMap(directoryPath) {
         })
     }
     for (const project in projects_dev) {
-        tippy('#a' + projects[project].uuid, {
-            "content": `${projects[project]['description']}\n`
+        tippy('#a' + projects_dev[project].uuid, {
+            "content": `${projects_dev[project]['description']}\n`
         })
     }
 }
