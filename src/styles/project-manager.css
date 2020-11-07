@@ -97,7 +97,7 @@ body {
 }
 
 .panel:hover{
-	filter: brightness(130%);
+	filter: brightness(120%);
 }
 #proj_container h2{
 	width: 90%;
@@ -133,7 +133,7 @@ body {
 	left: 60px;
 	border: 10px solid;
 	border-image: url('../content/images/img_border.png') 10% repeat;
-	background-image: url(../content/images/img_bg.png);
+	background-image: url('../content/images/img_bg.png');
 }
 .panel-back{
 	margin: 3px;
