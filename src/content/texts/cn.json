@@ -34,5 +34,15 @@
     "manager.createnew.invalid.shortdesc": "描述太短",
     "manager.deleteproj.title": "删除此作品",
     "manager.deleteproj.msg": "以下文件夹将被删除：",
-    "manager.deleteproj.delete": "确认删除"
+    "manager.deleteproj.delete": "确认删除",
+    "editor.main.noFiles": "没有打开的文件。使用+按钮创建一个或者在侧边栏里选择一个。",
+    "editor.sidebar.behaviour": "行为包",
+    "editor.sidebar.resource": "资源包",
+    "editor.sidebar.resourceNotFound": "无法为此组件找到相应的资源包。请将其加入manifest.json或者创建一个。",
+    "editor.sidebar.save": "保存文档",
+    "editor.sidebar.explorer": "浏览器",
+    "editor.sidebar.home": "主页",
+    "editor.controls.refresh": "刷新",
+    "editor.controls.create": "新建文档",
+    "editor.controls.createFolder": "新建文件夹"
 }

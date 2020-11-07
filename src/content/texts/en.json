@@ -34,5 +34,15 @@
     "manager.createnew.invalid.shortdesc": "Description is too short",
     "manager.deleteproj.title": "Delete this project?",
     "manager.deleteproj.msg": "The following folder will be deleted:",
-    "manager.deleteproj.delete": "Delete"
+    "manager.deleteproj.delete": "Delete",
+    "editor.main.noFiles": "No files opened. Create new file by clicking (+) button or open it from file manager",
+    "editor.sidebar.behaviour": "Resource",
+    "editor.sidebar.resource": "Behaviour",
+    "editor.sidebar.resourceNotFound": "Could not find the resource for this addon. Create one or add it to manifest.json.",
+    "editor.sidebar.save": "Save",
+    "editor.sidebar.explorer": "Browser",
+    "editor.sidebar.home": "Home",
+    "editor.controls.refresh": "Refresh",
+    "editor.controls.create": "New File",
+    "editor.controls.createFolder": "New Folder"
 }

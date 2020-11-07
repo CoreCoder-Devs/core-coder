@@ -67,7 +67,6 @@ function loadSettings(){
 
 loadSettings();
 
-
 function translateDocument() {
     const translatedElements = document.querySelectorAll("[data-translation]");
     for(const element of translatedElements) {
