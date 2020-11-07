@@ -61,7 +61,11 @@ body {
 }
 
 .main_proj_list_container{
+	
 	background-color: var(--var_backgroundColorDarker);
+	background-image: url('../content/images/bg.png');
+	background-repeat: no-repeat;
+	background-position: center;
 }
 .panel {
 	background-image: linear-gradient(to bottom right, var(--var_colorAccent), var(--var_colorAccentDarker), var(--var_colorAccentDarker));
