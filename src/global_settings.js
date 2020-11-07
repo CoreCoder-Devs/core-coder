@@ -39,8 +39,14 @@ var GlobalSettings = {
         var_iconColor: rgb(164, 164, 164),
         var_iconColorActive: rgb(255, 255, 255)
     },
-    lang: "en"
+    lang: "en",
+    langCaption: "English"
 }
+
+const Languages = [
+    "en",
+    "cn"
+];
 
 const DefaultGlobalSettings = Object.assign({}, GlobalSettings);
 
