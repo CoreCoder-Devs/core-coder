@@ -48,5 +48,7 @@
     "editor.controls.createFolder": "New Folder",
     "update.message": "There's a new version of CoreCoder available! Update now?",
     "update.close": "Close",
-    "update.view": "View Update"
+    "update.view": "View Update",
+    "manager.settings.fullscreen": "Full Screen",
+    "manager.settings.lang": "Display Language"
 }

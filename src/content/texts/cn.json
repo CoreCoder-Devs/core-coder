@@ -48,5 +48,7 @@
     "editor.controls.createFolder": "新建文件夹",
     "update.message": "Core Coder有一个更新可用！",
     "update.close": "关闭",
-    "update.view": "查看更新"
+    "update.view": "查看更新",
+    "manager.settings.fullscreen": "全屏",
+    "manager.settings.lang": "显示语言"
 }
