@@ -894,7 +894,7 @@ function load_themes(){
     elm.innerHTML = "";
     elm.innerHTML += `<a href="#" onclick="set_core_theme('default')">default</a>`
     Object.entries(THEMES).forEach(e=>{
-        elm.innerHTML += `<a href="#" onclick="set_core_theme('${e[0]}')">${e[0]}</a>`
+        elm.innerHTML += `<a href="#" onclick="set_core_theme('${e[0]}');reinitCustomizationPanel();">${e[0]}</a>`
     });
 }
 
