@@ -6,6 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link href="../../lib/chrome-tabs-custom/css/chrome-tabs.css" rel="stylesheet">
       <link href="../../lib/chrome-tabs-custom/css/chrome-tabs-dark-theme.css" rel="stylesheet">
+      <script src="../global_settings.js"></script>
       <link href="editor.css" rel="stylesheet">
       <link href="dialogs.css" rel="stylesheet">
       <link href="controls.css" rel="stylesheet">
@@ -18,14 +19,13 @@
      
      <script src="../../lib/chrome-tabs-custom/node_modules/draggabilly/dist/draggabilly.pkgd.min.js"></script>
      <script src="../../lib/chrome-tabs-custom/js/chrome-tabs.js"></script>
-     <script src="../global_settings.js"></script>
 	  
    </head>
    <body onload="init();">
 	<!--COMP#DISABLE-->
 	<script src="util.js"></script>
 	<script src="util/Preferences.js"></script>
-	<script src="editor.js"></script>
+	<script src="./editor.js"></script>
 	<!--COMP#DISABLE-->
 
 	<!--COMP#ENABLE-->
@@ -41,25 +41,25 @@
             <!-- <a href="#" onclick="createNewFile()"><img  src="images/025-files-and-folders.png"></img><span class="tooltiptext">Create new file</span></a> -->
             <a href="#" onclick="openBrowser(1)" id="openBPBrowser">
                <div class="sidenavbutton" style="-webkit-mask-box-image: url(images/folder_bp.png)"></div>
-               <span class="tooltiptext">Behavior browser</span>
+               <span class="tooltiptext" data-translation="editor.sidebar.behaviour">Behavior browser</span>
             </a>
             <a href="#" onclick="openBrowser(0)" id="openRPBrowser">
                <div class="sidenavbutton" style="-webkit-mask-box-image: url(images/folder_rp.png)"></div>
-               <span class="tooltiptext">Resource browser</span>
+               <span class="tooltiptext" data-translation="editor.sidebar.resource">Resource browser</span>
             </a>
             <a href="#" onclick="saveCurrentFile()">
                <div class="sidenavbutton" style="-webkit-mask-box-image: url(images/016-save.png)"></div>
-               <span class="tooltiptext">Save file</span>
+               <span class="tooltiptext" data-translation="editor.sidebar.save">Save file</span>
             </a>
             <a href="#" onclick="openWebBrowser('file://' + __dirname + '\\pages\\home.html');">
                <div class="sidenavbutton" style="-webkit-mask-box-image: url(images/web.png)"></div>
-               <span class="tooltiptext">Web Browser</span>
+               <span class="tooltiptext" data-translation="editor.sidebar.explorer">Web Browser</span>
             </a>
             <!-- <a href="#" onclick="openPrefModal()"><img src="images/011-adjust.png"></img><span class="tooltiptext">Settings</span></a> -->
             <a href="#" style="flex-grow: 1"></a>
             <a href="#" onclick="window.location = '../project_manager.html'">
                <div class="sidenavbutton" style="-webkit-mask-box-image: url(images/027-real-estate.png)"></div>
-               <span class="tooltiptext">Project Menu</span>
+               <span class="tooltiptext" data-translation="editor.sidebar.home">Project Menu</span>
             </a>
          </div>
          <div class="mid_panel" id="midpane" style="display:none;">
@@ -122,15 +122,15 @@
                </p>
                <div href="#" onclick="regenerateTree()">
                   <img src="images/synchronize.png"></img>
-                  <span class="tooltiptext">Refresh</span>
+                  <span class="tooltiptext" data-translation="editor.controls.refresh">Refresh</span>
                </div>
                <div href="#" onclick="createNewFolder()">
                   <img src="images/015-folder.png">
-                  <span class="tooltiptext">Create Folder</span>
+                  <span class="tooltiptext" data-translation="editor.controls.createFolder">Create Folder</span>
                </div>
                <div href="#" onclick="createNewFile()">
                   <img src="images/025-files-and-folders.png">
-                  <span class="tooltiptext">Create File</span>
+                  <span class="tooltiptext" data-translation="editor.controls.create">Create File</span>
                </div>
             </div>
          </div>
@@ -145,7 +145,7 @@
                <!-- <img   src="images/menu.png" class="nav_button"> -->
             </div>
             <div id="divMain" class="content_center">
-               <p>No files opened. Create new file by clicking (+) button or open it from file manager</p>
+               <p data-translation="editor.main.noFiles">No files opened. Create new file by clicking (+) button or open it from file manager</p>
             </div>
             <div class="tabbar">
                <div class="chrome-tabs" style="--tab-content-margin: 9px">
@@ -272,21 +272,25 @@
             }
          </pre>
 		 <script>
-			ace.document = document;
-			ace.require("ace/ext/language_tools");
-			editor = ace.edit("editor", {
-				mode: "ace/mode/javascript",
-				selectionStyle: "text"
-			});
-			editor.getSession().setMode("ace/mode/javascript");
-			editor.setTheme("ace/theme/" + GlobalSettings.ace_theme);
-			editor.setFontSize(16)
-			editor.setOptions({
-			enableBasicAutocompletion: true,
-			enableSnippets: true,
-			enableLiveAutocompletion: true
-			});
-		 </script>
+          openBrowser(1)
+          ace.document = document;
+          ace.require("ace/ext/language_tools");
+          editor = ace.edit("editor", {
+             mode: "ace/mode/javascript",
+             selectionStyle: "text"
+            });
+            editor.getSession().setMode("ace/mode/javascript");
+            editor.setTheme("ace/theme/" + GlobalSettings.ace_theme);
+            editor.setFontSize(16)
+            editor.setOptions({
+               enableBasicAutocompletion: true,
+               enableSnippets: true,
+               enableLiveAutocompletion: true
+            });
+            </script>
       </div>
    </body>
+   <script>
+      translateDocument()
+   </script>
 </html>

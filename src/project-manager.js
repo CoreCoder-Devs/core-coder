@@ -9,7 +9,7 @@ const util = require('util');
 const Progress = require('node-fetch-progress/dist');
 const streamPipeline = util.promisify(require('stream').pipeline);
 const { createPopper } = require('@popperjs/core');
-const translations = require('./content/texts/en.json')
+const translations = require(`./content/texts/${GlobalSettings.lang}.json`);
 const { shell } = require('electron').remote;
 
 PROJECTS_BP = [];
@@ -45,7 +45,7 @@ function generateProjectHTML(proj_name, proj_folder, project_data, proj_ver) {
     var template = `
     <div class="panel-back" data-project=` + string_data + `  onclick="window.location='./content/main.html'; localStorage.setItem('project_data', '` + string_data + `')"  id="a${project_data.uuid}">
         <div class="panel">
-            <img class="minibutton" src="content/images/012-more.png" onclick="event.stopPropagation();openDeleteDlg(this)"/>
+            <img class="minibutton" src="content/images/012-more.png" onclick="event.stopPropagation();openDeleteDlg(this);translateDocument()"/>
             <img class="icon" src="` + img + `" style="min-width: 60px; height: 60px ` + (filter ? '' : "; image-rendering: pixelated") + `"></img>
             <div class="btnText"><strong>` + proj_name + `</strong> 
                 <span><i style="color: #b8b8b8;">` + proj_ver.join('.') + `</i></span>

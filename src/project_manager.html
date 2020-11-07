@@ -23,7 +23,7 @@
 	   <script type="text/javascript" src="../node_modules/electron-open-link-in-browser/build/electron-open-link-in-browser.js"></script>
 
 	</head>
-	<body style="margin: 0;" class="fillEntire" onload="init_ace_themes()">
+	<body style="margin: 0;" class="fillEntire" onload="init_ace_themes();translateDocument();">
 		<div id="notification" class="hidden">
 			<p id="message">There's a new version of CoreCoder available! Update now?(<b id="versionTitle"></b>)</p>
 			<button class="notificationbutton" id="close-button" onClick="closeNotification()">
@@ -53,9 +53,10 @@ function restartApp() {
 }</script>
 		<!--COMP#DISABLE-->
 		<script src="content/util/Preferences.js"></script>
+		<script src="global_settings.js"></script>
 		<script src="project-manager.js"></script>
 		<script src="content/util.js"></script>
-		<script src="global_settings.js"></script>
+
 		<!--COMP#DISABLE-->
 
 		<!--COMP#ENABLE-->
@@ -107,20 +108,20 @@ function restartApp() {
 			<div class="sidebar">
 				<!-- The navigation icons -->
 				<div id="btnhome"     class="selected mainminibutton" style="-webkit-mask-box-image: url(content/images/027-real-estate.png)" onclick="openPage('page1', this)"></div>
-				<div id="btnhome-tootlip"><div class="tooltip" >Home</div></div>
+				<div id="btnhome-tootlip"><div class="tooltip" data-translation="manager.tooltips.home">Home</div></div>
 				<div id="btnsettings" class="mainminibutton"          style="-webkit-mask-box-image: url(content/images/011-adjust.png)" onclick="openPage('page2', this)"></div>
-				<div id="btnsettings-tootlip"><div class="tooltip" >Settings</div></div>
+				<div id="btnsettings-tootlip"><div class="tooltip" data-translation="manager.tooltips.settings">Settings</div></div>
 			</div>
 			<div style="flex-grow: 1">
 				<div id="page1content" style="overflow-y:hidden; position: absolute; bottom: 0; top: 0px; left: 46px; right: 0">
 					<div style="width: 100%; height: 100%; display: flex; overflow-y: hidden; flex-direction:column">
 						<div class=toolbar>
-							<a style="flex-grow: 1">Projects</a>
+							<a style="flex-grow: 1" data-translation="manager.projects.title">Projects</a>
 							<!-- <img class="minibutton" src="content/images/menu.png" onclick="setLayoutMode(0);"/> -->
 							<!-- <img class="minibutton" src="content/images/grid.png" onclick="setLayoutMode(1)"/> -->
 							<a id="versionID">v1.0.0</a>
 							<img id="discordbtn" class="minibutton" src="content/images/discord.svg" onclick="openDiscordURL();"/>
-							<img id="createbtn" class="minibutton" src="content/images/006-add-plus-button.png" onclick="openCreateDlg()"/>
+							<img id="createbtn" class="minibutton" src="content/images/006-add-plus-button.png" onclick="openCreateDlg();translateDocument()"/>
 							<script>
 								// Create tooltip
 								tippy('#discordbtn', {
@@ -175,13 +176,13 @@ function restartApp() {
 				</div>
 				<div id="page2content" style="width: 100%; height: 100%; display: none">
 					<div class="tab">
-						<button class="tablinks" onclick="openPanel(event, 'General')" id="general">General</button>
-						<button class="tablinks" onclick="openPanel(event, 'Customization')">Theme</button>
-						<button class="tablinks" onclick="openPanel(event, 'Editor')">Editor</button>
-						<button class="tablinks" onclick="openPanel(event, 'AutoUpdate')">Experimental options</button>
+						<button class="tablinks" onclick="openPanel(event, 'General')" id="general" data-translation="manager.settings.general">General</button>
+						<button class="tablinks" onclick="openPanel(event, 'Customization')" data-translation="manager.settings.theme">Theme</button>
+						<button class="tablinks" onclick="openPanel(event, 'Editor')" data-translation="manager.settings.editor">Editor</button>
+						<button class="tablinks" onclick="openPanel(event, 'AutoUpdate')" data-translation="manager.settings.exp">Experimental options</button>
 					</div>
 					<div id="General" class="tabcontent">
-                        <h3>General Settings</h3>
+                        <h3 data-translation="manager.settings.general">General Settings</h3>
                         <div class="settingsitem">
                             <!-- <a class="text">com.mojang directory
 								<span id="commojangdirvalue">C:\Users\Hanprog\com.mojang</span>
@@ -208,35 +209,35 @@ function restartApp() {
                         </div>
 					</div>
 					<div id="Customization" class="tabcontent">
-						<h3>Themes</h3>
+						<h3 data-translation="manager.settings.theme">Themes</h3>
 						<div id="themeChooser" class="themeList">
 							<a href="#" onclick="">Link 1</a>
 							<a href="#">Link 2</a>
 							<a href="#">Link 3</a>
 						</div>
 						<h3>Customize Theme</h3>
-						<div class="settingsitem themeeditor" id="var_backgroundColor"></div>
-						<div class="settingsitem themeeditor" id="var_backgroundColorDarker"></div>
-						<div class="settingsitem themeeditor" id="var_backgroundColorLighter"></div>
-						<div class="settingsitem themeeditor" id="var_textColor"></div>
-						<div class="settingsitem themeeditor" id="var_textColorDarker"></div>
-						<div class="settingsitem themeeditor" id="var_colorAccent"></div>
-						<div class="settingsitem themeeditor" id="var_colorAccentDarker"></div>
-						<div class="settingsitem themeeditor" id="var_colorAccentLighter"></div>
-						<div class="settingsitem themeeditor" id="var_sidebarColor"></div>
-						<div class="settingsitem themeeditor" id="var_iconColor"></div>
-						<div class="settingsitem themeeditor" id="var_iconColorActive"></div>
-				</div>
+						<div data-translation="manager.settings.theme.bgColor" class="settingsitem themeeditor" id="var_backgroundColor"></div>
+						<div data-translation="manager.settings.theme.bgColorDark" class="settingsitem themeeditor" id="var_backgroundColorDarker"></div>
+						<div data-translation="manager.settings.theme.bgColorLight" class="settingsitem themeeditor" id="var_backgroundColorLighter"></div>
+						<div data-translation="manager.settings.theme.textColor" class="settingsitem themeeditor" id="var_textColor"></div>
+						<div data-translation="manager.settings.theme.textColorDark" class="settingsitem themeeditor" id="var_textColorDarker"></div>
+						<div data-translation="manager.settings.theme.colorAccent" class="settingsitem themeeditor" id="var_colorAccent"></div>
+						<div data-translation="manager.settings.theme.colorAccentDark" class="settingsitem themeeditor" id="var_colorAccentDarker"></div>
+						<div data-translation="manager.settings.theme.colorAccentLight" class="settingsitem themeeditor" id="var_colorAccentLighter"></div>
+						<div data-translation="manager.settings.theme.colorSidebar" class="settingsitem themeeditor" id="var_sidebarColor"></div>
+						<div data-translation="manager.settings.theme.iconColor" class="settingsitem themeeditor" id="var_iconColor"></div>
+						<div data-translation="manager.settings.theme.iconColorActive" class="settingsitem themeeditor" id="var_iconColorActive"></div>
+					</div>
 
 				<div id="AutoUpdate" class="tabcontent">
-					<label class="container">AutoUpdate
+					<label class="container" data-translation="manager.settings.exp.aupdate">AutoUpdate
+					</label>
 					  <input type="checkbox"
 					  checked="checked">
 					  <span class="checkmark"></span>
-					</label>
 				</div>
 					<div id="Editor" class="tabcontent">
-						<h3>Editor Settings</h3>
+						<h3 data-translation="manager.settings.editor">Editor Settings</h3>
 						<div id="themeDropdown" class="themeList">
 							<a href="#" onclick="">Link 1</a>
 							<a href="#">Link 2</a>
@@ -388,4 +389,7 @@ function restartApp() {
 			</script>
 		</div>
 	</body>
+	<script>
+		translateDocument()
+	</script>
 </html>

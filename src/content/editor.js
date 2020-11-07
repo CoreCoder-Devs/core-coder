@@ -7,6 +7,8 @@ const imageSize = require('image-size');
 const tokenizer = require('json-tokenizer');
 var getFavicons = require('get-website-favicon')
 var getTitleAtUrl = require('get-title-at-url');
+const translations = require(`./texts/${GlobalSettings.lang}.json`)
+
 t = tokenizer();
 let openedBrowser = -1; //1 - BP; 0 - RP
 let items_source = {}; // contains source file, ace sessions, saved state
@@ -1009,11 +1011,11 @@ function regenerateTree() {
 	var treeContainer = document.getElementById("browsercontent");
 
 	document.getElementById("browserpath").innerText = relativePath[openedBrowser];
-	document.getElementById("midpaneTitle").innerText = openedBrowser == 1 ? 'Behavior Explorer' : 'Resource Explorer';
+	document.getElementById("midpaneTitle").innerText = openedBrowser == 1 ? translations['editor.sidebar.behaviour'] : translations['editor.sidebar.resource'];
 
 	if (!project_info["rp_folder"] && openedBrowser == 0) {
 		// If no resource pack and opening RP browser
-		treeContainer.innerHTML = '<a style="color: white; margin: 8px; margin: 0;">No resource pack found, please create one from project manager<a/>';
+		treeContainer.innerHTML = '<a style="color: white; margin: 8px; margin: 0;">' + translations["editor.sidebar.resourceNotFound"] + '<a/>';
 		return;
 	}
 
