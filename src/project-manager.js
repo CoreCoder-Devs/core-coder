@@ -9,7 +9,7 @@ const util = require('util');
 const Progress = require('node-fetch-progress/dist');
 const streamPipeline = util.promisify(require('stream').pipeline);
 const { createPopper } = require('@popperjs/core');
-let  translations = require(`./content/texts/${GlobalSettings.lang}.json`);
+let translations = require(`./content/texts/${GlobalSettings.lang}.json`);
 const { shell } = require('electron').remote;
 
 PROJECTS_BP = [];
@@ -454,7 +454,6 @@ function init() {
     toggleFullscreen(GlobalSettings.fullscreen);
     setLanguage(GlobalSettings.lang);
     document.getElementById("versionID").innerText = currentVersion.versionName;
-    
     // Init the download buttons
     var buttons = document.querySelectorAll('.progress-btn');
     for (let i = 0; i < buttons.length; i++) {
@@ -529,6 +528,17 @@ function init() {
     createPopper(button, tooltip, {
         placement: 'right-start',
     });
+
+    // Append language dropdown list
+    const langFileNames = fs.readdirSync('./src/content/texts/').filter(f => f.endsWith('.json'))
+    for (const file of langFileNames) {
+        const langFile = require('./content/texts/' + file)
+        const node = document.createElement('a')
+        node.innerHTML = langFile.lang
+        node.setAttribute('onclick',`setLanguage('${file.slice(0, -5)}',null,true);`)
+        document.getElementById('langDropDown')
+        .append(node)
+    }
 }
 
 // Project generation process
