@@ -24,11 +24,11 @@
 	</head>
 	<body style="margin: 0;" class="fillEntire" onload="init_ace_themes();translateDocument();">
 		<div id="notification" class="hidden">
-			<p id="message">There's a new version of CoreCoder available! Update now?(<b id="versionTitle"></b>)</p>
-			<button class="notificationbutton" id="close-button" onClick="closeNotification()">
+			<p id="message" data-translation="update.message">There's a new version of CoreCoder available! Update now?</p><b id="versionTitle"></b><br>
+			<button class="notificationbutton" id="close-button" onClick="closeNotification()" data-translation="update.close">
 			  Close
 			</button>
-			<button class="notificationbutton" id="restart-button" onClick="openUpdateLink()">
+			<button class="notificationbutton" id="restart-button" onClick="openUpdateLink()" data-translation="update.view">
 			  View Update
 			</button>
 		  </div>
@@ -125,10 +125,10 @@ function restartApp() {
 							<script>
 								// Create tooltip
 								tippy('#discordbtn', {
-									content: "Join discord server",
+									content: translations["manager.tooltips.discord"],
 								});
 								tippy('#createbtn', {
-									content: "Create new pack",
+									content: translations["manager.createnew.title"],
 								});
 							</script>
 						</div>

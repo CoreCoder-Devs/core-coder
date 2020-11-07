@@ -22,6 +22,7 @@
     "manager.settings.exp.aupdate": "自动更新",
     "manager.tooltips.home": "主页",
     "manager.tooltips.settings": "设置",
+    "manager.tooltips.discord": "加入我们的Discord服务器",
     "manager.createnew.title": "创建新作品",
     "manager.createnew.packname": "名称",
     "manager.createnew.packdesc": "描述",
@@ -44,5 +45,8 @@
     "editor.sidebar.home": "主页",
     "editor.controls.refresh": "刷新",
     "editor.controls.create": "新建文档",
-    "editor.controls.createFolder": "新建文件夹"
+    "editor.controls.createFolder": "新建文件夹",
+    "update.message": "Core Coder有一个更新可用！",
+    "update.close": "关闭",
+    "update.view": "查看更新"
 }

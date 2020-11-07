@@ -22,6 +22,7 @@
     "manager.settings.exp.aupdate": "Auto Update",
     "manager.tooltips.home": "Home",
     "manager.tooltips.settings": "Settings",
+    "manager.tooltips.discord": "Join Discord server",
     "manager.createnew.title": "Create New Project",
     "manager.createnew.packname": "Pack Name",
     "manager.createnew.packdesc": "Pack Description",
@@ -44,5 +45,8 @@
     "editor.sidebar.home": "Home",
     "editor.controls.refresh": "Refresh",
     "editor.controls.create": "New File",
-    "editor.controls.createFolder": "New Folder"
+    "editor.controls.createFolder": "New Folder",
+    "update.message": "There's a new version of CoreCoder available! Update now?",
+    "update.close": "Close",
+    "update.view": "View Update"
 }

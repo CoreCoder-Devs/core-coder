@@ -4,6 +4,7 @@
     display: inline-block;
     width: 60px;
     height: 34px;
+    border-radius: 20px;
   }
   
   /* Hide default HTML checkbox */
@@ -24,6 +25,7 @@
     background-color: rgb(44, 44, 44);
     -webkit-transition: .4s;
     transition: .4s;
+    border-radius: 20px;
   }
   
   .slider:before {
@@ -63,5 +65,5 @@
 
 .dialogitems {
     display: flex; flex-flow: row nowrap;
-    padding: 2px;
+    padding: 1px;
 }
