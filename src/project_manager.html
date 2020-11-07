@@ -193,16 +193,16 @@ function restartApp() {
 						<div class="settingsitem">
 							<h3 data-translation="manager.settings.lang">Language</h3>
 							<div class="dropdown">
-									<button onclick="myFunction()" class="dropbtn" id="dropdownlang">Dropdown</button>
-									<div id="myDropdown" class="dropdown-content">
+									<button onclick="displayLangDropdown()" class="dropbtn" id="dropdownlang">Dropdown</button>
+									<div id="langDropDown" class="dropdown-content">
 									  <a href="#" onclick="setLanguage('en',null,true);">English</a>
 									  <a href="#" onclick="setLanguage('cn',null,true);">Chinese</a>
 									</div>
 								  </div>
 								  <script>/* When the user clicks on the button,
 										toggle between hiding and showing the dropdown content */
-										function myFunction() {
-										  document.getElementById("myDropdown").classList.toggle("show");
+										function displayLangDropdown() {
+										  document.getElementById("langDropDown").classList.toggle("show");
 										}
 										
 										// Close the dropdown menu if the user clicks outside of it
