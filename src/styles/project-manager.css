@@ -679,6 +679,7 @@ background-color: var(--var_colorAccentLighter);
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
+	right: 0%;
 	display: none;
 	position: absolute;
 	background-color: var(--var_backgroundColor);
