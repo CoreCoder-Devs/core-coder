@@ -22,7 +22,6 @@
     "node-fetch-progress": "^1.0.2",
     "node-unique-machine-id": "^1.1.0",
     "open": "^7.1.0",
-    "update-electron-app": "^2.0.1",
     "uuid": "^8.2.0",
     "webpack": "^4.44.1"
   },
