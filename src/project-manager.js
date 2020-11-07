@@ -452,7 +452,7 @@ function init() {
     refreshProjectMap();
     includeHTML();
     toggleFullscreen(GlobalSettings.fullscreen);
-    setLanguage(GlobalSettings.lang, GlobalSettings.langCaption);
+    setLanguage(GlobalSettings.lang);
     document.getElementById("versionID").innerText = currentVersion.versionName;
     
     // Init the download buttons
@@ -951,13 +951,20 @@ function openDiscordURL(){
     shell.openExternal("https://discord.gg/UyyBkEMvmx");
 }
 
-function setLanguage(langname, caption){
+function setLanguage(langname, caption, reload){
+    reload = reload || false
+    caption = caption || translations['lang']
+    if(!reload) {
+        translateDocument();
+    }
     GlobalSettings.lang = langname;
     translations = require(`./content/texts/${GlobalSettings.lang}.json`);
-    translateDocument();
-
+    
     document.getElementById("dropdownlang").innerText = caption;
     saveSettings();
+    if(reload) {
+        location.reload()
+    }
 }
 
 function toggleFullscreen(bool) {
