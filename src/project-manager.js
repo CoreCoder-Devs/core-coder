@@ -48,7 +48,7 @@ function generateProjectHTML(proj_name, proj_folder, project_data, proj_ver) {
             <img class="minibutton" src="content/images/012-more.png" onclick="event.stopPropagation();openDeleteDlg(this);translateDocument()"/>
             <img class="icon" src="` + img + `" style="min-width: 60px; height: 60px ` + (filter ? '' : "; image-rendering: pixelated") + `"></img>
             <div class="btnText"><strong>` + proj_name + `</strong> 
-                <span><i style="color: #b8b8b8;">` + proj_ver.join('.') + `</i></span>
+                <span><i style="color: var(--var_textColorDarker);">` + proj_ver.join('.') + `</i></span>
             </div>
             <!-- <img class="minibutton" src="content/images/012-more.png" onclick="openRenameDlg()"/> -->
             </div>
