@@ -1,0 +1,16 @@
+{
+    "name": "Dark Green",
+    "theme": {
+		"var_backgroundColor": "rgb(255, 255, 255)",
+		"var_backgroundColorDarker": "rgb(216, 216, 216)",
+		"var_backgroundColorLighter": "rgb(200, 200, 200)",
+		"var_textColor": "rgb(73, 73, 73)",
+		"var_textColorDarker": "rgb(0, 0, 0)",
+		"var_colorAccent": "rgb(192, 192, 192)",
+		"var_colorAccentDarker": "rgb(192, 192, 192)",
+		"var_colorAccentLighter": "rgb(211, 211, 211)",
+		"var_sidebarColor": "rgb(172, 172, 172)",
+		"var_iconColor": "rgb(0, 0, 0)",
+		"var_iconColorActive": "rgb(0, 0, 0)"
+	}
+}
