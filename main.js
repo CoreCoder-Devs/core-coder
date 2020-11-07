@@ -1,6 +1,23 @@
 const Electron = require('electron');
 const { app, autoUpdater, dialog } = require('electron');
 
+const RPC = require('discord-rpc')
+ 
+const client = new RPC.Client({ transport: 'ipc' });
+
+client.on('ready', () => {
+  const startTimestamp = new Date();
+    client.setActivity({
+    details: `Making an Add-on`,
+    startTimestamp,
+    largeImageKey: 'icon',
+  });
+});
+
+// Log in to RPC with client id
+client.login({clientId: '774605779952468022'}).catch(e=> {
+  console.log(e)
+})
 
 // Checks for update
 require('update-electron-app')({
@@ -38,3 +55,4 @@ Electron.ipcMain.on('restart_app', () => {
 Electron.ipcMain.on('app_version', (event) => {
     event.sender.send('app_version', { version: app.getVersion() });
 });
+
