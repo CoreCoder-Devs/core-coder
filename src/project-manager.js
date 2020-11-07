@@ -10,6 +10,7 @@ const Progress = require('node-fetch-progress/dist');
 const streamPipeline = util.promisify(require('stream').pipeline);
 const { createPopper } = require('@popperjs/core');
 const translations = require('./content/texts/en.json')
+const { shell } = require('electron').remote;
 
 PROJECTS_BP = [];
 PROJECTS_RP = [];
@@ -451,6 +452,7 @@ function init() {
     refreshProjectMap();
     includeHTML();
 
+    document.getElementById("versionID").innerText = currentVersion.versionName;
     // Init the download buttons
     var buttons = document.querySelectorAll('.progress-btn');
     for (let i = 0; i < buttons.length; i++) {
@@ -904,3 +906,46 @@ function set_core_theme(name){
     set_ace_theme(GlobalSettings.ace_theme);
     initGlobalTheme();
 }
+
+// Auto updater part
+const currentVersion = require("../src/current.json");
+const notification = document.getElementById('notification');
+const versionTitle = document.getElementById('versionTitle');
+const viewButton = document.getElementById('restart-button');
+var devlogURL = "";
+function autoUpdate(){
+    let updateURL = "https://raw.githubusercontent.com/Hanprogramer/CoreCoder-Releases/master/newest.json";
+    let settings = { method: "Get" };
+    console.log(currentVersion);
+    fetch(updateURL, settings)
+        .then(res => res.json())
+        .then((json) => {
+            console.log(json);
+            if((json.versionMajor > currentVersion.versionMajor) || 
+                (json.versionMajor >= currentVersion.versionMajor&&json.versionMinor > currentVersion.versionMinor) || 
+                (json.versionMajor >= currentVersion.versionMajor&&json.versionMinor >= currentVersion.versionMinor&&json.versionBuilds > currentVersion.versionBuilds)
+                ){
+                        // If statement is a little compplicated, but it is what needs to be done
+                        // There's an update;
+                        notification.classList.remove('hidden');
+                        versionTitle.innerText = json.changelogTitle;
+                        if(json.devlogLink != undefined){
+                            devlogURL = json.devlogLink;
+                        }else{
+                            devlogURL = "https://hanprog.itch.io/core-coder/";
+                        }
+            }
+            else{
+                console.log("no new update");
+            }
+        });
+}
+function openUpdateLink(){
+    shell.openExternal(devlogURL);
+}
+
+function openDiscordURL(){
+    shell.openExternal("https://discord.gg/UyyBkEMvmx");
+}
+
+autoUpdate();

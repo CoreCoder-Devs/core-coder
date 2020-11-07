@@ -692,3 +692,27 @@ background-color: var(--var_colorAccentLighter);
 
 /* Change color of dropdown links on hover */
 .themeList a:hover {background-color: var(--var_colorAccent)}
+
+#notification {
+	position: fixed;
+	bottom: 20px;
+	left: 20px;
+	width: 200px;
+	padding: 20px;
+	border-radius: 5px;
+	background-color: var(--var_backgroundColorLighter);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	z-index: 9999;
+  }
+  .hidden {
+	display: none;
+  }
+
+.notificationbutton{
+	width: auto;
+	height: auto;
+	border: none;
+	border-radius: 8px;
+	padding: 4px;
+	font-size: 12px;
+}
