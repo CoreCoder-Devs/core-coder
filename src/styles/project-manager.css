@@ -137,7 +137,7 @@ body {
 }
 .panel-back{
 	margin: 3px;
-	height: 128px;
+	height: 150px;
 	transition: transform .2s;
 }
 .panel-back:hover{
