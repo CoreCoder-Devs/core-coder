@@ -372,7 +372,7 @@ button:hover {
 
 .settingsitem {
 	margin: 8px;
-	padding: 16px;
+	padding: 8px;
 	border-radius: 8px;
 	border: 1px solid var(--var_backgroundColorDarker);
 	background-color: var(--var_backgroundColorLighter);
@@ -381,13 +381,15 @@ button:hover {
 	/* Layouting */
 	display: flex;
 	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 }
 
 .settingsitem:hover {
 	border: 1px solid var(--var_colorAccent);
 }
 
-.settingsitem a {
+.settingsitem a, .settingsitem h3 {
 	flex-grow: 1;
 }
 
@@ -697,7 +699,7 @@ background-color: var(--var_colorAccentLighter);
 }
 
 /* Links inside the dropdown */
-.themeList a {
+.themeList a, .dropdown-content a {
 	color: var(--var_textColor);
 	background-color: var(--var_backgroundColorDarker);
 	padding: 12px 16px;
@@ -710,7 +712,7 @@ background-color: var(--var_colorAccentLighter);
 }
 
 /* Change color of dropdown links on hover */
-.themeList a:hover {background-color: var(--var_colorAccent)}
+.themeList a:hover, .dropdown-content a:hover {background-color: var(--var_colorAccent)}
 
 #notification {
 	position: fixed;
@@ -734,4 +736,10 @@ background-color: var(--var_colorAccentLighter);
 	border-radius: 8px;
 	padding: 4px;
 	font-size: 12px;
+}
+
+input[type="checkbox"]{
+	width: 32px;
+	height: 32px;
+	border-radius: 4px;
 }

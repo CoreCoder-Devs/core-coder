@@ -9,7 +9,7 @@ const util = require('util');
 const Progress = require('node-fetch-progress/dist');
 const streamPipeline = util.promisify(require('stream').pipeline);
 const { createPopper } = require('@popperjs/core');
-const translations = require(`./content/texts/${GlobalSettings.lang}.json`);
+let  translations = require(`./content/texts/${GlobalSettings.lang}.json`);
 const { shell } = require('electron').remote;
 
 PROJECTS_BP = [];
@@ -451,8 +451,10 @@ function createProject() {
 function init() {
     refreshProjectMap();
     includeHTML();
-
+    toggleFullscreen(GlobalSettings.fullscreen);
+    setLanguage(GlobalSettings.lang, GlobalSettings.langCaption);
     document.getElementById("versionID").innerText = currentVersion.versionName;
+    
     // Init the download buttons
     var buttons = document.querySelectorAll('.progress-btn');
     for (let i = 0; i < buttons.length; i++) {
@@ -940,6 +942,7 @@ function autoUpdate(){
             }
         });
 }
+
 function openUpdateLink(){
     shell.openExternal(devlogURL);
 }
@@ -948,4 +951,23 @@ function openDiscordURL(){
     shell.openExternal("https://discord.gg/UyyBkEMvmx");
 }
 
+function setLanguage(langname, caption){
+    GlobalSettings.lang = langname;
+    translations = require(`./content/texts/${GlobalSettings.lang}.json`);
+    translateDocument();
+
+    document.getElementById("dropdownlang").innerText = caption;
+    saveSettings();
+}
+
+function toggleFullscreen(bool) {
+    if (bool) {
+        document.documentElement.requestFullscreen();
+      } else if(document.fullscreenElement){
+        document.exitFullscreen();
+    }
+    GlobalSettings.fullscreen = bool;
+    saveSettings();
+  }
+  
 autoUpdate();

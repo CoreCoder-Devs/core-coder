@@ -20,7 +20,6 @@
 	   <script src="../lib/ace/ext-themelist.js"></script>
 	   <script src="../lib/popper.js"></script>
 	   <script src="../lib/tippy.js"></script>
-	   <script type="text/javascript" src="../node_modules/electron-open-link-in-browser/build/electron-open-link-in-browser.js"></script>
 
 	</head>
 	<body style="margin: 0;" class="fillEntire" onload="init_ace_themes();translateDocument();">
@@ -184,30 +183,42 @@ function restartApp() {
 					</div>
 					<div id="General" class="tabcontent">
                         <h3 data-translation="manager.settings.general">General Settings</h3>
-                        <div class="settingsitem">
-                            <!-- <a class="text">com.mojang directory
-								<span id="commojangdirvalue">C:\Users\Hanprog\com.mojang</span>
-								<input id="input1" type="file"/>
-                            </a>
-							<button onclick="openFolderSelect1()">Browse</button>
-							<script>
-								input = document.getElementById("input1");
-								label1= document.getElementById("commojangdirvalue");
-								function openFolderSelect1(){
-									input.click();
-								}
+						<div class="settingsitem">
+						<h3 class="checkBoxContainer" data-translation="manager.settings.fullscreen">Fullscreen
+						</h3>
+						  <input type="checkbox"
+						  checked="checked" onchange="toggleFullscreen(this.checked)">
+						  <span class="checkmark"></span></div>
 
-								input.onchange = function(e){
-									var path = input.files[0].path.split("\\");
-									path.pop();
-									path = path.join("\\");
-									label1.innerText = path + '\\';
-									setMojangPath(path);
-								}
-								label1.innerText = getMojangPath();
-							
-							</script> -->
-                        </div>
+						<div class="settingsitem">
+							<h3 data-translation="manager.settings.lang">Language</h3>
+							<div class="dropdown">
+									<button onclick="myFunction()" class="dropbtn" id="dropdownlang">Dropdown</button>
+									<div id="myDropdown" class="dropdown-content">
+									  <a href="#" onclick="setLanguage('en','English');">English</a>
+									  <a href="#" onclick="setLanguage('cn','Chinese');">Chinese</a>
+									</div>
+								  </div>
+								  <script>/* When the user clicks on the button,
+										toggle between hiding and showing the dropdown content */
+										function myFunction() {
+										  document.getElementById("myDropdown").classList.toggle("show");
+										}
+										
+										// Close the dropdown menu if the user clicks outside of it
+										window.onclick = function(event) {
+										  if (!event.target.matches('.dropbtn')) {
+											var dropdowns = document.getElementsByClassName("dropdown-content");
+											var i;
+											for (i = 0; i < dropdowns.length; i++) {
+											  var openDropdown = dropdowns[i];
+											  if (openDropdown.classList.contains('show')) {
+												openDropdown.classList.remove('show');
+											  }
+											}
+										  }}
+										</script>
+						</div>
 					</div>
 					<div id="Customization" class="tabcontent">
 						<h3 data-translation="manager.settings.theme">Themes</h3>
@@ -231,11 +242,12 @@ function restartApp() {
 					</div>
 
 				<div id="AutoUpdate" class="tabcontent">
-					<label class="container" data-translation="manager.settings.exp.aupdate">AutoUpdate
-					</label>
+					<div class="settingsitem">
+					<a class="checkBoxContainer" data-translation="manager.settings.exp.aupdate">AutoUpdate
+					</a>
 					  <input type="checkbox"
 					  checked="checked">
-					  <span class="checkmark"></span>
+					  <span class="checkmark"></span></div>
 				</div>
 					<div id="Editor" class="tabcontent">
 						<h3 data-translation="manager.settings.editor">Editor Settings</h3>
