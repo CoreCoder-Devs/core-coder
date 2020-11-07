@@ -7,6 +7,7 @@
     "manager.projects.dependencies": "Dependencies",
     "manager.settings.general": "General",
     "manager.settings.theme": "Theme",
+    "manager.settings.theme.customize": "Customize Theme",
     "manager.settings.theme.bgColor": "Background Color",
     "manager.settings.theme.bgColorDark": "Background Color Darker",
     "manager.settings.theme.bgColorLight": "Background Color Lighter",
