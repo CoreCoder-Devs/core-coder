@@ -220,6 +220,7 @@ body {
   -webkit-app-region: no-drag;
   overflow-x: hidden;
   transition: padding-left .2s;
+  padding-top: 2px;
 }
 .filebrowseritem:hover {
   background-color: var(--var_backgroundColor);
@@ -253,7 +254,7 @@ body {
   /* white-space: nowrap;  */
   width: 100%; 
   padding: 0; 
-  font-size: 12px;
+  font-size: 15px;
   top: 32px;
 }
 
