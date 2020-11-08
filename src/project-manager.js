@@ -539,6 +539,17 @@ function init() {
         document.getElementById('langDropDown')
         .append(node)
     }
+
+    //append preset themes
+    const themeFileNames = fs.readdirSync('./src/content/preset_themes/').filter(f => f.endsWith('.json'))
+    for (const file of themeFileNames) {
+        const theme = require('./content/preset_themes/' + file)
+        const node = document.createElement('a')
+        node.innerHTML = theme.name
+        node.setAttribute('onclick',`loadPresetTheme('${file}');`)
+        document.getElementById('themeChooser')
+        .append(node)
+    }
 }
 
 // Project generation process
@@ -975,6 +986,13 @@ function setLanguage(langname, caption, reload){
     if(reload) {
         location.reload()
     }
+}
+
+function loadPresetTheme(filename) {
+    const theme = require('./content/preset_themes/' + filename)
+    GlobalSettings.theme = theme.theme
+    saveSettings()
+    location.reload()
 }
 
 function toggleFullscreen(bool) {

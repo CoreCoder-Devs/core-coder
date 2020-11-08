@@ -1,0 +1,16 @@
+{
+    "name": "Default",
+    "theme": {
+        "var_backgroundColor" : "rgb(29, 29, 29)",
+        "var_backgroundColorDarker" : "rgb(19, 19, 19)",
+        "var_backgroundColorLighter" : "rgb(39, 39, 39)",
+        "var_textColor": "white",
+        "var_textColorDarker" : "rgb(175, 175, 175)",
+        "var_colorAccent" : "rgb(0, 158, 124)",
+        "var_colorAccentDarker" : "rgb(5, 126, 110)",
+        "var_colorAccentLighter" : "rgb(10, 185, 147)",
+        "var_sidebarColor" : "rgb(24, 24, 24)",
+        "var_iconColor": "rgb(164, 164, 164)",
+        "var_iconColorActive": "rgb(255, 255, 255)"
+    }
+}
