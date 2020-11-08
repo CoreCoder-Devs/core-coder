@@ -12,9 +12,9 @@ const { createPopper } = require('@popperjs/core');
 let translations = require(`./content/texts/${GlobalSettings.lang}.json`);
 const { shell } = require('electron').remote;
 
-PROJECTS_BP = [];
-PROJECTS_RP = [];
-PREFERENCES = {
+var PROJECTS_BP = [];
+var PROJECTS_RP = [];
+var PREFERENCES = {
     "com_mojang_path": Preferences.COM_MOJANG_PATH,
     "behavior_folder": 'development_behavior_packs',
     "resource_folder": 'development_resource_packs'
@@ -98,26 +98,26 @@ function refreshBPMap(directoryPath) {
     
     // Just showcasing 2 ways of doing foreach
     dev_files.forEach(function(val) {
-        var data = getProjectManifestJSON('development_behavior_packs\\' + val);
-        var dependencies = [];
-        var desc = '';
-        var name = '';
-        var version = [];
+        let data = getProjectManifestJSON('development_behavior_packs\\' + val);
+        let dependencies = [];
+        let desc = '';
+        let name = '';
+        let version = [];
         if (data != null) {
-            if (data['dependencies'])
+        if (data['dependencies'])
             data['dependencies'].forEach(d => {
                 if (d['uuid']) {
-                    var uuid = d['uuid'];
-                    var p = getProjectWithUUID(PROJECTS_RP, uuid);
+                    const projuuid = d['uuid'];
+                    var p = getProjectWithUUID(PROJECTS_RP, projuuid);
                     if (p != null) {
                         dependencies.push(p);
                     } else {
-                        dependencies.push(uuid);
+                        dependencies.push(projuuid);
                     }
                 }
             });
             
-            if (data["header"]["description"]) {
+        if (data["header"]["description"]) {
                 // Remove minecraft color code
                 desc = (data["header"]["description"]).replace(/\u00A7[0-9A-FK-OR]/ig, '');
                 name = (data["header"]["name"]).replace(/\u00A7[0-9A-FK-OR]/ig, '');
@@ -130,26 +130,26 @@ function refreshBPMap(directoryPath) {
             'uuid': data == null ? null : data["header"]["uuid"],
             'dependencies': dependencies,
             'description': desc,
-            'version': version
+            'version': version || [0,0,0]
         });
     });
 
-    for (var i = 0; i < nodev_files.length; i++) {
-        var data = getProjectManifestJSON('behavior_packs\\' + nodev_files[i]);
-        var dependencies = [];
-        var desc = '';
-        var name = '';
-        var version = [];
+    for (let i = 0; i < nodev_files.length; i++) {
+        let data = getProjectManifestJSON('behavior_packs\\' + nodev_files[i]);
+        let dependencies = [];
+        let desc = '';
+        let name = '';
+        let version = [];
         if (data != null) {
             if (data['dependencies'])
                 data['dependencies'].forEach(d => {
                     if (d['uuid']) {
-                        var uuid = d['uuid'];
-                        var p = getProjectWithUUID(PROJECTS_RP, uuid);
+                        const projuuid = d['uuid'];
+                        var p = getProjectWithUUID(PROJECTS_RP, projuuid);
                         if (p != null) {
                             dependencies.push(p);
                         } else {
-                            dependencies.push(uuid);
+                            dependencies.push(projuuid);
                         }
                     }
                 });
@@ -175,13 +175,13 @@ function refreshBPMap(directoryPath) {
     // Reading the pack name
     contstr += `<h2>${translations["manager.projects.title"]}</h2>`;
     if(projects.length) {
-        for (var p in projects) {
+        for (const p in projects) {
             contstr += generateProjectHTML(projects[p].name, projects[p].folder, projects[p], projects[p].version);
         }
     } else contstr += `<p>${translations["manager.projects.empty"]}</p>`
     contstr += `<h2>${translations["manager.devprojects.title"]}</h2>`;
     if(projects_dev.length) {
-        for (var p in projects_dev) {
+        for (const p in projects_dev) {
             contstr += generateProjectHTML(projects_dev[p].name, projects_dev[p].folder, projects_dev[p], projects_dev[p].version);
         }
     } else contstr += `<p>${translations["manager.projects.empty"]}</p>`
@@ -226,7 +226,7 @@ function refreshRPMap(directoryPath) {
 
     // Just showcasing 2 ways of doing foreach
     dev_files.forEach(function(val) {
-        var data = getProjectManifestJSON('development_resource_packs\\' + val);
+        const data = getProjectManifestJSON('development_resource_packs\\' + val);
         projects.push({
             'name': val,
             'folder': 'development_resource_packs\\' + val,
@@ -234,8 +234,8 @@ function refreshRPMap(directoryPath) {
         });
     });
 
-    for (var i = 0; i < nodev_files.length; i++) {
-        var data = getProjectManifestJSON('resource_packs\\' + nodev_files[i]);
+    for (let i = 0; i < nodev_files.length; i++) {
+        let data = getProjectManifestJSON('resource_packs\\' + nodev_files[i]);
         console.log(data);
         if(Array.isArray(data)){
             // Read the first element if it is arrays
@@ -288,12 +288,12 @@ function getProjectManifestJSON(folder_path) {
     return null;
 }
 
-function getProjectWithUUID(arr, uuid) {
+function getProjectWithUUID(arr, projuuid) {
     // Returns the corresponding projects with the uuid provided
     for (var project in arr) {
-        if (arr[project].uuid == uuid)
+        if (arr[project].uuid == projuuid)
             return arr[project];
-    };
+    }
 
     return null;
 }
@@ -310,7 +310,7 @@ function openRenameDlg() {
     var close = document.getElementsByClassName("close");
 
     // When the user clicks on <span> (x), close the modal
-    for (var i in close) {
+    for (let i in close) {
         close[i].onclick = function() {
             modal.style.display = "none";
         }
@@ -335,7 +335,7 @@ function openDeleteDlg(elm) {
     var close = document.getElementsByClassName("close");
 
     // When the user clicks on <span> (x), close the modal
-    for (var i in close) {
+    for (let i in close) {
         close[i].onclick = function() {
             modal.style.display = "none";
         }
@@ -347,29 +347,29 @@ function openDeleteDlg(elm) {
     deleterp.addEventListener('change', (evt) => {
         var val = evt.target.checked;
         if (val) {
-            var data = JSON.parse(unescape(evt.target.getAttribute('data-project')));
-            var dependencies = [];
-            for (var i = 0; i < data.dependencies.length; i++) {
-                dependencies.push(data.dependencies[i].folder);
+            let projdata = JSON.parse(unescape(evt.target.getAttribute('data-project')));
+            let projDependencies = [];
+            for (let i = 0; i < projdata.dependencies.length; i++) {
+                projDependencies.push(projdata.dependencies[i].folder);
             }
-            document.getElementById("a-delete-rp").innerText = dependencies.join('\n');
+            document.getElementById("a-delete-rp").innerText = projDependencies.join('\n');
         } else {
             document.getElementById("a-delete-rp").innerText = '';
         }
 
     });
-    var data = JSON.parse(unescape(elm.parentElement.parentElement.getAttribute('data-project')));
+    let data = JSON.parse(unescape(elm.parentElement.parentElement.getAttribute('data-project')));
     deleterp.setAttribute('data-project', elm.parentElement.parentElement.getAttribute('data-project'));
     var folder = data.folder;
     document.getElementById("a-delete-bp").innerText = folder;
-    var dependencies = [];
+    let dependencies = [];
 
-    for (var i = 0; i < data.dependencies.length; i++) {
+    for (let i = 0; i < data.dependencies.length; i++) {
         dependencies.push(data.dependencies[i].folder);
     }
 
     var deletebtn = document.getElementById("btn-delete-delete");
-    deletebtn.addEventListener('click', (elm) => {
+    deletebtn.addEventListener('click', listenerElm => {
         let folders = [];
         folders.push(folder);
         if (deleterp.checked) {
@@ -400,7 +400,7 @@ function openCreateDlg() {
     var close = document.getElementsByClassName("close");
 
     // When the user clicks on <span> (x), close the modal
-    for (var i in close) {
+    for (let i in close) {
         close[i].onclick = function() {
             modal.style.display = "none";
         }
@@ -708,7 +708,7 @@ const BPURL = 'https://aka.ms/behaviorpacktemplate';
 const BETA_RPURL = 'https://aka.ms/MinecraftBetaResources';
 const BETA_BPURL = 'https://aka.ms/MinecraftBetaBehaviors';
 
-default_pack_info = {
+const default_pack_info = {
     RPURL: {
         id: 'RPURL',
         data: null,
@@ -735,7 +735,7 @@ default_pack_info = {
     }
 }
 
-currently_downloading = '';
+var currently_downloading = '';
 
 function getDefaultPackInfo(par1url, par2reqid) {
     // Returns filename, download link, version, etc.
@@ -748,10 +748,10 @@ function getDefaultPackInfo(par1url, par2reqid) {
     // };
     var options = url.parse(par1url);
     var request = https.request(options, response => {
-        var url = response.responseUrl;
-        var list = url.split('/');
-        var name = list.pop();
-        var ext = name.split('.').pop();
+        const packUrl = response.responseUrl;
+        const list = packUrl.split('/');
+        const name = list.pop();
+        const ext = name.split('.').pop();
 
         // Removes the file extension
         var t = name.split('.');
@@ -763,7 +763,7 @@ function getDefaultPackInfo(par1url, par2reqid) {
         var version = t.pop();
         var info = {
             'name': name,
-            'url': url,
+            'url': packUrl,
             'version': version,
             'extension': ext
         }
@@ -818,7 +818,7 @@ function checkDefaultPacksInstalled() {
 }
 
 function downloadFile(par1url, dest) {
-    var options = url.parse(par1url);
+    const options = url.parse(par1url);
     // The options argument is optional so you can omit it
     https.request(par1url);
 }
@@ -852,7 +852,7 @@ function readJSONUncomment(string) {
     }
     return result;
 }
-LAYOUT_MODE = 1; // Grid
+var LAYOUT_MODE = 1; // Grid
 function setLayoutMode(id) {
     LAYOUT_MODE = id;
     refreshProjectMap();
@@ -879,8 +879,8 @@ function toggleDropdown1() {
 function set_ace_theme(name){
     // console.log(name);
     editor.setTheme("ace/theme/" + name);
-    var elm = document.getElementById("themeDropdown");
-    elm.querySelectorAll("a").forEach(elm=>{elm.classList.remove("selected")}); 
+    const elm = document.getElementById("themeDropdown");
+    elm.querySelectorAll("a").forEach(queryElm=>{queryElm.classList.remove("selected")}); 
     var self = document.getElementById("theme-" + name);
     self.classList.add("selected");
     GlobalSettings.ace_theme = name;
