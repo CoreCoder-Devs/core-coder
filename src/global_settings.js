@@ -76,7 +76,11 @@ loadSettings();
 function translateDocument() {
     const translatedElements = document.querySelectorAll("[data-translation]");
     for(const element of translatedElements) {
-        if(!translations[element.attributes["data-translation"].nodeValue]) return
-        element.innerText = translations[element.attributes["data-translation"].nodeValue]
+        try{
+            if(!translations[element.attributes["data-translation"].nodeValue]) return
+            element.innerText = translations[element.attributes["data-translation"].nodeValue]
+        }catch(e){
+            console.log(e);
+        }
     }
 }
