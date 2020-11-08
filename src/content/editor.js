@@ -511,6 +511,7 @@ function _createNewFile() {
 }
 
 function setEditSession(par1str) {
+	editor = ace.edit('editor')
 	var session = items_source[par1str].data.session;
 	editor.setSession(session);
 }
@@ -557,7 +558,6 @@ function openPrefModal() {
 function openBrowser(id) {
 	var midpane = document.getElementById("midpane");
 	var content = document.getElementById("content");
-	var editor = document.getElementById("editor");
 	var rpbtn = document.getElementById("openRPBrowser");
 	var bpbtn = document.getElementById("openBPBrowser");
 
@@ -605,7 +605,6 @@ function openBrowser(id) {
 function toggleMidPane() {
 	var midpane = document.getElementById("midpane");
 	var content = document.getElementById("content");
-	var editor = document.getElementById("editor");
 	if (midpane.style.display === "none") {
 		midpane.style.display = "block";
 		midpane.style.width = "250px";
