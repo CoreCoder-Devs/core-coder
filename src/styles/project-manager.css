@@ -194,14 +194,13 @@ body {
 button {
 	color: var(--var_textColor);
 	background-color: var(--var_colorAccent);
-	/* border-radius: 8px; */
-	padding: 16px 31px;
+	border-radius: 4px;
+	padding: 8px;
 	margin: 2px;
 	text-align: center left;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 16px;
 	border: none;
-	border-bottom: 4px solid var(--var_colorAccentDarker);
 	align-items: center;
 	cursor: pointer;
 }
@@ -212,7 +211,6 @@ button:focus {
 
 button:hover {
 	background-color: var(--var_colorAccentLighter);
-	/* border-bottom: 4px solid var(--var_colorAccentDarker); */
 }
 
 .minibutton {
@@ -442,7 +440,7 @@ button:hover {
 /* Modal Content/Box */
 
 .modal-content {
-	background-color: #141414;
+	background-color: var(--var_backgroundColor);
 	margin: 15% auto;
 	/* 15% from the top and centered */
 	padding: 0;
@@ -450,7 +448,7 @@ button:hover {
 	width: 50%;
 	max-width: 480px;
 	/* Could be more or less, depending on screen size */
-	color: #ffffff;
+	color: var(--var_textColor);
 }
 
 
@@ -515,13 +513,13 @@ to {top: 300px; opacity: 1}
 
 .modal-body .textinput {
 	flex: 1 1 0px;
-	background-color: #242424;
+	background-color:var(--var_backgroundColorDarker);
 	padding: 8px;
 	margin: 2px;
 	border: none;
-	color: white;
+	color: var(--var_textColor);
 	border-bottom: none;
-	border-bottom: 2px solid #242424;
+	border-bottom: 2px solid var(--var_backgroundColorDarker);
 	transition: border-bottom 0.4s;
 }
 

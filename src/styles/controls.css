@@ -22,7 +22,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgb(44, 44, 44);
+    background-color: var(--var_backgroundColorLighter);
     -webkit-transition: .4s;
     transition: .4s;
     border-radius: 20px;
@@ -35,13 +35,13 @@
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--var_textColor);
     -webkit-transition: .4s;
     transition: .4s;
   }
   
   input:checked + .slider {
-    background-color: rgb(33, 243, 96);
+    background-color: var(--var_colorAccent);
   }
   
   input:focus + .slider {
@@ -56,11 +56,11 @@
   
   /* Rounded sliders */
   .slider.round {
-    border-radius: 0;
+    border-radius: 4px;
   }
   
   .slider.round:before {
-    border-radius: 50%;
+    border-radius: 4px;
   }
 
 .dialogitems {
