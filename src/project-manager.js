@@ -236,7 +236,6 @@ function refreshRPMap(directoryPath) {
 
     for (let i = 0; i < nodev_files.length; i++) {
         let data = getProjectManifestJSON('resource_packs\\' + nodev_files[i]);
-        console.log(data);
         if(Array.isArray(data)){
             // Read the first element if it is arrays
             data = data[0];
@@ -943,7 +942,6 @@ function autoUpdate(){
     fetch(updateURL, settings)
         .then(res => res.json())
         .then((json) => {
-            console.log(json);
             if((json.versionMajor > currentVersion.versionMajor) || 
                 (json.versionMajor >= currentVersion.versionMajor&&json.versionMinor > currentVersion.versionMinor) || 
                 (json.versionMajor >= currentVersion.versionMajor&&json.versionMinor >= currentVersion.versionMinor&&json.versionBuilds > currentVersion.versionBuilds)
