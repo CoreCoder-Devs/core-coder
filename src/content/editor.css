@@ -395,3 +395,17 @@ body {
 webview {
   background-color: rgb(228, 228, 228);
 }
+
+.footnav {
+  width: 80%;
+  right:0;
+  position: absolute;
+  bottom: 32px;
+  height: 32px;
+  background-color: var(--var_backgroundColor);
+  border: 1px solid var(--var_backgroundColorDarker);
+  z-index: 99;
+  color: var(--var_textColor);
+  opacity: 70%;
+  pointer-events: none;
+}

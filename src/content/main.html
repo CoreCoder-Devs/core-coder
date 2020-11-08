@@ -23,19 +23,10 @@
 	  
    </head>
    <body onload="init();">
-	<!--COMP#DISABLE-->
 	<script src="util.js"></script>
 	<script src="util/Preferences.js"></script>
-	<script src="editor.js"></script>
-	<!--COMP#DISABLE-->
-
-	<!--COMP#ENABLE-->
-	<!--<script>
-	-!--nw.Window.get().evalNWBin(null, 'runtime\\content\\util.bin');
-	-!--nw.Window.get().evalNWBin(null, 'runtime\\content\\util\\Preferences.bin');
-	-!--nw.Window.get().evalNWBin(null, 'runtime\\content\\editor.bin');
-	-!--</script>
-	<!--COMP#ENABLE-->
+   <script src="editor.js"></script>
+   <script src="util/Autocomplete.js"></script>
       <div style="top: 0; width: 100%; bottom: 0; position: absolute">
          <div w3-include-html="dialogs.html"></div>
          <div class="sidenav" style="display: flex; flex-direction: column">
@@ -162,39 +153,6 @@
                el.classList.add('chrome-tabs-dark-theme');
                
                chromeTabs.init(el);
-               /*el.addEventListener('activeTabChange', ({ detail }) => console.log('Active tab changed', detail.tabEl))
-               el.addEventListener('tabAdd', ({ detail }) => console.log('Tab added', detail.tabEl))
-               el.addEventListener('tabRemove', ({ detail }) => console.log('Tab removed', detail.tabEl))
-               
-               document.querySelector('button[data-add-tab]').addEventListener('click', _ => {
-                 chromeTabs.addTab({
-                   title: 'New Tab',
-                   favicon: false
-                 })
-               })
-               
-               document.querySelector('button[data-add-background-tab]').addEventListener('click', _ => {
-                 chromeTabs.addTab({
-                   title: 'New Tab',
-                   favicon: false
-                 }, {
-                   background: true
-                 })
-               })
-               
-               document.querySelector('button[data-remove-tab]').addEventListener('click', _ => {
-                 chromeTabs.removeTab(chromeTabs.activeTabEl)
-               })
-               
-               document.querySelector('button[data-theme-toggle]').addEventListener('click', _ => {
-                 if (el.classList.contains('chrome-tabs-dark-theme')) {
-                   document.documentElement.classList.remove('dark-theme')
-                   el.classList.remove('chrome-tabs-dark-theme')
-                 } else {
-                   document.documentElement.classList.add('dark-theme')
-                   el.classList.add('chrome-tabs-dark-theme')
-                 }
-               })*/
                
                el.addEventListener('activeTabChange', function(elm) {
                   if(elm.detail.tabEl === undefined) return;
@@ -215,9 +173,6 @@
                         items_source[id].data.webview.style.width = "100%";
                      }
                   }
-                 // else{
-                 //   console.log(elm);
-                 // }
                });
                
                el.addEventListener('tabRemove', function(elm) {
@@ -267,28 +222,12 @@
                   }
                });
             </script>
+            <div class="footnav" id="footnav"></div>
          </div>
          <pre id="editor">function main(){
             // Hello world.	
             }
          </pre>
-		 <script>
-          
-          ace.document = document;
-          ace.require("ace/ext/language_tools");
-          editor = ace.edit("editor", {
-             mode: "ace/mode/javascript",
-             selectionStyle: "text"
-            });
-            editor.getSession().setMode("ace/mode/javascript");
-            editor.setTheme("ace/theme/" + GlobalSettings.ace_theme);
-            editor.setFontSize(16)
-            editor.setOptions({
-               enableBasicAutocompletion: true,
-               enableSnippets: true,
-               enableLiveAutocompletion: true
-            });
-            </script>
       </div>
    </body>
    <script>

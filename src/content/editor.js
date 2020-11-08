@@ -804,7 +804,10 @@ function openFile(_path) {
 		}else if(filename.endsWith(".mcfunction")){
 			items_source[div.id].data.session.setMode("ace/mode/mcfunction");
 		}
-
+		items_source[div.id].data.session.path = rel;
+		items_source[div.id].data.session.on("change", (e) => {
+			updateFootnav();
+		});
 		// Creates separate undo manager
 		items_source[div.id].data.session.setUndoManager(new ace.UndoManager());
 		items_source[div.id].data.session.on('change', function(delta) {
@@ -1320,8 +1323,43 @@ function init() {
 		}
 	});
 	readAutocompletionFile();
+	initAce();
 }
 
+function initAce(){
+	// Initialize the ace editor
+	ace.document = document;
+	ace.require("ace/ext/language_tools");
+	editor = ace.edit("editor", {
+		mode: "ace/mode/javascript",
+		selectionStyle: "text"
+	});
+	editor.getSession().setMode("ace/mode/javascript");
+	editor.setTheme("ace/theme/" + GlobalSettings.ace_theme);
+	editor.setFontSize(16)
+	editor.setOptions({
+		enableBasicAutocompletion: true,
+		enableSnippets: true,
+		enableLiveAutocompletion: true
+	});
+
+	editor.on("changeSession",(e)=>{
+		updateFootnav();
+	});
+	editor.on("changeSelection",(e)=>{
+		updateFootnav();
+	});
+}
+function updateFootnav(){
+	var session = editor.session;
+	var pos = session.doc.positionToIndex(editor.getCursorPosition());
+	var content = session.getValue();
+	var type = AutoComplete.getJSONType(session.path);
+
+	var str = content.substring(0,pos);
+	var jsonpos = AutoComplete.getPosInJSON(str);
+	document.getElementById("footnav").innerText = `${type} | ${jsonpos.join(' > ')}`;
+}
 function getCurrentAutoCompletePath(pos) {
 	var index = editor.session.doc.positionToIndex(pos);
 	var source = editor.getValue().substring(0, index);
