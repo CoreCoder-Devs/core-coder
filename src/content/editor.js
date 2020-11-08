@@ -801,6 +801,8 @@ function openFile(_path) {
 
 		if (filename.endsWith('.json') || filename.endsWith('.js')) {
 			items_source[div.id].data.session.setMode("ace/mode/javascript");
+		}else if(filename.endsWith(".mcfunction")){
+			items_source[div.id].data.session.setMode("ace/mode/mcfunction");
 		}
 
 		// Creates separate undo manager
