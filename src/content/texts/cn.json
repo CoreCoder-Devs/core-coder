@@ -52,5 +52,11 @@
     "update.close": "关闭",
     "update.view": "查看更新",
     "manager.settings.fullscreen": "全屏",
-    "manager.settings.lang": "显示语言"
+    "manager.settings.lang": "显示语言",
+    "editor.context.cut": "剪切",
+    "editor.context.copy": "复制",
+    "editor.context.paste": "粘贴",
+    "editor.context.reveal": "在文件管理器中显示",
+    "editor.context.dupe": "克隆文件",
+    "editor.context.delete": "删除"
 }

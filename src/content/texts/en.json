@@ -52,5 +52,11 @@
     "update.close": "Close",
     "update.view": "View Update",
     "manager.settings.fullscreen": "Full Screen",
-    "manager.settings.lang": "Display Language"
+    "manager.settings.lang": "Display Language",
+    "editor.context.cut": "Cut",
+    "editor.context.copy": "Copy",
+    "editor.context.paste": "Paste",
+    "editor.context.reveal": "Reveal in explorer",
+    "editor.context.dupe": "Duplicate",
+    "editor.context.delete": "Delete"
 }
