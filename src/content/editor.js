@@ -511,7 +511,7 @@ function _createNewFile() {
 }
 
 function setEditSession(par1str) {
-	editor = ace.edit('editor')
+	// editor = ace.edit('editor')
 	var session = items_source[par1str].data.session;
 	editor.setSession(session);
 }
@@ -560,6 +560,7 @@ function openBrowser(id) {
 	var content = document.getElementById("content");
 	var rpbtn = document.getElementById("openRPBrowser");
 	var bpbtn = document.getElementById("openBPBrowser");
+	var elem_editor = document.getElementById("editor");
 
 	// Get the current  button
 	var current = (id == 1) ? bpbtn : rpbtn;
@@ -567,8 +568,8 @@ function openBrowser(id) {
 		midpane.style.display = "block";
 		midpane.style.width = "250px";
 		content.style.left = "calc(var(--left_panel_size) + 250px)";
-		editor.style.left = "calc(var(--left_panel_size) + 250px)";
-		editor.style.right = "0";
+		elem_editor.style.left = "calc(var(--left_panel_size) + 250px)";
+		elem_editor.style.right = "0";
 		content.style.right = "0";
 
 		openedBrowser = id;
@@ -582,8 +583,8 @@ function openBrowser(id) {
 			midpane.style.display = "none";
 			midpane.style.width = "0";
 			content.style.left = "var(--left_panel_size)";
-			editor.style.left = "var(--left_panel_size)";
-			editor.style.right = "0";
+			elem_editor.style.left = "var(--left_panel_size)";
+			elem_editor.style.right = "0";
 			content.style.right = "0";
 			openedBrowser = -1;
 			rpbtn.classList.remove('active');
@@ -605,19 +606,20 @@ function openBrowser(id) {
 function toggleMidPane() {
 	var midpane = document.getElementById("midpane");
 	var content = document.getElementById("content");
+	var elem_editor = document.getElementById("editor");
 	if (midpane.style.display === "none") {
 		midpane.style.display = "block";
 		midpane.style.width = "250px";
 		content.style.left = "calc(var(--left_panel_size) + 250px)";
-		editor.style.left = "calc(var(--left_panel_size) + 250px)";
-		editor.style.right = "0";
+		elem_editor.style.left = "calc(var(--left_panel_size) + 250px)";
+		elem_editor.style.right = "0";
 		content.style.right = "0";
 	} else {
 		midpane.style.display = "none";
 		midpane.style.width = "0";
 		content.style.left = "var(--left_panel_size)";
-		editor.style.left = "var(--left_panel_size)";
-		editor.style.right = "0";
+		elem_editor.style.left = "var(--left_panel_size)";
+		elem_editor.style.right = "0";
 		content.style.right = "0";
 	}
 	/// Force chrometabs to refresh its new size
@@ -1289,18 +1291,19 @@ function init() {
 	readProjectData();
 	regenerateTree();
 	refreshCurrentItemTextures();
+	openBrowser(1);
 	// Editor Autocomplete
 	// editor.commands.bindKey("ctrl-space", "startAutocomplete") // do nothing on ctrl-space
-	editor.commands.addCommand({
-		name: "autocompleteCustom",
-		bindKey: {
-			win: "ctrl-space"
-		},
-		exec: function(e) {
-			refreshCurrentAutoComp();
-			e.commands.byName.startAutocomplete.exec(e);
-		}
-	});
+	// editor.commands.addCommand({
+	// 	name: "autocompleteCustom",
+	// 	bindKey: {
+	// 		win: "ctrl-space"
+	// 	},
+	// 	exec: function(e) {
+	// 		refreshCurrentAutoComp();
+	// 		e.commands.byName.startAutocomplete.exec(e);
+	// 	}
+	// });
 	// Execute a function when the user releases a key on the keyboard
 	var input = document.getElementById("navBarInput");
 	input.addEventListener("keyup", function(event) {
