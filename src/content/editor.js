@@ -823,25 +823,25 @@ function openFile(_path) {
 				edit.style.display = "block";
 			}
 
-			// Get the autocompletions
-			// console.log(path);
-			// console.log(getAutoCompletion(path));
-			CURRENT_AUTOCOMP = getAutoCompletion(path);
-			var autocomp = AUTOCOMP.default;
-			var wordList = Object.keys(autocomp);
-			var map = wordList.map(function(word) {
-				return {
-					caption: word,
-					value: word,
-					meta: autocomp[word]
-				};
-			});
-			staticWordCompleter = {
-				getCompletions: function(editor, session, pos, prefix, callback) {
-					callback(null, map);
-				}
-			}
-			editor.completers = [staticWordCompleter]
+			// // Get the autocompletions
+			// // console.log(path);
+			// // console.log(getAutoCompletion(path));
+			// CURRENT_AUTOCOMP = getAutoCompletion(path);
+			// var autocomp = AUTOCOMP.default;
+			// var wordList = Object.keys(autocomp);
+			// var map = wordList.map(function(word) {
+			// 	return {
+			// 		caption: word,
+			// 		value: word,
+			// 		meta: autocomp[word]
+			// 	};
+			// });
+			// staticWordCompleter = {
+			// 	getCompletions: function(editor, session, pos, prefix, callback) {
+			// 		callback(null, map);
+			// 	}
+			// }
+			// editor.completers = [staticWordCompleter]
 		}
 	}
 }
@@ -1271,20 +1271,6 @@ function getAutoCompletion(filepath) {
 	};
 }
 
-function readAutocompletionFile() {
-	var path = Preferences.CC_PATH + '\\autocomp.json';
-	if (fs.existsSync(path)) {
-		AUTOCOMP = JSON.parse(fs.readFileSync(path));
-		// console.log(AUTOCOMP);
-	} else {
-		// If doesn't exists, then create it
-		fs.writeFileSync(path, JSON.stringify(AUTOCOMP));
-
-		// Then tries to fetch it from the internet
-		// TODO
-	}
-}
-
 function init() {
 	// Run after the entire editor finished loading
 	document.getElementById("editor").style.display = "none";
@@ -1322,7 +1308,6 @@ function init() {
 			//items_source[chromeTabs.activeTabEl.id].data.webview.reload();
 		}
 	});
-	readAutocompletionFile();
 	initAce();
 }
 
@@ -1349,6 +1334,12 @@ function initAce(){
 	editor.on("changeSelection",(e)=>{
 		updateFootnav();
 	});
+	editor.commands.on("afterExec", function (e) {
+		if (e.command.name == "insertstring" && e.args=='"') {
+			editor.execCommand("startAutocomplete");
+		}
+	});
+	AutoComplete.autocomplete();
 }
 function updateFootnav(){
 	var session = editor.session;
@@ -1359,6 +1350,9 @@ function updateFootnav(){
 	var str = content.substring(0,pos);
 	var jsonpos = AutoComplete.getPosInJSON(str);
 	document.getElementById("footnav").innerText = `${type} | ${jsonpos.join(' > ')}`;
+
+	session.format_version = AutoComplete.getFormatVersion(session.getValue());
+	session.type = type;
 }
 function getCurrentAutoCompletePath(pos) {
 	var index = editor.session.doc.positionToIndex(pos);
