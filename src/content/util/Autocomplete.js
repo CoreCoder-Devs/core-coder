@@ -1,34 +1,34 @@
 const AutoComplete = {
     commands:{
-        "ability" : [],
-        "alwaysday" : [],
+        "ability" : [VanillaMinecraft.selectors, "string","bool"],
+        "alwaysday" : ["bool"],
         "clear" : [],
         "clone" : [],
-        "connect" : [],
-        "deop" : [],
-        "difficulty" : [],
-        "effect" : [],
+        "connect" : ["string"],
+        "deop" : ["string"],
+        "difficulty" : ["int"],
+        "effect" : [VanillaMinecraft.selectors, "string", "int","int","bool"],
         "enchant" : [],
         "execute" : [],
         "fill" : [],
-        "function" : [],
-        "gamemode" : [],
+        "function" : ["string"],
+        "gamemode" : [["c","s","a","creative","survival","adventure"]],
         "gamerule" : [],
         "give" : [VanillaMinecraft.selectors, VanillaMinecraft.items, "int", "int"],
-        "help" : [],
+        "help" : ["int"],
         "immutableworld" : [],
-        "kill" : [],
+        "kill" : [VanillaMinecraft.selectors],
         "list" : [],
-        "locate" : [],
-        "me" : [],
+        "locate" : ["string"],
+        "me" : ["string"],
         "mixer" : [],
         "mobevent" : [],
-        "op" : [],
+        "op" : ["string"],
         "particle" : [],
         "playsound" : [],
         "reload" : [],
         "replaceitem" : [],
-        "say" : [],
+        "say" : ["string"],
         "scoreboard" : [],
         "setmaxplayers" : [],
         "setblock" : [],
@@ -37,24 +37,24 @@ const AutoComplete = {
         "spreadplayers" : [],
         "stopsound" : [],
         "summon" : [],
-        "tag" : [],
-        "tell" : [],
-        "tellraw" : [],
+        "tag" : [VanillaMinecraft.selectors, ["add","remove"], "string"],
+        "tell" : [VanillaMinecraft.selectors, "string"],
+        "tellraw" : [VanillaMinecraft.selectors, "string"],
         "testfor" : [],
         "testforblock" : [],
         "testforblocks" : [],
         "tickingarea" : [],
         "time" : [],
-        "title" : [],
-        "titleraw" : [],
+        "title" : [VanillaMinecraft.selectors, ["title","subtitle"], "string"],
+        "titleraw" : [VanillaMinecraft.selectors, ["title","subtitle"], "string"],
         "toggledownfall" : [],
-        "tp" : [],
+        "tp" : [VanillaMinecraft.selectors, VanillaMinecraft.selectors],
         "videostream" : [],
         "videostreamaction" : [],
-        "weather" : [],
+        "weather" : [["clear","rain","thunderstorm"], "int"],
         "worldbuilder" : [],
         "wsserver" : [],
-        "xp" : []
+        "xp" : ["int", VanillaMinecraft.selectors]
     },
 	autocomplete: function() {
 		var staticWordCompleter = {
@@ -75,11 +75,50 @@ const AutoComplete = {
                             })
                         });
                     }else{
-                        Object.entries(AutoComplete.commands[cmds[0]][pos_incmd-1]).forEach(elem => {
+                        var value = AutoComplete.commands[cmds[0]][pos_incmd-1];
+                        console.log(value);
+                        var autocomp_list = {};
+                        if (value == undefined) {
+                            autocomp_list = {};
+                        } else if (value == "int") {
+                            autocomp_list = {
+                                "0": "int",
+                                "1": "int",
+                                "3": "int",
+                                "4": "int",
+                                "5": "int",
+                                "6": "int",
+                                "7": "int",
+                                "8": "int",
+                                "9": "int",
+                                "10": "int"
+                            };
+                        } else if (value == "bool") {
+                            autocomp_list = {
+                                "true": "bool",
+                                "false": "bool"
+                            };
+                        } else if (value == "string") {
+                            autocomp_list = "";
+                        } else if (Array.isArray(value)) {
+                            autocomp_list = {};
+                            value.forEach(e => {
+                                autocomp_list[e] = "constant";
+                            });
+                        } else {
+                            autocomp_list = value;
+                        }
+                        // result = result.concat({
+                        //     caption: value,
+                        //     value: value,
+                        //     meta: typeof(value)
+                        // });
+                        
+                        Object.entries(autocomp_list).forEach(e => {
                             result = result.concat({
-                                caption: elem[1],
-                                value: elem[1],
-                                meta: typeof(elem[1])
+                                caption: e[0],
+                                value: e[0],
+                                meta: e[1]
                             })
                         });
                     }
@@ -96,9 +135,9 @@ const AutoComplete = {
 					var jsonpos = AutoComplete.getPosInJSON(str);
 
 					var list = AutoComplete._getAutoComp(jsonpos, autocomp, 0);
-					var autocomp_list = [];
+					var autocomp_list = {};
 					if (list == undefined) {
-						autocomp_list = [];
+						autocomp_list = {};
 					} else if (list == "int") {
 						autocomp_list = {
 							"0": "int",
