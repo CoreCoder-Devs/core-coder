@@ -242,7 +242,206 @@ const AutoComplete = {
                     "plant_at": "array" // valid blocks you can plant this item at.
                   },                                                       
                 }
-              }
+              },
+              "minecraft:client_entity": {
+                "description": {
+                  "identifier": "string",
+                  "materials": { "default": "string" },
+                  "textures": {
+                    "default": "string"
+                  },
+                  "geometry": {
+                    "default": "string"
+                  },
+                  "animations": {
+                  },
+                  "animation_controllers": [
+                  ],
+                  "render_controllers": [ ],
+                  "locators": {
+                  },
+                  "spawn_egg": {
+                    "texture": "string",
+                    "texture_index": "int"
+                  }
+                }
+              },
+            "minecraft:entity": {
+                "description": {
+                    "identifier": "string",
+                    "is_spawnable": "bool",
+                    "is_summonable": "bool",
+                    "is_experimental": "bool",
+                    "runtime_identifier": "string"
+                },
+                "component_groups": {
+                },
+                "components": {
+                    "minecraft:addrider" : {},
+                    "minecraft:ageable" : {},
+                    "minecraft:ambient_sound_interval" : {},
+                    "minecraft:angry" : {},
+                    "minecraft:annotation" : {},
+                    "minecraft:area_attack" : {},
+                    "minecraft:attack" : {},
+                    "minecraft:block_sensor" : {},
+                    "minecraft:boostable" : {},
+                    "minecraft:boss" : {},
+                    "minecraft:break_blocks" : {},
+                    "minecraft:breathable" : {},
+                    "minecraft:breedable" : {},
+                    "minecraft:bribeable" : {},
+                    "minecraft:burns_in_daylight" : {},
+                    "minecraft:can_climb" : {},
+                    "minecraft:can_fly" : {},
+                    "minecraft:can_power_jump" : {},
+                    "minecraft:collision_box" : {},
+                    "minecraft:color" : {},
+                    "minecraft:color2" : {},
+                    "minecraft:damage_over_time" : {},
+                    "minecraft:damage_sensor" : {},
+                    "minecraft:default_look_angle" : {},
+                    "minecraft:despawn" : {},
+                    "minecraft:economy_trade_table" : {},
+                    "minecraft:entity_sensor" : {},
+                    "minecraft:environment_sensor" : {},
+                    "minecraft:equipment" : {},
+                    "minecraft:equippable" : {},
+                    "minecraft:experience_reward" : {},
+                    "minecraft:explode" : {},
+                    "minecraft:fire_immune" : {},
+                    "minecraft:floats_in_liquid" : {},
+                    "minecraft:flocking" : {},
+                    "minecraft:flying_speed" : {},
+                    "minecraft:foot_size" : {},
+                    "minecraft:friction_modifier" : {},
+                    "minecraft:genetics" : {},
+                    "minecraft:giveable" : {},
+                    "minecraft:ground_offset" : {},
+                    "minecraft:grows_crop" : {},
+                    "minecraft:healable" : {},
+                    "minecraft:home" : {},
+                    "minecraft:hurt_on_condition" : {},
+                    "minecraft:input_ground_controlled" : {},
+                    "minecraft:insomnia" : {},
+                    "minecraft:interact" : {},
+                    "minecraft:inventory" : {},
+                    "minecraft:is_baby" : {},
+                    "minecraft:is_charged" : {},
+                    "minecraft:is_chested" : {},
+                    "minecraft:is_dyeable" : {},
+                    "minecraft:is_hidden_when_invisible" : {},
+                    "minecraft:is_ignited" : {},
+                    "minecraft:is_illager_captain" : {},
+                    "minecraft:is_saddled" : {},
+                    "minecraft:is_shaking" : {},
+                    "minecraft:is_sheared" : {},
+                    "minecraft:is_stackable" : {},
+                    "minecraft:is_stunned" : {},
+                    "minecraft:is_tamed" : {},
+                    "minecraft:item_controllable" : {},
+                    "minecraft:item_hopper" : {},
+                    "minecraft:jump" : {},
+                    "minecraft:jump" : {},
+                    "minecraft:leashable" : {},
+                    "minecraft:lookat" : {},
+                    "minecraft:loot" : {},
+                    "minecraft:managed_wandering_trader" : {},
+                    "minecraft:mark_variant" : {},
+                    "minecraft:mob_effect" : {},
+                    "minecraft:movement" : {},
+                    "minecraft:nameable" : {},
+                    "minecraft:navigation" : {},
+                    "minecraft:peek" : {},
+                    "minecraft:persistent" : {},
+                    "minecraft:physics" : {},
+                    "minecraft:preferred_path" : {},
+                    "minecraft:projectile" : {},
+                    "minecraft:push_through" : {},
+                    "minecraft:pushable" : {},
+                    "minecraft:raid_trigger" : {},
+                    "minecraft:rail_movement" : {},
+                    "minecraft:rail_sensor" : {},
+                    "minecraft:ravager_blocked" : {},
+                    "minecraft:rideable" : {},
+                    "minecraft:scaffolding_climber" : {},
+                    "minecraft:scale" : {},
+                    "minecraft:scale_by_age" : {},
+                    "minecraft:scheduler" : {},
+                    "minecraft:shareables" : {},
+                    "minecraft:shooter" : {},
+                    "minecraft:sittable" : {},
+                    "minecraft:skin_id" : {},
+                    "minecraft:sound_volume" : {},
+                    "minecraft:spawn_entity" : {},
+                    "minecraft:spell_effects" : {},
+                    "minecraft:strength" : {},
+                    "minecraft:tameable" : {},
+                    "minecraft:tamemount" : {},
+                    "minecraft:target_nearby_sensor" : {},
+                    "minecraft:teleport" : {},
+                    "minecraft:tick_world" : {},
+                    "minecraft:timer" : {},
+                    "minecraft:trade_table" : {},
+                    "minecraft:trail" : {},
+                    "minecraft:transformation" : {},
+                    "minecraft:trusting" : {},
+                    "minecraft:type_family" : {},
+                    "minecraft:variant" : {},
+                    "minecraft:walk_animation_speed" : {},
+                    "minecraft:wants_jockey" : {},
+                    "minecraft:water_movement" : {}	
+                },
+                "events" : {
+                    "minecraft:entity_spawned" : {}
+                }
+            },
+            "minecraft:block" : {
+                "description" : {
+                    "identifier" : "string"
+                },
+                "components" : {
+                    "minecraft:block_light_absorption" : "int",
+                    "minecraft:block_light_emission" : "int",
+                    "minecraft:destroy_time" : "int",
+                    "minecraft:explosion_resistance" : "int",
+                    "minecraft:flammable" : {
+                        "flame_odds": "int",
+                        "burn_odds": "int"
+                    },
+                    "minecraft:friction" : "int",
+                    "minecraft:loot" : "string",
+                    "minecraft:map_color" : "string"
+                }
+            },
+            "minecraft:recipe_shaped": {
+                "description": {
+                  "identifier": "string"
+                  },
+                "tags": [ "crafting_table" ],
+                "pattern": [],
+                  "key": {
+                    },
+                "result": {
+                    "item": "string",
+                    "data": "int"
+                    }
+            },
+            "minecraft:recipe_shapeless": {
+                "description": {
+                  "identifier": "string"
+                  },
+                 "priority": "int",
+                 "ingredients": {
+                      "item": "string",
+                      "data": "int",
+                      "count": "int"
+                 },
+                "result": {
+                      "item": "string",
+                      "data": "int"
+                      }
+                  }
         }
     }
 }
