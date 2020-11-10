@@ -36,7 +36,7 @@ const AutoComplete = {
         "spawnpoint" : [VanillaMinecraft.selectors],
         "spreadplayers" : [],
         "stopsound" : ["string"],
-        "summon" : [],
+        "summon" : [VanillaMinecraft.mobs],
         "tag" : [VanillaMinecraft.selectors, ["add","remove"], "string"],
         "tell" : [VanillaMinecraft.selectors, "string"],
         "tellraw" : [VanillaMinecraft.selectors, "string"],

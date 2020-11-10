@@ -173,12 +173,6 @@ function refreshBPMap(directoryPath) {
 
     var contstr = '<h1>' + translations['manager.welcome.title'] + '</h1>';
     // Reading the pack name
-    contstr += `<h2>${translations["manager.projects.title"]}</h2>`;
-    if(projects.length) {
-        for (const p in projects) {
-            contstr += generateProjectHTML(projects[p].name, projects[p].folder, projects[p], projects[p].version);
-        }
-    } else contstr += `<p>${translations["manager.projects.empty"]}</p>`
     contstr += `<h2>${translations["manager.devprojects.title"]}</h2>`;
     if(projects_dev.length) {
         for (const p in projects_dev) {
@@ -186,6 +180,13 @@ function refreshBPMap(directoryPath) {
         }
     } else contstr += `<p>${translations["manager.projects.empty"]}</p>`
 
+    contstr += `<h2>${translations["manager.projects.title"]}</h2>`;
+    if(projects.length) {
+        for (const p in projects) {
+            contstr += generateProjectHTML(projects[p].name, projects[p].folder, projects[p], projects[p].version);
+        }
+    } else contstr += `<p>${translations["manager.projects.empty"]}</p>`
+    
     var container = document.getElementById("proj_container");
     // console.log(container);
     container.innerHTML = contstr;
