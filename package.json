@@ -38,7 +38,7 @@
     "pack:osx": "electron-packager . CoreCoder --out=dist/osx --platform=darwin --arch=x64 --icon=assets/build/osx/icon.icns && npm run codesign",
     "pack:win32": "electron-packager . CoreCoder --out=dist/win --platform=win32 --arch=ia32 --icon=src/resources/icon.ico",
     "pack:win64": "electron-packager . CoreCoder --out=dist/win --platform=win32 --arch=x64  app-version=1.3 --icon=src/resources/icon.ico",
-    "build-electron-packager": "npm run pack:osx && npm run pack:win32 && npm run pack:win64"
+    "build": "npm run pack:win32 && npm run pack:win64"
   },
   "excludes": [
     "**/src",

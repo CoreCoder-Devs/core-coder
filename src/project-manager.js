@@ -35,12 +35,14 @@ function generateProjectHTML(proj_name, proj_folder, project_data, proj_ver) {
     var filter = false; // wether or not to filter linearly
     var pack_icon_path = Preferences.COM_MOJANG_PATH + '\\' + proj_folder + '\\' + 'pack_icon.png';
     // console.log(pack_icon_path);
-    if (fs.existsSync(pack_icon_path)) {
-        var size = imageSize(pack_icon_path);
-        if (size.width > 128 || size.height > 128)
-            filter = true;
-        img = pack_icon_path;
-    }
+    try{
+        if (fs.existsSync(pack_icon_path)) {
+            var size = imageSize(pack_icon_path);
+            if (size.width > 128 || size.height > 128)
+                filter = true;
+            img = pack_icon_path;
+        }
+    }catch(e){console.log(e);}
 
     var template = `
     <div class="panel-back" data-project=` + string_data + `  onclick="window.location='./content/main.html'; localStorage.setItem('project_data', '` + string_data + `')"  id="a${project_data.uuid}">
