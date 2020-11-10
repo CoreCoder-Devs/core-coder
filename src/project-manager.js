@@ -35,12 +35,14 @@ function generateProjectHTML(proj_name, proj_folder, project_data, proj_ver) {
     var filter = false; // wether or not to filter linearly
     var pack_icon_path = Preferences.COM_MOJANG_PATH + '\\' + proj_folder + '\\' + 'pack_icon.png';
     // console.log(pack_icon_path);
-    if (fs.existsSync(pack_icon_path)) {
-        var size = imageSize(pack_icon_path);
-        if (size.width > 128 || size.height > 128)
-            filter = true;
-        img = pack_icon_path;
-    }
+    try{
+        if (fs.existsSync(pack_icon_path)) {
+            var size = imageSize(pack_icon_path);
+            if (size.width > 128 || size.height > 128)
+                filter = true;
+            img = pack_icon_path;
+        }
+    }catch(e){console.log(e);}
 
     var template = `
     <div class="panel-back" data-project=` + string_data + `  onclick="window.location='./content/main.html'; localStorage.setItem('project_data', '` + string_data + `')"  id="a${project_data.uuid}">
@@ -173,12 +175,6 @@ function refreshBPMap(directoryPath) {
 
     var contstr = '<h1>' + translations['manager.welcome.title'] + '</h1>';
     // Reading the pack name
-    contstr += `<h2>${translations["manager.projects.title"]}</h2>`;
-    if(projects.length) {
-        for (const p in projects) {
-            contstr += generateProjectHTML(projects[p].name, projects[p].folder, projects[p], projects[p].version);
-        }
-    } else contstr += `<p>${translations["manager.projects.empty"]}</p>`
     contstr += `<h2>${translations["manager.devprojects.title"]}</h2>`;
     if(projects_dev.length) {
         for (const p in projects_dev) {
@@ -186,6 +182,13 @@ function refreshBPMap(directoryPath) {
         }
     } else contstr += `<p>${translations["manager.projects.empty"]}</p>`
 
+    contstr += `<h2>${translations["manager.projects.title"]}</h2>`;
+    if(projects.length) {
+        for (const p in projects) {
+            contstr += generateProjectHTML(projects[p].name, projects[p].folder, projects[p], projects[p].version);
+        }
+    } else contstr += `<p>${translations["manager.projects.empty"]}</p>`
+    
     var container = document.getElementById("proj_container");
     // console.log(container);
     container.innerHTML = contstr;
@@ -948,6 +951,8 @@ function autoUpdate(){
                 ){
                         // If statement is a little compplicated, but it is what needs to be done
                         // There's an update;
+                        console.log(json);
+                        console.log(currentVersion);
                         notification.classList.remove('hidden');
                         versionTitle.innerText = json.changelogTitle;
                         if(json.devlogLink != undefined){
