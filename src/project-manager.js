@@ -949,6 +949,8 @@ function autoUpdate(){
                 ){
                         // If statement is a little compplicated, but it is what needs to be done
                         // There's an update;
+                        console.log(json);
+                        console.log(currentVersion);
                         notification.classList.remove('hidden');
                         versionTitle.innerText = json.changelogTitle;
                         if(json.devlogLink != undefined){
