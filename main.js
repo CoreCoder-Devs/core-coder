@@ -20,7 +20,7 @@ Electron.app.whenReady().then(()=>{
     var win = new Electron.BrowserWindow({
         width: 1000,
         height: 750,
-        title: "CoreCoder by Hanprogramer",
+        title: "CoreCoder by CoreCoder Team",
         webPreferences : {nodeIntegration: true, webviewTag: true, allowRunningInsecureContent: true, nodeIntegrationInSubFrames: true, enableRemoteModule:true},
         icon: __dirname + "/src/resources/icon.ico",
         minWidth: 700,
