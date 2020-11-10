@@ -29,7 +29,7 @@ const AutoComplete = {
         "reload" : [],
         "replaceitem" : [VanillaMinecraft.selectors],
         "say" : ["string"],
-        "scoreboard" : [["objectives","players"], ["set","add","reset","sedisplay"], " string"],
+        "scoreboard" : [["objectives","players"], ["set","add","reset","setdisplay"], " string"],
         "setmaxplayers" : ["int"],
         "setblock" : [],
         "setworldspawn" : [],
