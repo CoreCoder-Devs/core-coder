@@ -13,7 +13,7 @@ const AutoComplete = {
         "fill" : [],
         "function" : ["string"],
         "gamemode" : [["c","s","a","creative","survival","adventure"]],
-        "gamerule" : [],
+        "gamerule" : [VanillaMinecraft.gamrules, "bool"],
         "give" : [VanillaMinecraft.selectors, VanillaMinecraft.items, "int", "int"],
         "help" : ["int"],
         "immutableworld" : ["bool"],
