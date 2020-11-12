@@ -77,7 +77,7 @@ const AutoComplete = {
                     }else{
                         var value = AutoComplete.commands[cmds[0]][pos_incmd-1];
                         console.log(value);
-                        var autocomp_list = {};
+                        let autocomp_list = {};
                         if (value == undefined) {
                             autocomp_list = {};
                         } else if (value == "int") {

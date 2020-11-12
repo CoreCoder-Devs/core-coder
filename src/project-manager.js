@@ -174,6 +174,26 @@ function refreshBPMap(directoryPath) {
     }
 
     var contstr = '<h1>' + translations['manager.welcome.title'] + '</h1>';
+    contstr += `
+    <div class="panel-back" onclick="window.location='minecraft://'">
+        <div class="panel">
+            <img class="icon" src="./content/images/mc_icon.png" style="min-width: 60px; height: 60px; image-rendering: pixelated;">
+            <div class="btnText">
+                <strong>Launch Minecraft</strong>
+                <span><i style="color: var(--var_textColorDarker);">1.16.40</i></span>
+            </div>
+        </div>
+    </div>
+    <div class="panel-back" onclick="window.location='minecraftedu://'">
+        <div class="panel">
+            <img class="icon" src="./content/images/mce_icon.png" style="min-width: 60px; height: 60px; image-rendering: pixelated;">
+            <div class="btnText">
+                <strong>Launch Minecraft Education</strong>
+                <span><i style="color: var(--var_textColorDarker);">1.14.50</i></span>
+            </div>
+        </div>
+    </div>
+    `
     // Reading the pack name
     contstr += `<h2>${translations["manager.devprojects.title"]}</h2>`;
     if(projects_dev.length) {
