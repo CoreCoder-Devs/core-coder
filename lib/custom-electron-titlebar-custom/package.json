@@ -1,0 +1,68 @@
+{
+  "_from": "custom-electron-titlebar",
+  "_id": "custom-electron-titlebar@3.2.5",
+  "_inBundle": false,
+  "_integrity": "sha512-9tzTtvrsBec9lFi9Mg8nfwARn82mVgrYiiCYmBwJFYC0YhsyUYZfPyw4fd6hq+XHQbD+f72i9uqhukl5brhZZw==",
+  "_location": "/custom-electron-titlebar",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "custom-electron-titlebar",
+    "name": "custom-electron-titlebar",
+    "escapedName": "custom-electron-titlebar",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/custom-electron-titlebar/-/custom-electron-titlebar-3.2.5.tgz",
+  "_shasum": "0cc98fccc02c7fd67aeaec2abb6c5e88433d7121",
+  "_spec": "custom-electron-titlebar",
+  "_where": "D:\\Programming\\MinecraftProjects\\github\\CoreCoder-One\\CoreCoder-One",
+  "author": {
+    "name": "Alex Torres",
+    "email": "alextorressk@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/AlexTorresSk/custom-electron-titlebar/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {},
+  "deprecated": false,
+  "description": "Custom Electron Titlebar is a library for electron that allows you to configure a fully customizable title bar.",
+  "devDependencies": {
+    "electron": "^10.1.3",
+    "typescript": "^4.0.3"
+  },
+  "directories": {
+    "example": "example",
+    "lib": "lib"
+  },
+  "homepage": "https://github.com/AlexTorresSk/custom-electron-titlebar#readme",
+  "keywords": [
+    "typescript",
+    "electron",
+    "titlebar",
+    "menubar",
+    "windows",
+    "linux"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "name": "custom-electron-titlebar",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexTorresSk/custom-electron-titlebar.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "electron example/main.js",
+    "start": "npm run build && npm run dev"
+  },
+  "types": "lib/index.d.ts",
+  "version": "3.2.5"
+}

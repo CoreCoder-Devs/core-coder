@@ -12,6 +12,7 @@ const { createPopper } = require('@popperjs/core');
 let translations = require(`./content/texts/${GlobalSettings.lang}.json`);
 const { shell } = require('electron').remote;
 
+
 var PROJECTS_BP = [];
 var PROJECTS_RP = [];
 var PREFERENCES = {
@@ -937,7 +938,7 @@ function load_themes(){
     
     var elm = document.getElementById("themeChooser");
     elm.innerHTML = "";
-    elm.innerHTML += `<a href="#" onclick="set_core_theme('default')">default</a>`
+    elm.innerHTML += `<a href="#" onclick="set_core_theme('default');reinitCustomizationPanel();">default</a>`
     Object.entries(THEMES).forEach(e=>{
         elm.innerHTML += `<a href="#" onclick="set_core_theme('${e[0]}');reinitCustomizationPanel();">${e[0]}</a>`
     });

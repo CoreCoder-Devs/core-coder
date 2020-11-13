@@ -742,3 +742,6 @@ input[type="checkbox"]{
 	height: 32px;
 	border-radius: 4px;
 }
+.titlebar.cet-windows, .titlebar.cet-linux{
+	background-color: var(--var_backgroundColor);
+}

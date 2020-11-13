@@ -398,6 +398,11 @@ function restartApp() {
 		</div>
 	</body>
 	<script>
-		translateDocument()
+		translateDocument();
+		const customTitlebar = require('../lib/custom-electron-titlebar-custom');
+ 
+		new customTitlebar.Titlebar({
+			// backgroundColor: new customTitlebar.Color(document.documentElement.style.getPropertyValue("--var_backgroundColorDarker"))
+		});
 	</script>
 </html>
