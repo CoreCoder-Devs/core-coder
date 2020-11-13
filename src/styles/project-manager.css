@@ -131,10 +131,14 @@ body {
 	position: relative;
 	top: 16px;
 	left: 60px;
+}
+
+.iconBorder {
 	border: 10px solid;
 	border-image: url('../content/images/img_border.png') 10% repeat;
 	background-image: url('../content/images/img_bg.png');
 }
+
 .panel-back{
 	margin: 3px;
 	height: 150px;
