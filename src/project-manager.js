@@ -174,7 +174,7 @@ function refreshBPMap(directoryPath) {
         });
     }
 
-    var contstr = '<h1>' + translations['manager.welcome.title'] + '</h1>';
+    var contstr = '<h2>' + translations['manager.welcome.title'] + '</h2>';
     contstr += `
     <div class="panel-back" onclick="window.location='minecraft://'">
         <div class="panel">
