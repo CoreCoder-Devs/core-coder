@@ -184,24 +184,7 @@ function refreshBPMap(directoryPath) {
             </div>
         </div>
     </div>
-    <div class="panel-back" onclick="window.location='minecraft://'">
-        <div class="panel">
-            <img class="icon" src="./content/images/mc_icon.png" style="min-width: 60px; height: 60px; image-rendering: pixelated;">
-            <div class="btnText">
-                <strong>Launch Minecraft</strong>
-                <span><i style="color: var(--var_textColorDarker);">1.16.40</i></span>
-            </div>
-        </div>
-    </div>
-    <div class="panel-back" onclick="window.location='minecraftedu://'">
-        <div class="panel">
-            <img class="icon" src="./content/images/mce_icon.png" style="min-width: 60px; height: 60px; image-rendering: pixelated;">
-            <div class="btnText">
-                <strong>Launch Minecraft Education</strong>
-                <span><i style="color: var(--var_textColorDarker);">1.14.50</i></span>
-            </div>
-        </div>
-    </div>
+
     <div class="panel-back" onclick="openDiscordURL();">
         <div class="panel">
             <img class="icon" src="content/images/discord.svg" style="min-width: 60px; height: 60px; image-rendering: pixelated; fill: var(--var_textColor);">
@@ -211,6 +194,32 @@ function refreshBPMap(directoryPath) {
         </div>
     </div>
     `
+    //bedrocc
+    try{
+        const mcVerFile = require(getMojangPath() + "/minecraftpe/telemetry_info.json")
+        contstr += `<div class="panel-back" onclick="window.location='minecraft://'">
+        <div class="panel">
+            <img class="icon" src="./content/images/mc_icon.png" style="min-width: 60px; height: 60px; image-rendering: pixelated;">
+            <div class="btnText">
+                <strong>${translations['manager.startGame.title']}</strong>
+                <span><i style="color: var(--var_textColorDarker);">${mcVerFile.lastsession_Build}</i></span>
+            </div>
+        </div>
+        </div>`
+    } catch(e) {
+        console.log(e.message)
+        if(e.message.startsWith('Cannot find module')) {
+            contstr += `<div class="panel-back" disabled>
+        <div class="panel">
+            <img class="icon" src="./content/images/mc_icon.png" style="min-width: 60px; height: 60px; image-rendering: pixelated;">
+            <div class="btnText">
+                <strong>${translations['manager.startGame.title']}</strong>
+                <span><i style="color: var(--var_textColorDarker);">${translations['manager.startGame.notFound']}</i></span>
+            </div>
+        </div>
+        </div>`
+        }
+    }
     // Reading the pack name
     contstr += `<h2>${translations["manager.devprojects.title"]}</h2>`;
     if(projects_dev.length) {
