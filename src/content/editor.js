@@ -865,7 +865,7 @@ function openWebBrowser(url, image=false){
 	wv.setAttribute("src", url);
 	
 	wv.tabEl = chromeTabs.activeTabEl;
-    initWebView(wv, image);
+    if(wv.src) initWebView(wv, image);
     par.appendChild(wv);
     
     // Store the data
@@ -1442,7 +1442,7 @@ function initWebView(webview, image) {
 		/// When loads starts
 		if(chromeTabs.activeTabEl == webview.tabEl){
 			/// If is the active tab
-			if(e.url != "undefined")
+			if(e.url)
 				document.getElementById("navBarInput").value = e.url;
 		}
 		chromeTabs.setFavicon(webview.tabEl, "images/loading.gif");
@@ -1456,8 +1456,9 @@ function initWebView(webview, image) {
 		/// When loads stops
 		if(chromeTabs.activeTabEl == webview.tabEl){
 			/// If is the active tab
-			if(webview.src != "undefined")
+			if(webview.src) {
 				document.getElementById("navBarInput").value = webview.src;
+			}
 		}
 		getFavicons(webview.src).then(data=>{
 			if(data["icons"].length > 0)
