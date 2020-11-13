@@ -895,20 +895,29 @@ function generateFileItemEl(name, path) {
 			img = folderIcon;
 			if(openedBrowser == 1){
 				/// Behavior packs
-				if(p == "\\items")
-					img = "images/folder-item.png";
-				else if(p == "\\blocks")
-					img = "images/folder-blocks.png"
-				else if(p == "\\entities")
-					img = "images/folder-entity.png"
-				else if(p == "\\functions")
-					img = "images/folder-commands.png"
-				else if(p == "\\texts")
-					img = "images/folder-book.png"
-				else if(p == "\\loot_tables")
-					img = "images/folder-chest.png"
-				else if(p == "\\biomes")
-					img = "images/folder-tree.png"
+				switch(p){
+					case "\\items":
+						img = "images/folder-item.png";
+						break;
+					case "\\blocks":
+						img = "images/folder-blocks.png";
+						break;
+					case "\\entities":
+						img = "images/folder-entity.png";
+						break;
+					case "\\functions":
+						img = "images/folder-commands.png";
+						break;
+					case "\\texts":
+						img = "images/folder-book.png";
+						break;
+					case "\\loot_tables":
+						img = "images/folder-chest.png";
+						break;
+					case "\\biomes":
+						img = "images/folder-tree.png";
+						break;
+				}
 			}
 			else if(openedBrowser == 0){
 				/// Resource packs
