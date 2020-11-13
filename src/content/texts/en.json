@@ -58,5 +58,7 @@
     "editor.context.paste": "Paste",
     "editor.context.reveal": "Reveal in explorer",
     "editor.context.dupe": "Duplicate",
-    "editor.context.delete": "Delete"
+    "editor.context.delete": "Delete",
+    "manager.startGame.title": "Launch Minecraft",
+    "manager.startGame.notFound": "Game not found"
 }

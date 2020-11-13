@@ -58,5 +58,7 @@
     "editor.context.paste": "粘贴",
     "editor.context.reveal": "在文件管理器中显示",
     "editor.context.dupe": "克隆文件",
-    "editor.context.delete": "删除"
+    "editor.context.delete": "删除",
+    "manager.startGame.title": "启动Minecraft",
+    "manager.startGame.notFound": "无法找到游戏"
 }
