@@ -43,15 +43,19 @@
                 <div w3-include-html="dialogs.html"></div>
                 <!-- MAIN TOOLBAR -->
                 <div class="maintoolbar">
-                    <img src="images/027-real-estate.png" id="tbHome"/>
+                    <div onclick="window.location = '../project_manager.html'" class="toolbaritem" style="-webkit-mask-box-image: url(images/027-real-estate.png);" id="tbHome"></div>
                     <div class="divider"></div>
-                    <img src="images/016-save.png" id="tbSave"/>
+                    <div class="toolbaritem" style="-webkit-mask-box-image: url(images/web.png);" id="tbWeb"></div>
+                    <div class="toolbaritem" style="-webkit-mask-box-image: url(images/016-save.png);" id="tbSave"></div>
                     <script>
                         tippy('#tbSave', {
-                            content: "Save",
+                            content: "Save File (Ctrl+S)",
                         });
                         tippy('#tbHome', {
                             content: "Home",
+                        });
+                        tippy('#tbWeb', {
+                            content: "Open Web Browser",
                         });
                     </script>
                 </div>
