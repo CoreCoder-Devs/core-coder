@@ -176,7 +176,6 @@ function refreshBPMap(directoryPath) {
 
     var contstr = '<h2>' + translations['manager.welcome.title'] + '</h2>';
     contstr += `
-    <i id="versionID">v1.0.0</i>
     <div class="panel-back" onclick="openCreateDlg();translateDocument()">
         <div class="panel">
             <img class="icon" src="content/images/006-add-plus-button.png" style="min-width: 60px; height: 60px; image-rendering: pixelated;">
@@ -493,7 +492,8 @@ function init() {
     includeHTML();
     toggleFullscreen(GlobalSettings.fullscreen);
     setLanguage(GlobalSettings.lang);
-    document.getElementById("versionID").innerText = currentVersion.versionName;
+    
+    titlebar.updateTitle("Core Coder " + currentVersion.versionName)
     // Init the download buttons
     var buttons = document.querySelectorAll('.progress-btn');
     for (let i = 0; i < buttons.length; i++) {

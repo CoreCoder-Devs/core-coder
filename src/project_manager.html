@@ -29,11 +29,11 @@
         <script>
             // Creates the titlebar
             const customTitlebar = require("../lib/custom-electron-titlebar-custom");
-            new customTitlebar.Titlebar({
+            const titlebar = new customTitlebar.Titlebar({
                 menu: null,
                 icon: "./resources/icon.png",
                 titleHorizontalAlignment: "left"
-            });
+            })
         </script>
         <div style="top: 30px; position: absolute; width: 100%; height: 100%;">
             <div id="notification" class="hidden">
@@ -71,54 +71,8 @@
             <script src="project-manager.js"></script>
             <script src="content/util.js"></script>
 
-            <!--COMP#DISABLE-->
-
-            <!--COMP#ENABLE-->
-            <!--<script>nw.Window.get().evalNWBin(null, 'runtime\\content\\util\\Preferences.bin');
-		<!--		nw.Window.get().evalNWBin(null, 'runtime\\project-manager.bin');
-		<!--		nw.Window.get().evalNWBin(null, 'runtime\\content\\util.bin');</script>
-		<!--COMP#ENABLE-->
-
             <div w3-include-html="project-manager-dialogs.html"></div>
             <div style="display: flex; flex-wrap: nowrap; flex-direction: row; width: 100%; height: 100%; background-image: url('./content/images/icon.png'); background-color: rgb(15, 15, 15);">
-                <!-- <div class="tabbar">
-				<div id="projectTabs" class="chrome-tabs" style="--tab-content-margin: 9px;  margin: 0">
-					<div class="chrome-tabs-content">
-					</div>
-				</div>
-				<script>
-					// Initialize the tabs system
-					const ChromeTabs = require("chrome-tabs");
-					var el = document.getElementById("projectTabs");
-					projectTabs = new ChromeTabs();
-					document.documentElement.classList.add('dark-theme');
-					el.classList.add('chrome-tabs-dark-theme');
-					projectTabs.init(el);
-					projectTabs.addTab({
-					    title: 'Home',
-					    favicon: false,
-					    noclose: true
-					});
-					projectTabs.activeTabEl.id = "page1";
-					projectTabs.addTab({
-					    title: 'Settings',
-					    favicon: false,
-					    noclose: true
-					});
-					projectTabs.activeTabEl.id = "page2";
-					// projectTabs.addTab({
-					//     title: 'Plugins',
-					//     favicon: false,
-					//     noclose: true
-					// });
-					// projectTabs.activeTabEl.id = "page3";
-					projectTabs.setCurrentTab(projectTabs.tabEls[0]);
-
-					preferences = {
-						"commojangdir" : ""
-					}
-				</script>
-			</div> -->
                 <div class="sidebar">
                     <!-- The navigation icons -->
                     <div id="btnhome" class="selected mainminibutton" style="-webkit-mask-box-image: url(content/images/027-real-estate.png);" onclick="openPage('page1', this)"></div>
@@ -136,39 +90,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div id="pageView" style="background-color: rgb(31, 31, 31); flex-grow: 1">
-							<div id="pageFailed" style="width: 100%; height: 100%; ">
-								<div style="
-									position: absolute;
-									left: 256px; top: 0; bottom: 0; right: 0;">
-									<div style="
-										margin: 0;
-										position: absolute;
-										top: 50%;
-										left: 50%;-webkit-user-select: none;
-										-webkit-user-drag: none;
-										-webkit-app-region: no-drag;
-										-ms-transform: translate(-50%, -50%);
-										transform: translate(-50%, -50%);
-										"><img src="resources/icon_grayscale.png" style="width: 90px; height: 90px;
-										"></div>
-									</p>
-								</div>
-							</div>
-							<s!-- <script>
-								var e = document.createElement('embed');
-								e.src = "https://mcpecore.com/p/CoreCoder";
-								e.style.width = "100%";
-								e.style.height = "100%";
-								// e.type = "image/svg+xml";
-								
-								document.getElementById("pageView").appendChild(e);
-								e.addEventListener('load', function()
-								{
-								    document.getElementById("pageFailed").style.display = "none";
-								});
-							</script> -s->
-						</div> -->
                         </div>
                     </div>
                     <div id="page2content" style="width: 100%; height: 100%; display: none;">
@@ -248,7 +169,6 @@
                             </div>
                             <div id="aceeditor" style="min-height: 256px;">function foo(items) { var x = "All this is syntax highlighted"; return x; }</div>
 
-                            <!-- <script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script> -->
                             <script>
                                 var editor = ace.edit("aceeditor");
                                 editor.setTheme("ace/theme/monokai");
@@ -366,13 +286,7 @@
                     <div id="page3content" style="width: 100%; height: 100%; display: none;"></div>
                 </div>
 
-                <!--COMP#DISABLE-->
                 <script src="scripts/string_validator.js"></script>
-                <!--COMP#DISABLE-->
-
-                <!--COMP#ENABLE-->
-                <!--<script>nw.Window.get().evalNWBin(null, 'runtime\src\scripts\string_validator.bin');</script>
-			<!--COMP#ENABLE-->
                 <script>
                     //Active page changer
                     pages = {
