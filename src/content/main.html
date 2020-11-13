@@ -49,13 +49,13 @@
                     <div onclick="saveCurrentFile()" class="toolbaritem" style="-webkit-mask-box-image: url(images/016-save.png);" id="tbSave"></div>
                     <script>
                         tippy('#tbSave', {
-                            content: "Save File (Ctrl+S)",
+                            content: translations["editor.sidebar.save"] + " (ctrl + s)",
                         });
                         tippy('#tbHome', {
-                            content: "Home",
+                            content: translations["editor.sidebar.home"],
                         });
                         tippy('#tbWeb', {
-                            content: "Open Web Browser",
+                            content: translations["editor.sidebar.explorer"],
                         });
                     </script>
                 </div>
@@ -117,8 +117,10 @@
                     <!-- Toolbbar -->
                     <div class="toolbar">
                         <!-- <p class="label" style="flex-grow: 1;" id="midpaneTitle">File Browser</p> -->
-                        <div id="openBPBrowser" class="browser-switcher" onclick="openBrowser(1)">BP</div>
-                        <div id="openRPBrowser" class="browser-switcher" onclick="openBrowser(0)">RP</div>
+                        <div id="openBPBrowser" class="browser-switcher" onclick="openBrowser(1)">BP
+                            <span class="tooltiptext" data-translation="editor.sidebar.behaviour">Behaviour Pack</span></div>
+                        <div id="openRPBrowser" class="browser-switcher" onclick="openBrowser(0)">RP
+                            <span class="tooltiptext" data-translation="editor.sidebar.resource">Resource Pack</span></div>
                         <div href="#" onclick="regenerateTree()">
                             <img src="images/synchronize.png" />
                             <span class="tooltiptext" data-translation="editor.controls.refresh">Refresh</span>
