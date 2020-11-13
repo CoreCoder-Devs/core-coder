@@ -46,6 +46,7 @@
                     <div onclick="window.location = '../project_manager.html'" class="toolbaritem" style="-webkit-mask-box-image: url(images/027-real-estate.png);" id="tbHome"></div>
                     <div class="divider"></div>
                     <div onclick="openWebBrowser('file://' + __dirname + '\\pages\\home.html');" class="toolbaritem" style="-webkit-mask-box-image: url(images/web.png);" id="tbWeb"></div>
+                    <div class="divider"></div>
                     <div onclick="saveCurrentFile()" class="toolbaritem" style="-webkit-mask-box-image: url(images/016-save.png);" id="tbSave"></div>
                     <script>
                         tippy('#tbSave', {
@@ -229,7 +230,7 @@
                             }
                         });
                     </script>
-                    <div class="footnav" id="footnav"></div>
+                    <div class="footnav" id="footnav" style="display: none;"></div>
                 </div>
                 <pre id="editor">
 function main(){
