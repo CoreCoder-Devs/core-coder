@@ -20,8 +20,6 @@
 
         <script src="../../lib/chrome-tabs-custom/node_modules/draggabilly/dist/draggabilly.pkgd.min.js"></script>
         <script src="../../lib/chrome-tabs-custom/js/chrome-tabs.js"></script>
-        <script src="../../lib/popper.js"></script>
-        <script src="../../lib/tippy.js"></script>
     </head>
     <body onload="init();">
         <script>
@@ -41,21 +39,31 @@
             <script src="util/Autocomplete.js"></script>
             <div style="top: 0; width: 100%; bottom: 0; position: absolute;">
                 <div w3-include-html="dialogs.html"></div>
-                <!-- MAIN TOOLBAR -->
-                <div class="maintoolbar">
-                    <img src="images/027-real-estate.png" id="tbHome"/>
-                    <div class="divider"></div>
-                    <img src="images/016-save.png" id="tbSave"/>
-                    <script>
-                        tippy('#tbSave', {
-                            content: "Save",
-                        });
-                        tippy('#tbHome', {
-                            content: "Home",
-                        });
-                    </script>
+                <div class="sidenav" style="display: flex; flex-direction: column;">
+                    <!-- <a href="#" onclick="createNewFile()"><img  src="images/025-files-and-folders.png"></img><span class="tooltiptext">Create new file</span></a> -->
+                    <a href="#" onclick="openBrowser(1)" id="openBPBrowser">
+                        <div class="sidenavbutton" style="-webkit-mask-box-image: url(images/folder_bp.png);"></div>
+                        <span class="tooltiptext" data-translation="editor.sidebar.behaviour">Behavior browser</span>
+                    </a>
+                    <a href="#" onclick="openBrowser(0)" id="openRPBrowser">
+                        <div class="sidenavbutton" style="-webkit-mask-box-image: url(images/folder_rp.png);"></div>
+                        <span class="tooltiptext" data-translation="editor.sidebar.resource">Resource browser</span>
+                    </a>
+                    <a href="#" onclick="saveCurrentFile()">
+                        <div class="sidenavbutton" style="-webkit-mask-box-image: url(images/016-save.png);"></div>
+                        <span class="tooltiptext" data-translation="editor.sidebar.save">Save file</span>
+                    </a>
+                    <a href="#" onclick="openWebBrowser('file://' + __dirname + '\\pages\\home.html');">
+                        <div class="sidenavbutton" style="-webkit-mask-box-image: url(images/web.png);"></div>
+                        <span class="tooltiptext" data-translation="editor.sidebar.explorer">Web Browser</span>
+                    </a>
+                    <!-- <a href="#" onclick="openPrefModal()"><img src="images/011-adjust.png"></img><span class="tooltiptext">Settings</span></a> -->
+                    <a href="#" style="flex-grow: 1;"></a>
+                    <a href="#" onclick="window.location = '../project_manager.html'">
+                        <div class="sidenavbutton" style="-webkit-mask-box-image: url(images/027-real-estate.png);"></div>
+                        <span class="tooltiptext" data-translation="editor.sidebar.home">Project Menu</span>
+                    </a>
                 </div>
-                <!-- /MAIN TOOLBAR -->
                 <div class="mid_panel" id="midpane" style="display: none;">
                     <a id="browserpath"></a>
                     <div id="browsercontent" style="position: absolute; left: 0; top: 64px; bottom: 0; right: 0; overflow-y: scroll; overflow-x: hidden;">
@@ -112,9 +120,7 @@
                     </div>
                     <!-- Toolbbar -->
                     <div class="toolbar">
-                        <!-- <p class="label" style="flex-grow: 1;" id="midpaneTitle">File Browser</p> -->
-                        <div id="openBPBrowser" class="browser-switcher" onclick="openBrowser(1)">BP</div>
-                        <div id="openRPBrowser" class="browser-switcher" onclick="openBrowser(0)">RP</div>
+                        <p class="label" style="flex-grow: 1;" id="midpaneTitle">File Browser</p>
                         <div href="#" onclick="regenerateTree()">
                             <img src="images/synchronize.png" />
                             <span class="tooltiptext" data-translation="editor.controls.refresh">Refresh</span>
@@ -143,7 +149,7 @@
                         <p data-translation="editor.main.noFiles">No files opened. Create new file by clicking (+) button or open it from file manager</p>
                     </div>
                     <div class="tabbar">
-                        <div class="chrome-tabs" style="--tab-content-margin: 9px;top: 30px;">
+                        <div class="chrome-tabs" style="--tab-content-margin: 9px;">
                             <div class="chrome-tabs-content"></div>
                         </div>
                     </div>

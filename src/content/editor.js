@@ -567,8 +567,8 @@ function openBrowser(id) {
 	if (midpane.style.display === "none") {
 		midpane.style.display = "block";
 		midpane.style.width = "250px";
-		content.style.left = "calc(var(--left_panel_size) + 250px)";
-		elem_editor.style.left = "calc(var(--left_panel_size) + 250px)";
+		content.style.left = "calc(var(--left_panel_size))";
+		elem_editor.style.left = "calc(var(--left_panel_size))";
 		elem_editor.style.right = "0";
 		content.style.right = "0";
 
@@ -578,18 +578,7 @@ function openBrowser(id) {
 		current.classList.add('active');
 		regenerateTree();
 	} else {
-		if (openedBrowser == id) {
-			// the browser already opened, close it
-			midpane.style.display = "none";
-			midpane.style.width = "0";
-			content.style.left = "var(--left_panel_size)";
-			elem_editor.style.left = "var(--left_panel_size)";
-			elem_editor.style.right = "0";
-			content.style.right = "0";
-			openedBrowser = -1;
-			rpbtn.classList.remove('active');
-			bpbtn.classList.remove('active');
-		} else {
+		{
 			// Switch the browser if the id is different
 			openedBrowser = id;
 			rpbtn.classList.remove('active');
@@ -1017,7 +1006,7 @@ function regenerateTree() {
 	var treeContainer = document.getElementById("browsercontent");
 
 	document.getElementById("browserpath").innerText = relativePath[openedBrowser];
-	document.getElementById("midpaneTitle").innerText = openedBrowser == 1 ? translations['editor.sidebar.behaviour'] : translations['editor.sidebar.resource'];
+	// document.getElementById("midpaneTitle").innerText = openedBrowser == 1 ? translations['editor.sidebar.behaviour'] : translations['editor.sidebar.resource'];
 
 	if (!project_info["rp_folder"] && openedBrowser == 0) {
 		// If no resource pack and opening RP browser
