@@ -44,7 +44,9 @@ function readProjectData() {
 	if (data["dependencies"].length > 0) {
 		project_info["rp_folder"] = Preferences.COM_MOJANG_PATH + '\\' + data['dependencies'][0].folder;
 		project_info["rp_name"] = data['dependencies'][0].name;
-	}
+  }
+  titleBar.updateTitle(`${project_info["bp_name"]} - CoreCoder`);
+  titleBar.updateIcon(unescape(project_info["bp_folder"]).replace(/\\/gi, "/") + '/pack_icon.png');
 }
 function readJSONUncomment(string) {
   var result;

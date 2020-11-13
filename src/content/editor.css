@@ -1,6 +1,6 @@
 :root {
   --left_panel_size : 50px;
-  --top_padding :0px;
+  --top_padding :30px;
   --tabs_height : 43px;
   --mid_panel_size : 256px;
   --mid_panel_size_default : 256px;
@@ -58,6 +58,13 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: var(--var_backgroundColor);
   height: 100%;
+  padding: 0px;
+  /* border: 2px solid lime; */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 /* Style the side navigation */
