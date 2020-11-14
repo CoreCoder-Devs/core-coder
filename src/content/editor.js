@@ -919,18 +919,22 @@ function generateFileItemEl(name, path) {
 						break;
 				}
 			}
-			else if(openedBrowser == 0){
-				/// Resource packs
-				if(p == "\\items")
+			switch(p){
+				case "\\items":
 					img = "images/folder-item.png";
-				else if(p == "\\blocks")
-					img = "images/folder-blocks.png"
-				else if(p == "\\entity")
-					img = "images/folder-entity.png"
-				else if(p == "\\functions")
-					img = "images/folder-commands.png"
-				else if(p == "\\texts")
-					img = "images/folder-book.png"
+					break;
+				case "\\blocks":
+					img = "images/folder-blocks.png";
+					break;
+				case "\\entity":
+					img = "images/folder-entity.png";
+					break;
+				case "\\functions":
+					img = "images/folder-commands.png";
+					break;
+				case "\\texts":
+					img = "images/folder-book.png";
+					break;
 			}
 			var val = `
             <div class="flex-hor filebrowseritem" data-path="` + path + `" onclick=\'goInFolder("` + escape(name) + `"); regenerateTree();\'"\>
