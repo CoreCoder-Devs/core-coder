@@ -11,7 +11,7 @@ function searchQuery(string){
             docs: value
         })
     }
-    return queryObj.filter(e => e.entry.search(string) !== -1)
+    return queryObj.filter(e => e.entry.search(string) !== -1 || e.docs.search(string) !== -1)
 }
 
 module.exports = {
