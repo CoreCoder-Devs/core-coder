@@ -25,7 +25,8 @@
     "open": "^7.1.0",
     "update-electron-app": "^2.0.1",
     "uuid": "^8.2.0",
-    "webpack": "^4.44.1"
+    "webpack": "^4.44.1",
+    "yaml": "^1.10.0"
   },
   "devDependencies": {
     "electron": "^10.1.5",

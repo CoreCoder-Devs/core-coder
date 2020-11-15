@@ -1,0 +1,18 @@
+<input placeholder="Search for component..." id="input"><button onclick="search()">Search</button>
+<div id="res"></div>
+
+<script>
+    const docs = require('./content/util/documentation.js');
+
+    function search() {
+        document.getElementById('res').innerHTML = ""
+        for(const item of docs.search(document.getElementById('input').value, 'molang')) {
+            document.getElementById('res').innerHTML += `<h4>${item.entry}</h4><p>${item.docs}</p>`
+            // Query object format:
+            // {
+            //     entry: name/function/query
+            //     docs: the description or documentation
+            // }
+        }
+    }
+</script>

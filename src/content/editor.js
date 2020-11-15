@@ -9,10 +9,10 @@ var getFavicons = require('get-website-favicon')
 var getTitleAtUrl = require('get-title-at-url');
 const translations = require(`./texts/${GlobalSettings.lang}.json`)
 
-t = tokenizer();
+//t = tokenizer();
 let openedBrowser = -1; //1 - BP; 0 - RP
 let items_source = {}; // contains source file, ace sessions, saved state
-webviews = [];
+let webviews = [];
 // TEMPLATE
 /*{
     type : "ace",
@@ -46,22 +46,22 @@ let project_info = {
 };
 
 
-clipboard_path = ''; // Used to copy / cut / paste file in the filebrowser
-cut = false;
-viewingpath = ''; // either the value of project_info[bp_folder] or the rp_folder
-relativePath = ['', '']; // Relative path from the current opened project dir, accessor: openedBrowser
-contextobj = undefined; // The context menu browseritem
+let clipboard_path = ''; // Used to copy / cut / paste file in the filebrowser
+let cut = false;
+let viewingpath = ''; // either the value of project_info[bp_folder] or the rp_folder
+let relativePath = ['', '']; // Relative path from the current opened project dir, accessor: openedBrowser
+let contextobj = undefined; // The context menu browseritem
 
-fileIcons = {
+const fileIcons = {
 	'.png': 'images/017-mountain.png',
 	'.json': 'images/snippet.png',
 };
 
-folderIcon = 'images/015-folder.png';
-items_texture = {};
-items_identifier_textures = {};
-blocks_texture = {};
-blocks_texture_identifier = {};
+let folderIcon = 'images/015-folder.png';
+let items_texture = {};
+let items_identifier_textures = {};
+let blocks_texture = {};
+let blocks_texture_identifier = {};
 function refreshCurrentItemTextures(){
 	// refresh by reading the "items_texture.json"
 	if(typeof(project_info["rp_folder"]) === "undefined")
@@ -77,7 +77,7 @@ function refreshCurrentItemTextures(){
 			console.log(e);
 		}
 		var textures = items["texture_data"];
-		for(var t in textures){
+		for(const t in textures){
 			if(Array.isArray(textures[t].textures))
 				items_texture[t] = textures[t].textures[0] + ".png";
 			else
@@ -99,8 +99,9 @@ function refreshCurrentItemTextures(){
 				if(obj["format_version"] === "1.16.100" || obj["format_version"] === "1.16.200" || obj["minecraft:item"]["components"]["minecraft:icon"]["texture"] !== undefined){
 					items_identifier_textures[obj["minecraft:item"]["description"]["identifier"]] = obj["minecraft:item"]["components"]["minecraft:icon"]["texture"];
 					// console.log(obj);
-				}else
-				items_identifier_textures[obj["minecraft:item"]["description"]["identifier"]] = obj["minecraft:item"]["components"]["minecraft:icon"];
+				}else {
+					items_identifier_textures[obj["minecraft:item"]["description"]["identifier"]] = obj["minecraft:item"]["components"]["minecraft:icon"];
+				}
 			}catch(e){
 				console.log(e);
 				continue;
@@ -124,7 +125,7 @@ function refreshCurrentBlockTextures(){
 			console.log(e);
 		}
 		var textures = items["texture_data"];
-		for(var t in textures){
+		for(const t in textures){
 			if(Array.isArray(textures[t].textures))
 				items_texture[t] = textures[t].textures[0] + ".png";
 			else
@@ -157,16 +158,14 @@ function itemNamespaceToTexturePath(name){
 	var r = items_texture[items_identifier_textures[name]];
 	if(r == undefined){
 		return "images/snippet.png";
-	}else
-		return project_info["rp_folder"] + "/" +  r;
+	}else return project_info["rp_folder"] + "/" +  r;
 }
 function itemNamespaceToTexturePath_1_16_100(icon){
 	/// Converts item namespace to item texture path (absolute)
 	var r = items_texture[icon];
 	if(r == undefined){
 		return "images/snippet.png";
-	}else
-		return project_info["rp_folder"] + "/" +  r;
+	}else return project_info["rp_folder"] + "/" +  r;
 }
 
 function getItemNamespace(obj){
@@ -368,8 +367,7 @@ function pasteCurrentFolder() {
 			deleteFile(clipboard_path);
 		}
 		regenerateTree();
-	} else
-		dupplicateClicked(filename, clipboard_path);
+	} else dupplicateClicked(filename, clipboard_path);
 }
 
 function saveCurrentFile() {
@@ -681,8 +679,7 @@ function listFiles(path, filesOnly) {
 			let stat = fs.lstatSync(path + '\\' + file);
 			if(stat.isDirectory() == false)
 				result.push(file);
-		}else
-			result.push(file);
+		}else result.push(file);
 	});
 	return result;
 }
@@ -699,8 +696,7 @@ function listFilesRecursive(path) {
 		let stat = fs.lstatSync(path + '\\' + file);
 		if(stat.isDirectory()){
 			result = result.concat(listFilesRecursive(path + '\\' + file));
-		}else
-			result.push(path + '\\' + file);
+		}else result.push(path + '\\' + file);
 	});
 	return result;
 }
@@ -753,22 +749,24 @@ function openFile(_path) {
 		else
 			rel = absoluteToRelativePath(path, project_info["rp_folder"]);
 		
-		if(rel.startsWith("\\items"))
-		try{
-			var obj = readJSONUncomment(content);
-			
-			if(obj["format_version"] === "1.16.100" && obj["minecraft:item"]["description"]["identifier"]){ 
+		if(rel.startsWith("\\items")) {
+
+			try{
+				var obj = readJSONUncomment(content);
+				
+				if(obj["format_version"] === "1.16.100" && obj["minecraft:item"]["description"]["identifier"]){ 
 					img = itemNamespaceToTexturePath_1_16_100(obj["minecraft:item"]["components"]["minecraft:icon"]["texture"]);
 					favicon_path = normalizePath(unescape(itemNamespaceToTexturePath_1_16_100(getItemIcon(obj)))).replace(/\\/gi, "\\\\");
-			}else
-			if(obj["minecraft:item"]["description"]["identifier"])
+				}else
+				if(obj["minecraft:item"]["description"]["identifier"])
 				favicon_path = normalizePath(unescape(itemNamespaceToTexturePath(getItemNamespace(obj)))).replace(/\\/gi, "\\\\");
-			custom = true;
-		}catch(error){
-			console.log(error);
+				custom = true;
+			}catch(error){
+				console.log(error);
+			}
 		}
-		chromeTabs.addTab({
-			title: filename,
+			chromeTabs.addTab({
+				title: filename,
 			favicon: favicon_path
 		});
 
@@ -895,33 +893,46 @@ function generateFileItemEl(name, path) {
 			img = folderIcon;
 			if(openedBrowser == 1){
 				/// Behavior packs
-				if(p == "\\items")
-					img = "images/folder-item.png";
-				else if(p == "\\blocks")
-					img = "images/folder-blocks.png"
-				else if(p == "\\entities")
-					img = "images/folder-entity.png"
-				else if(p == "\\functions")
-					img = "images/folder-commands.png"
-				else if(p == "\\texts")
-					img = "images/folder-book.png"
-				else if(p == "\\loot_tables")
-					img = "images/folder-chest.png"
-				else if(p == "\\biomes")
-					img = "images/folder-tree.png"
+				switch(p){
+					case "\\items":
+						img = "images/folder-item.png";
+						break;
+					case "\\blocks":
+						img = "images/folder-blocks.png";
+						break;
+					case "\\entities":
+						img = "images/folder-entity.png";
+						break;
+					case "\\functions":
+						img = "images/folder-commands.png";
+						break;
+					case "\\texts":
+						img = "images/folder-book.png";
+						break;
+					case "\\loot_tables":
+						img = "images/folder-chest.png";
+						break;
+					case "\\biomes":
+						img = "images/folder-tree.png";
+						break;
+				}
 			}
-			else if(openedBrowser == 0){
-				/// Resource packs
-				if(p == "\\items")
+			switch(p){
+				case "\\items":
 					img = "images/folder-item.png";
-				else if(p == "\\blocks")
-					img = "images/folder-blocks.png"
-				else if(p == "\\entity")
-					img = "images/folder-entity.png"
-				else if(p == "\\functions")
-					img = "images/folder-commands.png"
-				else if(p == "\\texts")
-					img = "images/folder-book.png"
+					break;
+				case "\\blocks":
+					img = "images/folder-blocks.png";
+					break;
+				case "\\entity":
+					img = "images/folder-entity.png";
+					break;
+				case "\\functions":
+					img = "images/folder-commands.png";
+					break;
+				case "\\texts":
+					img = "images/folder-book.png";
+					break;
 			}
 			var val = `
             <div class="flex-hor filebrowseritem" data-path="` + path + `" onclick=\'goInFolder("` + escape(name) + `"); regenerateTree();\'"\>
@@ -1020,11 +1031,11 @@ function regenerateTree() {
 	var path = getCurrentOpenedFolderPath();
 	var html = relativePath[openedBrowser] == '' ? '' : generateFileItemEl('..', '');
 	var folderList = listFolders(path);
-	for (var f in folderList) {
+	for (const f in folderList) {
 		html += generateFileItemEl(folderList[f], path + '\\' + folderList[f]);
 	}
 	var fileList = listFiles(path, true);
-	for (var f in fileList) {
+	for (const f in fileList) {
 		html += generateFileItemEl(fileList[f], path + '\\' + fileList[f]);
 	}
 
