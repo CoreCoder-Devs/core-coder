@@ -3,7 +3,7 @@ const fs = require('fs')
 
 function searchQuery(string){
     let queryObj = []
-    const file = fs.readFileSync("../docs/molang.yaml", 'utf8')
+    const file = fs.readFileSync("./src/content/docs/molang.yaml", 'utf8')
     //TODO: path somehow incorrect
     for(const [key, value] of Object.entries(YAML.parse(file))) {
         queryObj.push({
