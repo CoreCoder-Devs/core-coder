@@ -94,6 +94,12 @@ function refreshProjectMap() {
 }
 
 function refreshBPMap(directoryPath) {
+    if(!fs.existsSync(directoryPath + '\\development_behavior_packs\\')){
+        fs.mkdirSync(directoryPath + '\\development_behavior_packs\\', {recursive: true});
+    }
+    if(!fs.existsSync(directoryPath + '\\behavior_packs\\')){
+        fs.mkdirSync(directoryPath + '\\behavior_packs\\', {recursive: true});
+    }
     var dev_files = listFiles(directoryPath + '\\development_behavior_packs\\');
     var nodev_files = listFiles(directoryPath + '\\behavior_packs\\');
     var projects = [];
