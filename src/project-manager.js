@@ -46,16 +46,16 @@ function generateProjectHTML(proj_name, proj_folder, project_data, proj_ver) {
     }catch(e){console.log(e);}
 
     var template = `
-    <div class="panel-back" data-project=` + string_data + `  onclick="window.location='./content/main.html'; localStorage.setItem('project_data', '` + string_data + `')"  id="a${project_data.uuid}">
-        <div class="panel">
+    <div class="panel" data-project=` + string_data + `  onclick="window.location='./content/main.html'; localStorage.setItem('project_data', '` + string_data + `')"  id="a${project_data.uuid}">
+        
             <img class="minibutton" src="content/images/012-more.png" onclick="event.stopPropagation();openDeleteDlg(this);translateDocument()"/>
-            <img class="icon iconBorder" src="` + img + `" style="min-width: 60px; height: 60px ` + (filter ? '' : "; image-rendering: pixelated") + `"></img>
+            <img class="icon" src="` + img + `" style="min-width: 60px; height: 60px ` + (filter ? '' : "; image-rendering: pixelated") + `"></img>
             <div class="btnText"><strong>` + proj_name + `</strong> 
                 <span><i style="color: var(--var_textColorDarker);">` + proj_ver.join('.') + `</i></span>
             </div>
             <!-- <img class="minibutton" src="content/images/012-more.png" onclick="openRenameDlg()"/> -->
-            </div>
-            </div>
+        
+    </div>
     `
     
     //TODO: The script element is not executed for some reason.
@@ -94,6 +94,8 @@ function refreshProjectMap() {
 }
 
 function refreshBPMap(directoryPath) {
+    // Create the directory if it's not there
+    // a.k.a the game is not installed
     if(!fs.existsSync(directoryPath + '\\development_behavior_packs\\')){
         fs.mkdirSync(directoryPath + '\\development_behavior_packs\\', {recursive: true});
     }
@@ -182,35 +184,29 @@ function refreshBPMap(directoryPath) {
 
     var contstr = '<h2>' + translations['manager.welcome.title'] + '</h2>';
     contstr += `
-    <div class="panel-back" onclick="openCreateDlg();translateDocument()">
-        <div class="panel">
+    <div class="panel" onclick="openCreateDlg();translateDocument()">
             <img class="icon" src="content/images/006-add-plus-button.png" style="min-width: 60px; height: 60px; image-rendering: pixelated;">
             <div class="btnText">
                 <strong>${translations["manager.createnew.title"]}</strong>
             </div>
-        </div>
     </div>
 
-    <div class="panel-back" onclick="openDiscordURL();">
-        <div class="panel">
+    <div class="panel" onclick="openDiscordURL();">
             <img class="icon" src="content/images/discord.svg" style="min-width: 60px; height: 60px; image-rendering: pixelated; fill: var(--var_textColor);">
             <div class="btnText">
                 <strong>${translations["manager.tooltips.discord"]}</strong>
             </div>
-        </div>
     </div>
     `
     //bedrocc
     try{
         const mcVerFile = require(getMojangPath() + "/minecraftpe/telemetry_info.json")
-        contstr += `<div class="panel-back" onclick="window.location='minecraft://'">
-        <div class="panel">
+        contstr += `<div class="panel" onclick="window.location='minecraft://'">
             <img class="icon" src="./content/images/mc_icon.png" style="min-width: 60px; height: 60px; image-rendering: pixelated;">
             <div class="btnText">
                 <strong>${translations['manager.startGame.title']}</strong>
                 <span><i style="color: var(--var_textColorDarker);">${mcVerFile.lastsession_Build}</i></span>
             </div>
-        </div>
         </div>`
     } catch(e) {
         console.log(e.message)

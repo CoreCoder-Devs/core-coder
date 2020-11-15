@@ -80,24 +80,18 @@ body {
 	background-position: center;
 }
 .panel {
-	background-image: linear-gradient(to bottom right, var(--var_colorAccent), var(--var_colorAccentDarker), var(--var_colorAccentDarker));
-	/* backdrop-filter: brightness(50%) blur(32px); */
 	display: flex;
-	flex-direction: column;
-	text-align: center;
-	/* flex-wrap: wrap; */
-	/* border: 1px solid #5a5a5a; */
-	border-radius: 8px;
-	/* margin: 2px; */
+	flex-direction: row;
+	background-color: var(--var_backgroundColor);
 	transition: all 0.3s;
 	width: 185px;
-	height: 100%;
+	height: 64px;
 	cursor: pointer;
-
+	padding: 12px;
+	margin: 4px;
 }
 
 .panel:hover{
-	filter: brightness(120%);
 }
 #proj_container h2{
 	width: 90%;
@@ -128,12 +122,12 @@ body {
 	max-height: 60px;
 	min-width:  60px;
 	min-height: 60px;
-	position: relative;
+	/* position: relative;
 	top: 16px;
-	left: 60px;
+	left: 60px; */
 }
 
-.iconBorder {
+.icon::before {
 	border: 10px solid;
 	border-image: url('../content/images/img_border.png') 10% repeat;
 	background-image: url('../content/images/img_bg.png');
@@ -152,8 +146,8 @@ body {
 .panel:hover {
 	/* border: 1px solid #00df89; */
 	background-color: var(--var_backgroundColorLighter);
-	box-shadow: 0 2px 8px rgba(36, 36, 36, 0.719);
-	z-index: -1;
+	/* box-shadow: 0 2px 8px rgba(36, 36, 36, 0.719); */
+	/* z-index: -1; */
 }
 .panel:hover img {
 	cursor: pointer;
@@ -170,9 +164,15 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 	flex-grow: 1;
 	width: 95%;
+	overflow: hidden;
+	white-space: normal;
 	-webkit-user-select: none;
 	-webkit-user-drag: none;
 	-webkit-app-region: no-drag;
+}
+
+.btnText strong{
+	white-space: nowrap;
 }
 
 .btnText:hover {
