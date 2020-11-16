@@ -1,3 +1,4 @@
+#molang
 query.actor_count:
   keyword:
   doctype: molang
@@ -923,8 +924,76 @@ query.yaw_speed:
   doctype: molang
   url: https://minecraft.gamepedia.com/Bedrock_Edition_MoLang_documentation#Query_Functions
   text: Returns the entity's yaw speed
-:
-  keyword:
+#molang mafs
+math.abs:
   doctype: molang
-  url: https://minecraft.gamepedia.com/Bedrock_Edition_MoLang_documentation#Query_Functions
-  text: 
+  url: https://bedrock.dev/docs/stable/MoLang#Math%20Functions
+  text: Absolute value of value
+math.ceil:
+  doctype: molang
+  url: https://bedrock.dev/docs/stable/MoLang#Math%20Functions
+  text: Round value up to nearest integral number
+math.clamp:
+  doctype: molang
+  url: https://bedrock.dev/docs/stable/MoLang#Math%20Functions
+  text: Clamp value to between min and max inclusive
+math.cos:
+  doctype: molang
+  url: https://bedrock.dev/docs/stable/MoLang#Math%20Functions
+  text: Cosine  of value
+math.exp:
+  doctype: molang
+  url: https://bedrock.dev/docs/stable/MoLang#Math%20Functions
+  text: Calculates e to the value'th power
+math.floor:
+  doctype: molang
+  url: https://bedrock.dev/docs/stable/MoLang#Math%20Functions
+  text: Round value down to nearest integral number
+math.lerp:
+  doctype: molang
+  url: https://bedrock.dev/docs/stable/MoLang#Math%20Functions
+  text: Lerp from start to end via 0_to_1
+math.lerprotate:
+  doctype: molang
+  url: https://bedrock.dev/docs/stable/MoLang#Math%20Functions
+  text: Lerp the shortest direction around a circle from start degrees to end degrees via 0_to_1
+math.ln:
+  doctype: molang
+  url: https://bedrock.dev/docs/stable/MoLang#Math%20Functions
+  text: Natural logarithm of value
+math.max:
+  doctype: molang
+  url: https://bedrock.dev/docs/stable/MoLang#Math%20Functions
+  text: Return highest value of A or B
+math.min:
+  doctype: molang
+  url: https://bedrock.dev/docs/stable/MoLang#Math%20Functions
+  text: Return lowest value of A or B
+math.mod:
+  doctype: molang
+  url: https://bedrock.dev/docs/stable/MoLang#Math%20Functions
+  text: Return the remainder of value / denominator
+math.pow:
+  doctype: molang
+  url: https://bedrock.dev/docs/stable/MoLang#Math%20Functions
+  text: Elevates base to the exponent'th power
+math.random:
+  doctype: molang
+  url: https://bedrock.dev/docs/stable/MoLang#Math%20Functions
+  text: Random value between low and high inclusive
+math.round:
+  doctype: molang
+  url: https://bedrock.dev/docs/stable/MoLang#Math%20Functions
+  text: Round value to nearest integral number
+math.sin:
+  doctype: molang
+  url: https://bedrock.dev/docs/stable/MoLang#Math%20Functions
+  text: Sine of value
+math.sqrt:
+  doctype: molang
+  url: https://bedrock.dev/docs/stable/MoLang#Math%20Functions
+  text: Square root of value
+math.trunc:
+  doctype: molang
+  url: https://bedrock.dev/docs/stable/MoLang#Math%20Functions
+  text: Round value towards zero
