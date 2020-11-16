@@ -14,9 +14,9 @@ module.exports = {
         for(const [key, value] of Object.entries(YAML.parse(file))) {
             queryObj.push({
                 entry: key,
-                docs: value.text,
-                type: value.doctype,
-                link: value.url
+                docs: value.text || "No documentation",
+                type: value.doctype || "",
+                link: value.url || "www.google.com"
             })
         }
         return queryObj.filter(e => e.entry.search(string) !== -1)
