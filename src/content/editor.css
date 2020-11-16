@@ -213,7 +213,7 @@ body {
 }
 
 .doctitle, .doctext, .doctag {
-  color: white;
+  color: var(--var_textColor);
   text-overflow: ellipsis;
   padding-bottom: 0;
 }
@@ -240,7 +240,7 @@ body {
   padding: 3px;
   border-radius: 3px;
   border: 2px var(--var_backgroundColorDarker) solid;
-  color: white;
+  color: var(--var_textColor);
   width: 100%;
 }
 
