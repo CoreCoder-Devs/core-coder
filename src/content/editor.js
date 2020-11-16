@@ -8,9 +8,10 @@ const tokenizer = require('json-tokenizer');
 var getFavicons = require('get-website-favicon')
 var getTitleAtUrl = require('get-title-at-url');
 const translations = require(`./texts/${GlobalSettings.lang}.json`)
+const docs = require("../content/util/documentation.js");
 
 //t = tokenizer();
-let openedBrowser = -1; //1 - BP; 0 - RP
+let openedBrowser = -1; //2 - docs; 1 - BP; 0 - RP
 let items_source = {}; // contains source file, ace sessions, saved state
 let webviews = [];
 // TEMPLATE
@@ -554,37 +555,49 @@ function openPrefModal() {
 }
 
 function openBrowser(id) {
-	var midpane = document.getElementById("midpane");
-	var content = document.getElementById("content");
+	var midpane = document.getElementById("midpane"); //panel
 	var rpbtn = document.getElementById("openRPBrowser");
 	var bpbtn = document.getElementById("openBPBrowser");
+	var docbtn = document.getElementById("openDocSearch");
 	var elem_editor = document.getElementById("editor");
 
 	// Get the current  button
-	var current = (id == 1) ? bpbtn : rpbtn;
+	let current
+	switch(id) {
+		case 1:
+			current = bpbtn;
+			break;
+		case 0:
+			current = rpbtn;
+			break;
+		case 2:
+			current = docbtn;
+			break;
+		default:
+			current = bpbtn;
+			break;
+	}
 	if (midpane.style.display === "none") {
 		midpane.style.display = "block";
 		midpane.style.width = "250px";
-		content.style.left = "calc(var(--left_panel_size))";
 		elem_editor.style.left = "calc(var(--left_panel_size))";
 		elem_editor.style.right = "0";
-		content.style.right = "0";
 
 		openedBrowser = id;
 		rpbtn.classList.remove('active');
 		bpbtn.classList.remove('active');
+		docbtn.classList.remove('active');
 		current.classList.add('active');
 		regenerateTree();
 	} else {
-		{
 			// Switch the browser if the id is different
 			openedBrowser = id;
 			rpbtn.classList.remove('active');
 			bpbtn.classList.remove('active');
+			docbtn.classList.remove('active');
 			current.classList.add('active');
 			viewingpath = project_info["bp_folder"];
 			regenerateTree();
-		}
 	}
 	/// Force chrometabs to refresh its new size
 	chromeTabs.layoutTabs();
@@ -1011,66 +1024,80 @@ function getIcon(path) {
 	return img;
 }
 
+function search() {
+	document.getElementById("res").innerHTML = ""
+	for(const item of docs.search(document.getElementById("input").value)) {
+		document.getElementById("res").innerHTML += `<div class="docitem"><l class="doctag">${item.type}</l>
+		<h4 class="doctitle">${item.entry}</h4><p class="doctext">${item.docs}</p></div><br>`
+		// Query object format:
+		// {
+		//     entry: name/function/query
+		//     docs: the description or documentation
+		// }
+	}
+}
+
 function regenerateTree() {
-	if (openedBrowser == -1)
-		return;
 	var treeContainer = document.getElementById("browsercontent");
-
-	document.getElementById("browserpath").innerText = relativePath[openedBrowser];
-	// document.getElementById("midpaneTitle").innerText = openedBrowser == 1 ? translations['editor.sidebar.behaviour'] : translations['editor.sidebar.resource'];
-
-	if (!project_info["rp_folder"] && openedBrowser == 0) {
-		// If no resource pack and opening RP browser
-		treeContainer.innerHTML = '<a style="color: white; margin: 8px; margin: 0;">' + translations["editor.sidebar.resourceNotFound"] + '<a/>';
-		return;
-	}
-
-	// Clears the html code for the list
 	treeContainer.innerHTML = "";
-
-	var path = getCurrentOpenedFolderPath();
-	var html = relativePath[openedBrowser] == '' ? '' : generateFileItemEl('..', '');
-	var folderList = listFolders(path);
-	for (const f in folderList) {
-		html += generateFileItemEl(folderList[f], path + '\\' + folderList[f]);
-	}
-	var fileList = listFiles(path, true);
-	for (const f in fileList) {
-		html += generateFileItemEl(fileList[f], path + '\\' + fileList[f]);
-	}
-
-	// Add it to the page
-	treeContainer.innerHTML = html;
-
-	// Add aditional footer below to detect nonfile context menu
-	// treeContainer.innerHTML += '<div style="flex-grow: 1" id="browserfooter"></div>';
-	initBrowserContextMenu();
-
-	var context = document.getElementById('contextNonFile');
-	treeContainer.addEventListener('contextmenu', function(e) {
-		// // Prevent the other context menu to show up
-		var context1 = document.getElementById('contextFile');
-		if (context1.style.display == "block") {
+	switch(openedBrowser) {
+		case -1:
 			return;
-		}
-		context.style.left = String(Math.min(e.x, window.innerWidth - context.offsetWidth)) + 'px';
-		context.style.top = String(Math.min(e.y, window.innerHeight - context.offsetHeight)) + 'px';
-		context.style.display = "block";
-
-		// The paste button
-		var ePaste = document.getElementById("contextPaste");
-
-		if (clipboard_path == '') {
-			ePaste.classList.add('locked');
-		} else {
-			ePaste.classList.remove('locked');
-		}
-	});
-	// generateFromList(fileList, ul);
-
-	// initTreeCaret();
-	// console.log(treeContainer);
-	// console.log(project_info['bp_folder'] + '\\' + relativePath);
+		case 2:
+			treeContainer.innerHTML += '<input placeholder="Search..." id="input" oninput="search()" class="docsearch"><div id="res"></div>'
+			search()
+			break;
+		default:
+			
+			document.getElementById("browserpath").innerText = relativePath[openedBrowser];
+			// document.getElementById("midpaneTitle").innerText = openedBrowser == 1 ? translations['editor.sidebar.behaviour'] : translations['editor.sidebar.resource'];
+		
+			if (!project_info["rp_folder"] && openedBrowser == 0) {
+				// If no resource pack and opening RP browser
+				treeContainer.innerHTML = '<a style="color: white; margin: 8px; margin: 0;">' + translations["editor.sidebar.resourceNotFound"] + '<a/>';
+				return;
+			}
+		
+		
+			var path = getCurrentOpenedFolderPath();
+			var html = relativePath[openedBrowser] == '' ? '' : generateFileItemEl('..', '');
+			var folderList = listFolders(path);
+			for (const f in folderList) {
+				html += generateFileItemEl(folderList[f], path + '\\' + folderList[f]);
+			}
+			var fileList = listFiles(path, true);
+			for (const f in fileList) {
+				html += generateFileItemEl(fileList[f], path + '\\' + fileList[f]);
+			}
+		
+			// Add it to the page
+			treeContainer.innerHTML = html;
+		
+			// Add aditional footer below to detect nonfile context menu
+			// treeContainer.innerHTML += '<div style="flex-grow: 1" id="browserfooter"></div>';
+			initBrowserContextMenu();
+		
+			var context = document.getElementById('contextNonFile');
+			treeContainer.addEventListener('contextmenu', function(e) {
+				// // Prevent the other context menu to show up
+				var context1 = document.getElementById('contextFile');
+				if (context1.style.display == "block") {
+					return;
+				}
+				context.style.left = String(Math.min(e.x, window.innerWidth - context.offsetWidth)) + 'px';
+				context.style.top = String(Math.min(e.y, window.innerHeight - context.offsetHeight)) + 'px';
+				context.style.display = "block";
+		
+				// The paste button
+				var ePaste = document.getElementById("contextPaste");
+		
+				if (clipboard_path == '') {
+					ePaste.classList.add('locked');
+				} else {
+					ePaste.classList.remove('locked');
+				}
+			});
+	}
 }
 
 function getCurrentOpenedFolderPath() {

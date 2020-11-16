@@ -212,6 +212,52 @@ body {
   transform: translate(-50%, -50%);
 }
 
+.doctitle, .doctext, .doctag {
+  color: white;
+  text-overflow: ellipsis;
+  padding-bottom: 0;
+}
+
+.doctitle, .doctext {
+  margin-block-start: 0;
+  margin-block-end: 4px;
+}
+
+.doctext {
+  line-height: 15px;
+  font-family: calibri;
+}
+
+.doctag {
+  font-size: small;
+  text-transform: uppercase;
+  font-family: 'Segoe UI';
+}
+
+.docsearch {
+  background-color: var(--var_backgroundColorLighter);
+  border: 0;
+  padding: 3px;
+  border-radius: 3px;
+  border: 2px var(--var_backgroundColorDarker) solid;
+  color: white;
+}
+
+.docsearch:focus {
+  outline: none;
+  border-color: var(--var_colorAccentDarker);
+}
+
+.docsearch:hover {
+  border-color: var(--var_colorAccent);
+}
+
+.docitem {
+  background-color: var(--var_backgroundColorLighter);
+  border: 1px var(--var_colorAccent) solid;
+  border-radius: 8px;
+}
+
 .flex-hor {
   display: flex;
   flex-direction: row;
