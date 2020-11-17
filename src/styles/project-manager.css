@@ -82,18 +82,17 @@ body {
 .panel {
 	display: flex;
 	flex-direction: row;
-	background-color: rgba(var(--var_backgroundColor));
-	transition: all 0.3s;
 	width: 200px;
 	height: 64px;
-	cursor: pointer;
 	padding: 12px;
 	margin: 4px;
+	background-color: rgba(0,0,0,0);
 }
 
 
 .panel:hover{
-	opacity: 100%;
+	backdrop-filter: blur(16px);
+
 }
 .panel_action {
 	background-color: var(--var_colorAccent);
@@ -156,12 +155,7 @@ body {
 	z-index: 500;
 }
 
-.panel:hover {
-	/* border: 1px solid #00df89; */
-	background-color: var(--var_backgroundColorLighter);
-	/* box-shadow: 0 2px 8px rgba(36, 36, 36, 0.719); */
-	/* z-index: -1; */	
-}
+
 .panel_action:hover {
 	background-color: var(--var_colorAccentLighter);
 }
