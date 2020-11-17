@@ -279,7 +279,7 @@ function refreshBPMap(directoryPath) {
                 dependencies = `<br>${translations["manager.projects.dependencies"]}: ${project.dependencies.map(e => e.name)}`
                 break;
         }
-        tippy('#a' + project.uuid, {
+        tippy('#a' + project.uuid + "v" + project.version.join('-'), {
             "content": `
             <h3 style="
             margin-block-start: 0;
