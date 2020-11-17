@@ -2,15 +2,15 @@
     "name": "Discord",
     "theme": {
 		"var_backgroundColor": "rgb(35, 39, 42)",
-		"var_backgroundColorDarker": "rgb(35, 39, 42)",
+		"var_backgroundColorDarker": "rgb(25, 28, 30)",
 		"var_backgroundColorLighter": "rgb(44, 47, 51)",
 		"var_textColor": "rgb(255, 255, 255)",
-		"var_textColorDarker": "rgb(0, 0, 0)",
+		"var_textColorDarker": "rgb(200, 200, 200)",
 		"var_colorAccent": "rgb(114, 137, 218)",
-		"var_colorAccentDarker": "rgb(114, 137, 218)",
-		"var_colorAccentLighter": "rgb(114, 137, 218)",
+		"var_colorAccentDarker": "rgb(94, 113, 181)",
+		"var_colorAccentLighter": "rgb(132, 158, 252)",
 		"var_sidebarColor": "rgb(35, 39, 42)",
 		"var_iconColor": "rgb(153, 170, 181)",
 		"var_iconColorActive": "rgb(255, 255, 255)"
-	}
+	},
 }
