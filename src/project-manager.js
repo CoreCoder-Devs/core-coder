@@ -50,7 +50,7 @@ function generateProjectHTML(proj_name, proj_folder, project_data, proj_ver) {
         
             <img class="minibutton" src="content/images/012-more.png" onclick="event.stopPropagation();openDeleteDlg(this);translateDocument()"/>
             <img class="icon" src="` + img + `" style="min-width: 60px; height: 60px ` + (filter ? '' : "; image-rendering: pixelated") + `"></img>
-            <div class="btnText"><strong>` + proj_name + `</strong> 
+            <div class="btnText"><strong style="text-overflow:ellipsis;">` + proj_name + `</strong> 
                 <span><i style="color: var(--var_textColorDarker);">` + proj_ver.join('.') + `</i></span>
             </div>
             <!-- <img class="minibutton" src="content/images/012-more.png" onclick="openRenameDlg()"/> -->
@@ -184,14 +184,14 @@ function refreshBPMap(directoryPath) {
 
     var contstr = '<h2>' + translations['manager.welcome.title'] + '</h2>';
     contstr += `
-    <div class="panel" onclick="openCreateDlg();translateDocument()">
+    <div class="panel panel_action" onclick="openCreateDlg();translateDocument()">
             <img class="icon" src="content/images/006-add-plus-button.png" style="min-width: 60px; height: 60px; image-rendering: pixelated;">
             <div class="btnText">
                 <strong>${translations["manager.createnew.title"]}</strong>
             </div>
     </div>
 
-    <div class="panel" onclick="openDiscordURL();">
+    <div class="panel panel_action" onclick="openDiscordURL();">
             <img class="icon" src="content/images/discord.svg" style="min-width: 60px; height: 60px; image-rendering: pixelated; fill: var(--var_textColor);">
             <div class="btnText">
                 <strong>${translations["manager.tooltips.discord"]}</strong>
@@ -201,7 +201,7 @@ function refreshBPMap(directoryPath) {
     //bedrocc
     try{
         const mcVerFile = require(getMojangPath() + "/minecraftpe/telemetry_info.json")
-        contstr += `<div class="panel" onclick="window.location='minecraft://'">
+        contstr += `<div class="panel panel_action" onclick="window.location='minecraft://'">
             <img class="icon" src="./content/images/mc_icon.png" style="min-width: 60px; height: 60px; image-rendering: pixelated;">
             <div class="btnText">
                 <strong>${translations['manager.startGame.title']}</strong>
@@ -244,29 +244,56 @@ function refreshBPMap(directoryPath) {
     
     for (const p in projects) {
         const project = projects[p];
-
+        let dependencies
+        switch(project.dependencies.length) {
+            case 0:
+                dependencies = ""
+                break;
+            default:
+                dependencies = `<br>${translations["manager.projects.dependencies"]}: ${project.dependencies.map(e => e.name)}`
+                break;
+        }
         tippy('#a' + project.uuid, {
-            "content": `<i style="color: #b8b8b8;">\
-            ${project.uuid}<br>\
-            \\${project.folder.slice(15)}<br>\
-            ${project.dependencies.length} ${translations['manager.projects.dependencies']}</i><br>\
-            ${project['description']}\n`,
+            "content": `
+            <h3 style="
+            margin-block-start: 0;
+            margin-block-end: 4px;">${project.name}</h3>
+            <div>${project['description']}</div>\n
+            <i style="color: #b8b8b8;">${project.uuid}<br>\
+            \\${project.folder.slice(15)}\
+            </i>${dependencies}<br>\
+            `,
             "allowHTML": true,
-            "arrow": false
+            "arrow": false,
+            "theme": "custom",
+            "animation": "shift-away"
         })
     }
     for (const p in projects_dev) {
         const project = projects_dev[p];
-
+        switch(project.dependencies.length) {
+            case 0:
+                dependencies = ""
+                break;
+            default:
+                dependencies = `<br>${translations["manager.projects.dependencies"]}: ${project.dependencies.map(e => e.name)}`
+                break;
+        }
         tippy('#a' + project.uuid, {
-            "content": `<i style="color: #b8b8b8;">\
-                            ${project.uuid}<br>\
-                            \\${project.folder.slice(15)}<br>\
-                            ${project.dependencies.length} Dependencies</i><br>\
-                            ${project['description']}\n`,
+            "content": `
+            <h3 style="
+            margin-block-start: 0;
+            margin-block-end: 4px;">${project.name}</h3>
+            <div>${project['description']}</div>\n
+            <i style="color: #b8b8b8;">${project.uuid}<br>\
+            \\${project.folder.slice(15)}\
+            </i>${dependencies}<br>\
+            `,
             "allowHTML": true,
-            "arrow": false
-        });
+            "arrow": false,
+            "theme": "custom",
+            "animation": "shift-away"
+        })
     }
 }
 
