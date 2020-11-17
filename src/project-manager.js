@@ -46,7 +46,7 @@ function generateProjectHTML(proj_name, proj_folder, project_data, proj_ver) {
     }catch(e){console.log(e);}
 
     var template = `
-    <div class="panel" data-project=` + string_data + `  onclick="window.location='./content/main.html'; localStorage.setItem('project_data', '` + string_data + `')"  id="a${project_data.uuid}">
+    <div class="panel" data-project=` + string_data + `  onclick="window.location='./content/main.html'; localStorage.setItem('project_data', '` + string_data + `')"  id="a${project_data.uuid}v${project_data.version.join('-')}">
         
             <img class="minibutton" src="content/images/012-more.png" onclick="event.stopPropagation();openDeleteDlg(this);translateDocument()"/>
             <img class="icon" src="` + img + `" style="min-width: 60px; height: 60px ` + (filter ? '' : "; image-rendering: pixelated") + `"></img>
@@ -253,7 +253,7 @@ function refreshBPMap(directoryPath) {
                 dependencies = `<br>${translations["manager.projects.dependencies"]}: ${project.dependencies.map(e => e.name)}`
                 break;
         }
-        tippy('#a' + project.uuid, {
+        tippy('#a' + project.uuid + "v" + project.version.join('-'), {
             "content": `
             <h3 style="
             margin-block-start: 0;
