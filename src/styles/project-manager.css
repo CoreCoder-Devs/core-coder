@@ -92,9 +92,10 @@ body {
 
 .panel:hover{
 	backdrop-filter: blur(16px);
-
+	
 }
 .panel_action {
+	transition-duration: 0.3s;
 	background-color: var(--var_colorAccent);
 }
 
