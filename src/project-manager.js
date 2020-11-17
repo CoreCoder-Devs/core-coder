@@ -463,7 +463,7 @@ function openDeleteDlg(elm) {
         modal.style.display = "none";
     });
 
-
+    
 }
 
 function openCreateDlg() {
@@ -491,6 +491,13 @@ function openCreateDlg() {
     //         modal.style.display = "none";
     //     }
     // }
+    
+    anime({
+        targets: document.getElementById('createdlg'),
+        'backdrop-filter': ["brightness(100%) blur(0px)", "brightness(50%) blur(8px)"],
+        duration: 300,
+        easing: 'easeOutQuad'
+    })
 }
 
 function createProject() {
