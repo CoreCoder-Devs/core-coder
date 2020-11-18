@@ -265,7 +265,8 @@ function refreshBPMap(directoryPath) {
             "allowHTML": true,
             "arrow": false,
             "theme": "custom",
-            "animation": "shift-away"
+            "animation": "shift-away",
+            "delay": 300
         })
     }
     for (const p in projects_dev) {
@@ -291,7 +292,8 @@ function refreshBPMap(directoryPath) {
             "allowHTML": true,
             "arrow": false,
             "theme": "custom",
-            "animation": "shift-away"
+            "animation": "shift-away",
+            "delay": 300
         })
     }
 }
