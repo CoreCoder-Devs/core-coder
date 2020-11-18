@@ -435,6 +435,13 @@ function openDeleteDlg(elm) {
         }
 
     });
+    anime({
+        targets: document.getElementById('deletedlg'),
+        'backdrop-filter': ["brightness(100%) blur(0px)", "brightness(80%) blur(4px)"],
+        duration: 300,
+        easing: 'easeOutQuad'
+    })
+    translateDocument()
     let data = JSON.parse(unescape(elm.parentElement.parentElement.getAttribute('data-project')));
     deleterp.setAttribute('data-project', elm.parentElement.parentElement.getAttribute('data-project'));
     var folder = data.folder;
