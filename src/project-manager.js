@@ -12,7 +12,6 @@ const { createPopper } = require('@popperjs/core');
 let translations = require(`./content/texts/${GlobalSettings.lang}.json`);
 const { shell } = require('electron').remote;
 
-
 var PROJECTS_BP = [];
 var PROJECTS_RP = [];
 var PREFERENCES = {
