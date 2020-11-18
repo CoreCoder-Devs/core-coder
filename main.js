@@ -12,21 +12,19 @@ client.on('ready', () => {
 });
 
 // Log in to RPC with client id
-client.login({clientId: '774605779952468022'}).catch(e=> {
-  console.log(e)
-})
 
 Electron.app.whenReady().then(()=>{
-    var win = new Electron.BrowserWindow({
-        width: 800,
-        height: 600,
-        title: "CoreCoder by CoreCoder Team",
-        webPreferences : {nodeIntegration: true, webviewTag: true, allowRunningInsecureContent: true, nodeIntegrationInSubFrames: true, enableRemoteModule:true},
-        icon: __dirname + "/src/resources/icon.ico",
-        minWidth: 700,
-        minHeight: 400,
-        frame: false
-    });
-    // win.setMenuBarVisibility(false);
-    win.loadFile("src\\project_manager.html");
+  var win = new Electron.BrowserWindow({
+    width: 800,
+    height: 600,
+    title: "CoreCoder by CoreCoder Team",
+    webPreferences : {nodeIntegration: true, webviewTag: true, allowRunningInsecureContent: true, nodeIntegrationInSubFrames: true, enableRemoteModule:true},
+    icon: __dirname + "/src/resources/icon.ico",
+    minWidth: 700,
+    minHeight: 400,
+    frame: false
+  });
+  win.loadFile("src\\project_manager.html");
 });
+
+client.login({clientId: '774605779952468022'}).catch(e => {})
