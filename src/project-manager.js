@@ -494,7 +494,7 @@ function openCreateDlg() {
     
     anime({
         targets: document.getElementById('createdlg'),
-        'backdrop-filter': ["brightness(100%) blur(0px)", "brightness(50%) blur(8px)"],
+        'backdrop-filter': ["brightness(100%) blur(0px)", "brightness(80%) blur(4px)"],
         duration: 300,
         easing: 'easeOutQuad'
     })
