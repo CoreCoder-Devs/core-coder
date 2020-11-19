@@ -904,47 +904,43 @@ function generateFileItemEl(name, path) {
 		var img = 'images/025-files-and-folders.png';
 		if (fs.lstatSync(path).isDirectory()) {
 			img = folderIcon;
-			if(openedBrowser == 1){
-				/// Behavior packs
-				switch(p){
-					case "\\items":
-						img = "images/folder-item.png";
-						break;
-					case "\\blocks":
-						img = "images/folder-blocks.png";
-						break;
-					case "\\entities":
-						img = "images/folder-entity.png";
-						break;
-					case "\\functions":
-						img = "images/folder-commands.png";
-						break;
-					case "\\texts":
-						img = "images/folder-book.png";
-						break;
-					case "\\loot_tables":
-						img = "images/folder-chest.png";
-						break;
-					case "\\biomes":
-						img = "images/folder-tree.png";
-						break;
-				}
-			}
-			switch(p){
+			switch(p) {
 				case "\\items":
-					img = "images/folder-item.png";
+					img = "images/folder/item.png";
 					break;
 				case "\\blocks":
-					img = "images/folder-blocks.png";
+					img = "images/folder/blocks.png";
 					break;
 				case "\\entity":
-					img = "images/folder-entity.png";
+				case "\\entities":
+					img = "images/folder/entity.png";
 					break;
 				case "\\functions":
-					img = "images/folder-commands.png";
+					img = "images/folder/commands.png";
 					break;
 				case "\\texts":
-					img = "images/folder-book.png";
+					img = "images/folder/book.png";
+					break;
+				case "\\loot_tables":
+					img = "images/folder/chest.png";
+					break;
+				case "\\biomes":
+					img = "images/folder/biome.png";
+					break;
+				case "\\bridge":
+					img = "images/folder/bridge.png"
+					break;
+				case "\\scripts":
+					img = "images/folder/script.png"
+					break;
+				case "\\trading":
+					img = "images/folder/trading.png"
+					break;
+				case "\\spawn_rules":
+					img = "images/folder/spawn_rules.png"
+					break;
+				case "\\recipes":
+					img = "images/folder/recipe.png"
 					break;
 			}
 			var val = `
