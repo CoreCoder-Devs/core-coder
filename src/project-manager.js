@@ -243,15 +243,9 @@ function refreshBPMap(directoryPath) {
     
     for (const p in projects) {
         const project = projects[p];
-        let dependencies
-        switch(project.dependencies.length) {
-            case 0:
-                dependencies = ""
-                break;
-            default:
-                dependencies = `<br>${translations["manager.projects.dependencies"]}: ${project.dependencies.map(e => e.name)}`
-                break;
-        }
+        let dependencies = ""
+        if(project.dependencies.length) 
+            dependencies = `<br>${translations["manager.projects.dependencies"]}: ${project.dependencies.map(e => e.name)}`
         tippy('#a' + project.uuid + "v" + project.version.join('-'), {
             "content": `
             <h3 style="
@@ -271,14 +265,9 @@ function refreshBPMap(directoryPath) {
     }
     for (const p in projects_dev) {
         const project = projects_dev[p];
-        switch(project.dependencies.length) {
-            case 0:
-                dependencies = ""
-                break;
-            default:
-                dependencies = `<br>${translations["manager.projects.dependencies"]}: ${project.dependencies.map(e => e.name)}`
-                break;
-        }
+        let dependencies = ""
+        if(project.dependencies.length) 
+            dependencies = `<br>${translations["manager.projects.dependencies"]}: ${project.dependencies.map(e => e.name)}`
         tippy('#a' + project.uuid + "v" + project.version.join('-'), {
             "content": `
             <h3 style="
@@ -911,7 +900,6 @@ function checkDefaultPacksInstalled() {
 }
 
 function downloadFile(par1url, dest) {
-    const options = url.parse(par1url);
     // The options argument is optional so you can omit it
     https.request(par1url);
 }
