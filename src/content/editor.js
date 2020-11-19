@@ -1115,6 +1115,16 @@ function regenerateTree() {
 			search()
 			break;
 		default:
+			anime({
+				targets: document.getElementById('refreshicon'),
+				rotate: [0, 360],
+				duration: 1400,
+				complete: anim => {
+					anim.pause()
+					anim.seek(0)
+				},
+				easing: "linear"
+			})
 			
 			document.getElementById("browserpath").innerText = relativePath[openedBrowser];
 			// document.getElementById("midpaneTitle").innerText = openedBrowser == 1 ? translations['editor.sidebar.behaviour'] : translations['editor.sidebar.resource'];

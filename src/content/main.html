@@ -13,6 +13,7 @@
         <link href="../styles/scrollbar-dark.css" rel="stylesheet" />
 
         <script src="../../lib/ace/ace.js"></script>
+        <script src="../../lib/anime.js"></script>
         <script src="../../lib/ace/mode-javascript.js"></script>
         <script src="../../lib/ace/mode-mcfunction.js"></script>
         <script src="../../lib/ace/theme-merbivore_soft.js"></script>
@@ -127,7 +128,7 @@
                         <div id="openDocSearch" class="browser-switcher" onclick="openBrowser(2)">DOC
                             <span class="tooltiptext" data-translation="">Documentation</span></div>
                         <div href="#" onclick="regenerateTree()">
-                            <img src="images/synchronize.png" />
+                            <img src="images/synchronize.png" id="refreshicon" />
                             <span class="tooltiptext" data-translation="editor.controls.refresh">Refresh</span>
                         </div>
                         <div href="#" onclick="createNewFolder()">
