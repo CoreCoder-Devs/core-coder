@@ -778,6 +778,61 @@ function openFile(_path) {
 				console.log(error);
 			}
 		}
+		switch(rel.split("\\")[1]) {
+			case "items":
+				favicon_path = "images/folder/item.png";
+				break;
+			case "blocks":
+				favicon_path = "images/folder/blocks.png";
+				break;
+			case "entity":
+			case "entities":
+				favicon_path = "images/folder/entity.png";
+				break;
+			case "functions":
+				favicon_path = "images/folder/commands.png";
+				break;
+			case "texts":
+				favicon_path = "images/folder/book.png";
+				break;
+			case "loot_tables":
+				favicon_path = "images/folder/chest.png";
+				break;
+			case "biomes":
+				favicon_path = "images/folder/biome.png";
+				break;
+			case "scripts":
+				favicon_path = "images/folder/script.png"
+				break;
+			case "trading":
+				favicon_path = "images/folder/trading.png"
+				break;
+			case "spawn_rules":
+				favicon_path = "images/folder/spawn_rules.png"
+				break;
+			case "recipes":
+				favicon_path = "images/folder/recipe.png"
+				break;
+			case "animations":
+				break;
+			case "animation_controllers":
+				break;
+			case "attachables":
+				break;
+			case "models":
+				break;
+			case "particles":
+				break;
+			case "render_controllers":
+				break;
+			case "sounds":
+				break;
+			case "textures":
+				break;
+			case "particles":
+				break;
+		}
+		
 			chromeTabs.addTab({
 				title: filename,
 			favicon: favicon_path
@@ -927,9 +982,6 @@ function generateFileItemEl(name, path) {
 				case "\\biomes":
 					img = "images/folder/biome.png";
 					break;
-				case "\\bridge":
-					img = "images/folder/bridge.png"
-					break;
 				case "\\scripts":
 					img = "images/folder/script.png"
 					break;
@@ -941,6 +993,24 @@ function generateFileItemEl(name, path) {
 					break;
 				case "\\recipes":
 					img = "images/folder/recipe.png"
+					break;
+				case "\\animations":
+					break;
+				case "\\animation_controllers":
+					break;
+				case "\\attachables":
+					break;
+				case "\\models":
+					break;
+				case "\\particles":
+					break;
+				case "\\render_controllers":
+					break;
+				case "\\sounds":
+					break;
+				case "\\textures":
+					break;
+				case "\\particles":
 					break;
 			}
 			var val = `
@@ -968,10 +1038,11 @@ function generateFileItemEl(name, path) {
 					if(obj["format_version"] === "1.16.100"){
 						if(obj["minecraft:item"]["description"]["identifier"])
 							img = itemNamespaceToTexturePath_1_16_100(obj["minecraft:item"]["components"]["minecraft:icon"]["texture"]);
-					}else
-					if(obj["minecraft:item"]["description"]["identifier"])
-						img = itemNamespaceToTexturePath(obj["minecraft:item"]["description"]["identifier"]);
-					custom = true;
+					}else {
+						if(obj["minecraft:item"]["description"]["identifier"])
+							img = itemNamespaceToTexturePath(obj["minecraft:item"]["description"]["identifier"]);
+						custom = true;
+					}
 				}catch(e){
 					console.log(e);
 					img = "images/file-error.png"
