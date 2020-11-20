@@ -1,3 +1,4 @@
+[Get it on Itch.io](https://hanprog.itch.io/core-coder-one)
 # CoreCoder-One
 An IDE specifically made to edit Minecraft Bedrock Edition addon files. Originally made by Hanprogramer. Now maintained by the CoreCoder team.
 
@@ -9,7 +10,7 @@ An IDE specifically made to edit Minecraft Bedrock Edition addon files. Original
 5. Do `npm start` to run the app
 
 ## How to build
-You dont, only magik man gets to do it
+Do `npm run build`
 
 # Website
-Imagine website smh
+-

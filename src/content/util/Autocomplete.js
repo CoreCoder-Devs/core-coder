@@ -134,7 +134,14 @@ const AutoComplete = {
 					var str = content.substring(0, _pos);
 					var jsonpos = AutoComplete.getPosInJSON(str);
 
-					var list = AutoComplete._getAutoComp(jsonpos, autocomp, 0);
+					var list;
+
+					// Try reading the position of the JSON
+					// if not exists in database, returns undefined
+					try{
+						list = AutoComplete._getAutoComp(jsonpos, autocomp, 0);
+					}catch(e){/* Do nothing, probably the json component is not on the list */}
+
 					var autocomp_list = {};
 					if (list == undefined) {
 						autocomp_list = {};
@@ -159,7 +166,7 @@ const AutoComplete = {
 					} else if (list == "string") {
 						autocomp_list = "";
 					} else if (Array.isArray(list)) {
-						autocomp_list = [];
+						autocomp_list = {};
 						list.forEach(elem => {
 							autocomp_list['"' + elem + '"'] = "constant";
 						});

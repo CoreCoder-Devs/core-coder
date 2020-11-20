@@ -50,8 +50,12 @@ const Languages = [
 
 const DefaultGlobalSettings = Object.assign({}, GlobalSettings);
 
-var settingsPath = "C:\\CoreCoder\\settings.json";
+var appFolder = "C:\\CoreCoder\\";
+var settingsPath = appFolder + "settings.json";
 function saveSettings(){
+    if(!_fs.existsSync(appFolder)){
+        _fs.mkdirSync(appFolder, {recursive: true});
+    }
     _fs.writeFileSync(settingsPath, JSON.stringify(GlobalSettings, null, '\t'));
 }
 function loadSettings(){
