@@ -1,4 +1,4 @@
-![CoreCoder on itch.io](https://hanprog.itch.io/core-coder-one "Core Coder on itch.io")
+[Get it on Itch.io](https://hanprog.itch.io/core-coder-one)
 # CoreCoder-One
 An IDE specifically made to edit Minecraft Bedrock Edition addon files. Originally made by Hanprogramer. Now maintained by the CoreCoder team.
 
