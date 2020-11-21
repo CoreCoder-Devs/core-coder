@@ -1,17 +1,4 @@
 const Electron = require('electron');
-const RPC = require('discord-rpc')
-const client = new RPC.Client({ transport: 'ipc' });
-
-client.on('ready', () => {
-  const startTimestamp = new Date();
-    client.setActivity({
-    details: `Making an Add-on`,
-    startTimestamp,
-    largeImageKey: 'icon',
-  });
-});
-
-// Log in to RPC with client id
 
 Electron.app.whenReady().then(()=>{
   var win = new Electron.BrowserWindow({
@@ -25,6 +12,6 @@ Electron.app.whenReady().then(()=>{
     frame: false
   });
   win.loadFile("src\\project_manager.html");
+  console.log(Electron.app.getPath('home'));
 });
 
-client.login({clientId: '774605779952468022'}).catch(e => {})
