@@ -861,7 +861,7 @@ function openFile(_path) {
 		}
 		items_source[div.id].data.session.path = rel;
 		items_source[div.id].data.session.on("change", (e) => {
-			updateFootnav();
+			updateJsonPos();
 		});
 		// Creates separate undo manager
 		items_source[div.id].data.session.setUndoManager(new ace.UndoManager());
@@ -1433,10 +1433,10 @@ function initAce(){
 	});
 
 	editor.on("changeSession",(e)=>{
-		updateFootnav();
+		updateJsonPos();
 	});
 	editor.on("changeSelection",(e)=>{
-		updateFootnav();
+		updateJsonPos();
 	});
 	editor.commands.on("afterExec", function (e) {
 		if (e.command.name == "insertstring" && e.args=='"') {
@@ -1445,18 +1445,21 @@ function initAce(){
 	});
 	AutoComplete.autocomplete();
 }
-function updateFootnav(){
-	var session = editor.session;
-	var pos = session.doc.positionToIndex(editor.getCursorPosition());
-	var content = session.getValue();
-	var type = AutoComplete.getJSONType(session.path);
-
-	var str = content.substring(0,pos);
-	var jsonpos = AutoComplete.getPosInJSON(str);
+function updateJsonPos(){
+	const session = editor.session;
+	if(!session.path.endsWith('.json')) return document.getElementById("footnav").style = "display: none;";
+	const pos = session.doc.positionToIndex(editor.getCursorPosition());
+	const content = session.getValue();
+	const type = AutoComplete.getJSONType(session.path) || session.path.split("\\").slice(-1)[0] // Get file name
+	.split('.')[0]; // Remove extension
+	const str = content.substring(0,pos);
+	const jsonpos = AutoComplete.getPosInJSON(str);
+	document.getElementById("footnav").style = ""
 	document.getElementById("footnav").innerText = `${type} | ${jsonpos.join(' > ')}`;
 
 	session.format_version = AutoComplete.getFormatVersion(session.getValue());
 	session.type = type;
+	return(jsonpos)
 }
 function getCurrentAutoCompletePath(pos) {
 	var index = editor.session.doc.positionToIndex(pos);

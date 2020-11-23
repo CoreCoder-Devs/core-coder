@@ -197,25 +197,34 @@ const AutoComplete = {
 	},
 	getJSONType: function(_path) {
 		// Get the minecraft content type from the filepath
-		const item = "Item";
-		const block = "Block";
-		const entity = "Entity";
-		const recipe = "Recipe";
-		const biome = "Biome";
-		if (_path.startsWith("\\items\\")) {
-			return item;
-		}
-		if (_path.startsWith("\\blocks\\")) {
-			return block;
-		}
-		if (_path.startsWith("\\entity\\") || _path.startsWith("\\entities\\")) {
-			return entity;
-		}
-		if (_path.startsWith("\\recipes\\")) {
-			return recipe;
-		}
-		if (_path.startsWith("\\biomes\\")) {
-			return biome;
+		switch(_path.split('\\')[1]) {
+			case "items":
+				return "item"
+			case "blocks":
+				return "block"
+			case "entity":
+			case "entities":
+				return "entity"
+			case "recipes":
+				return "recipe"
+			case "biome":
+				return "biome"
+			case "animation_controllers":
+				return "animation controller"
+			case "models":
+				return "model"
+			case "particles":
+				return "particle"
+			case "render_controllers":
+				return "render controller"
+			case "attachables":
+				return "attachable"
+			case "loot_tables":
+				return "loot table"
+			case "trading":
+				return "trade"
+			default:
+				return null
 		}
 	},
 	getPosInJSON: function(string) {
