@@ -13,4 +13,4 @@ An IDE specifically made to edit Minecraft Bedrock Edition addon files. Original
 Do `npm run build`
 
 # Website
--
+- To be done soon..
