@@ -1,5 +1,7 @@
 
-<p align="center">CoreCoder<br/>
+<p align="center">
+<img src="https://corecoder.skybird.ga/favicon.png"/><br/>
+  <h1>CoreCoder</h1><br/>
   https://corecoder.skybird.ga/corecoder.html
 </p>
  
