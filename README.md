@@ -1,5 +1,6 @@
-[Get it on Itch.io](https://hanprog.itch.io/core-coder-one)
-# CoreCoder-One
+https://corecoder.skybird.ga/corecoder.html
+<p align="center">CoreCoder
+  
 An IDE specifically made to edit Minecraft Bedrock Edition addon files. Originally made by Hanprogramer. Now maintained by the CoreCoder team.
 
 ## How to collaborate
@@ -12,5 +13,3 @@ An IDE specifically made to edit Minecraft Bedrock Edition addon files. Original
 ## How to build
 Do `npm run build`
 
-# Website
-https://corecoder.skybird.ga/corecoder.html
