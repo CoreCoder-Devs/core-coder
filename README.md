@@ -1,6 +1,8 @@
-https://corecoder.skybird.ga/corecoder.html
-<p align="center">CoreCoder
-  
+
+<p align="center">CoreCoder<br/>
+  https://corecoder.skybird.ga/corecoder.html
+</p>
+ 
 An IDE specifically made to edit Minecraft Bedrock Edition addon files. Originally made by Hanprogramer. Now maintained by the CoreCoder team.
 
 ## How to collaborate
