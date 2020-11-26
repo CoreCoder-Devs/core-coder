@@ -1500,13 +1500,6 @@ function refreshCurrentAutoComp() {
 
 
 function initWebView(webview, image) {
-	// Allow permissions on a <webview>
-	// webview.addEventListener('permissionrequest', function(e) {
-	// 	if (e.permission === 'media' || e.permission === 'download') {
-	// 		e.request.allow();
-	// 	}
-	// });
-	// Allow creating a new window
 	webview.setAttribute("disablewebsecurity", "");
 	webview.setAttribute("nodeintegration", "");
 	webview.setAttribute("plugins", "");
@@ -1514,14 +1507,13 @@ function initWebView(webview, image) {
 	webview.addEventListener('console-message', (e) => {
 		if(e.message.startsWith("xCORCOD")){
 			var msg = e.message.split(" ")[1];
-			if(msg == "zoomout"){
-				currentWebBrowserZoomOut();
+			if(msg == "zoomin"){
+				browserZoom('in');
 			}
-			else if(msg == "zoomin"){
-				currentWebBrowserZoomIn();
+			else if(msg == "zoomout"){
+				browserZoom('out');
 			}
-		}else
-		console.log('WebBrowser:', e.message)
+		}else console.log('WebBrowser:', e.message)
 	});
 	webview.addEventListener('dom-ready', function(e) {
 		// Set the user agent to prevent errors
@@ -1535,9 +1527,9 @@ function initWebView(webview, image) {
 		window.addEventListener('wheel', (event) => {
 			if(event.ctrlKey){
 				if(event.deltaY > 0)
-					console.log("xCORCOD zoomin");
-				if(event.deltaY < 0)
 					console.log("xCORCOD zoomout");
+				if(event.deltaY < 0)
+					console.log("xCORCOD zoomin");
 			}
 		});
 		`);
@@ -1597,17 +1589,16 @@ function initWebView(webview, image) {
 	});
 }
 
-function currentWebBrowserZoomIn(){
-	// Zoom in on the current webview
+function browserZoom(type){
 	var wv = items_source[chromeTabs.activeTabEl.id].data.webview;
-	wv.setZoomFactor(wv.getZoomFactor() + .1);
-	if(wv.getZoomFactor() > 30)
-		wv.setZoomFactor(30);
-}
-function currentWebBrowserZoomOut(){
-	// Zoom in on the current webview
-	var wv = items_source[chromeTabs.activeTabEl.id].data.webview;
-	wv.setZoomFactor(wv.getZoomFactor() - .1);
+	if(type === 'in') {
+		wv.setZoomFactor(wv.getZoomFactor() + .1);
+	}
+	else wv.setZoomFactor(wv.getZoomFactor() - .1);
+	console.log(wv.getZoomFactor())
+
+	if(wv.getZoomFactor() > 5)
+		wv.setZoomFactor(5);
 	if(wv.getZoomFactor() < 0.1)
 		wv.setZoomFactor(0.1);
 }
