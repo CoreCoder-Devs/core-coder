@@ -27,7 +27,7 @@
         <script src="../lib/popper.js"></script>
         <script src="../lib/tippy.js"></script>
     </head>
-    <body style="margin: 0;" class="fillEntire" onload="init_ace_themes();translateDocument();">
+    <body style="margin: 0;" class="fillEntire" onload="init_ace_themes();localizeInterface();">
         <script>
             // Creates the titlebar
             const customTitlebar = require("../lib/custom-electron-titlebar-custom");
@@ -70,7 +70,7 @@
             <!--COMP#DISABLE-->
             <script src="content/util/Preferences.js"></script>
             <script src="global_settings.js"></script>
-            <script src="project-manager.js"></script>
+            <script src="home.js"></script>
             <script src="content/util.js"></script>
 
             <div w3-include-html="project-manager-dialogs.html"></div>
@@ -312,6 +312,6 @@
         </div>
     </body>
     <script>
-        translateDocument();
+        localizeInterface();
     </script>
 </html>

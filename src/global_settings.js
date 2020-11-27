@@ -72,12 +72,12 @@ function loadSettings(){
     
     GlobalSettings = Object.assign(GlobalSettings,result);
     initGlobalTheme();
-    translateDocument()
+    localizeInterface()
 }
 
 loadSettings();
 
-function translateDocument() {
+function localizeInterface() {
     const translatedElements = document.querySelectorAll("[data-translation]");
     for(const element of translatedElements) {
         try{
@@ -87,4 +87,9 @@ function translateDocument() {
             console.log(e);
         }
     }
+}
+
+module.exports = {
+    GlobalSettings,
+    localizeInterface
 }

@@ -11,7 +11,7 @@ Electron.app.whenReady().then(()=>{
     minHeight: 400,
     frame: false
   });
-  win.loadFile("src\\project_manager.html");
+  win.loadFile("src\\home.html");
   console.log(Electron.app.getPath('home'));
 });
 

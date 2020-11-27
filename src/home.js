@@ -11,6 +11,7 @@ const streamPipeline = util.promisify(require('stream').pipeline);
 const { createPopper } = require('@popperjs/core');
 let translations = require(`./content/texts/${GlobalSettings.lang}.json`);
 const { shell } = require('electron').remote;
+const dialogue = require('./content/util/dialogue')
 
 var PROJECTS_BP = [];
 var PROJECTS_RP = [];
@@ -47,7 +48,7 @@ function generateProjectHTML(proj_name, proj_folder, project_data, proj_ver) {
     var template = `
     <div class="panel" data-project=` + string_data + `  onclick="window.location='./content/main.html'; localStorage.setItem('project_data', '` + string_data + `')"  id="a${project_data.uuid}v${project_data.version.join('-')}">
         
-            <img class="minibutton" src="content/images/012-more.png" onclick="event.stopPropagation();openDeleteDlg(this);translateDocument()"/>
+            <img class="minibutton" src="content/images/012-more.png" onclick="event.stopPropagation();openDeleteDlg(this);localizeInterface()"/>
             <img class="icon" src="` + img + `" style="min-width: 60px; height: 60px ` + (filter ? '' : "; image-rendering: pixelated") + `"></img>
             <div class="btnText"><strong style="text-overflow:ellipsis;">` + proj_name + `</strong> 
                 <span><i style="color: var(--var_textColorDarker);">` + proj_ver.join('.') + `</i></span>
@@ -183,7 +184,7 @@ function refreshBPMap(directoryPath) {
 
     var contstr = '<h2>' + translations['manager.welcome.title'] + '</h2>';
     contstr += `
-    <div class="panel panel_action" onclick="openCreateDlg();translateDocument()">
+    <div class="panel panel_action" onclick="openCreateDlg();localizeInterface()">
             <img class="icon" src="content/images/006-add-plus-button.png" style="min-width: 60px; height: 60px; image-rendering: pixelated;">
             <div class="btnText">
                 <strong>${translations["manager.createnew.title"]}</strong>
@@ -431,7 +432,7 @@ function openDeleteDlg(elm) {
         duration: 300,
         easing: 'easeOutQuad'
     })
-    translateDocument()
+    localizeInterface()
     let data = JSON.parse(unescape(elm.parentElement.parentElement.getAttribute('data-project')));
     deleterp.setAttribute('data-project', elm.parentElement.parentElement.getAttribute('data-project'));
     var folder = data.folder;
@@ -1012,7 +1013,7 @@ function set_core_theme(name){
 }
 
 // Auto updater part
-const currentVersion = require("../src/current.json");
+const currentVersion = require("./current.json");
 const notification = document.getElementById('notification');
 const versionTitle = document.getElementById('versionTitle');
 const viewButton = document.getElementById('restart-button');
@@ -1058,7 +1059,7 @@ function setLanguage(langname, caption, reload){
     reload = reload || false
     caption = caption || translations['lang']
     if(!reload) {
-        translateDocument();
+        localizeInterface();
     }
     GlobalSettings.lang = langname;
     translations = require(`./content/texts/${GlobalSettings.lang}.json`);

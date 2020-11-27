@@ -57,7 +57,38 @@
     background-color: #459445;
     color: white;
   }
+
+  .modal-button {
+  color: var(--var_textColor);
+	background-color: var(--var_colorAccent);
+	border-radius: 4px;
+	padding: 8px;
+	margin: auto;
+	text-align: center left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	border: none;
+	align-items: center;
+	cursor: pointer;
+  }
+
+  .modal-button:hover {
+    background-color: var(--var_colorAccentLighter);
+  }
   
+.modal-input {
+  flex: 1 1 0px;
+	background-color:var(--var_backgroundColorDarker);
+	padding: 8px;
+	margin: 2px;
+	border: none;
+	color: var(--var_textColor);
+	border-bottom: none;
+	border-bottom: 2px solid var(--var_backgroundColorDarker);
+  transition: border-bottom 0.4s;
+  border: none;
+	outline: none;
+}
   
   /* Add Animation */
   /* @keyframes animatetop {
