@@ -112,6 +112,14 @@ class dialogue {
         this.element.children[0].children[1].innerHTML += item.outerHTML
         return this
     }
+    /**
+     * Displays this dialogue
+     */
+    show() {
+        document.body.append(this.element)
+        
+        return this
+    }
 }
 
 module.exports = {
@@ -122,17 +130,9 @@ module.exports = {
      */
     alert: (text) => {
         const dlg = new dialogue()
-        .setTitle('Alert')
+        .setTitle('')
         .addText(text)
-        return this.open(dlg)
-    },
-    /**
-     * Opens a dialogue with the dialogue object given.
-     * @param {dialogue} dlg - The dialogue to open.
-     * @returns The opened dialogue element.
-     */
-    open: (dlg) => {
-        document.body.append(dlg.element)
+        .show()
         return dlg
     },
     dialogue

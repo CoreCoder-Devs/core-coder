@@ -366,84 +366,48 @@ function getProjectWithUUID(arr, projuuid) {
     return null;
 }
 
-//  Dialogs
-function openRenameDlg() {
-    // Get the modal
-    var modal = document.getElementById("renamedlg");
-
-    // Open the modal
-    modal.style.display = "block";
-
-    // Get the <span> element that closes the modal
-    var close = document.getElementsByClassName("close");
-
-    // When the user clicks on <span> (x), close the modal
-    for (let i in close) {
-        close[i].onclick = function() {
-            modal.style.display = "none";
-        }
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    // window.onclick = function(event) {
-    //     if (event.target == modal) {
-    //         modal.style.display = "none";
-    //     }
-    // }
-}
 
 function openDeleteDlg(elm) {
-    // Get the modal
-    var modal = document.getElementById("deletedlg");
-
-    // Open the modal
-    modal.style.display = "block";
-
-    // Get the <span> element that closes the modal
-    var close = document.getElementsByClassName("close");
-
-    // When the user clicks on <span> (x), close the modal
-    for (let i in close) {
-        close[i].onclick = function() {
-            modal.style.display = "none";
-        }
-    }
-
-    var deleterp = document.getElementById("input-delete-rp");
-
-    // For deleting the resource pack(All dependencies will be listed and deleted too)
-    deleterp.addEventListener('change', (evt) => {
-        var val = evt.target.checked;
-        if (val) {
-            let projdata = JSON.parse(unescape(evt.target.getAttribute('data-project')));
-            let projDependencies = [];
-            for (let i = 0; i < projdata.dependencies.length; i++) {
-                projDependencies.push(projdata.dependencies[i].folder);
-            }
-            document.getElementById("a-delete-rp").innerText = projDependencies.join('\n');
-        } else {
-            document.getElementById("a-delete-rp").innerText = '';
-        }
-
-    });
+    const dlg = new dialogue.dialogue()
+    .setTitle(translations['manager.deleteproj.title'])
+    .addText(translations['manager.deleteproj.msg'])
+    .show()
     anime({
-        targets: document.getElementById('deletedlg'),
+        targets: dlg.element,
         'backdrop-filter': ["brightness(100%) blur(0px)", "brightness(80%) blur(4px)"],
+        opacity: [0, 100],
         duration: 300,
         easing: 'easeOutQuad'
     })
-    localizeInterface()
-    let data = JSON.parse(unescape(elm.parentElement.parentElement.getAttribute('data-project')));
-    deleterp.setAttribute('data-project', elm.parentElement.parentElement.getAttribute('data-project'));
-    var folder = data.folder;
-    document.getElementById("a-delete-bp").innerText = folder;
+    //reading data
+    let data = JSON.parse(unescape(elm.parentElement.getAttribute('data-project')));
+    dlg.addText(data.folder)
+    .addHTML('<a id="a-delete-rp"></a>')
     let dependencies = [];
-
+    
     for (let i = 0; i < data.dependencies.length; i++) {
         dependencies.push(data.dependencies[i].folder);
     }
+    
+    dlg.addHTML(`
+    <a>${translations['manager.createnew.withres']}</a>
+    <label class="switch">
+    <input id="input-delete-rp" type="checkbox" data-project="null">
+    <span class="slider round"></span>
+    </label>`)
+    .addHTML(`<button id="btn-delete-delete" data-translation="manager.deleteproj.delete">Delete</button>`)
 
-    var deletebtn = document.getElementById("btn-delete-delete");
+    const deleterp = document.getElementById("input-delete-rp")
+    deleterp.addEventListener('click', (evt) => {
+        if (evt.target.checked) {
+            document.getElementById("a-delete-rp").innerText = data.dependencies.map(item => item.folder).join('\n');
+        } else {
+            document.getElementById("a-delete-rp").innerText = '';
+        }
+    });
+    deleterp.setAttribute('data-project', elm.parentElement.parentElement.getAttribute('data-project'))
+    
+    const deletebtn = document.getElementById("btn-delete-delete");
     deletebtn.addEventListener('click', listenerElm => {
         let folders = [];
         folders.push(folder);
@@ -461,31 +425,31 @@ function openDeleteDlg(elm) {
         modal.style.display = "none";
     });
 
-    
+
 }
 
 function openCreateDlg() {
     // Get the modal
     var modal = document.getElementById("createdlg");
-
+    
     // Open the modal
     modal.style.display = "block";
-
+    
     // Get the <span> element that closes the modal
     var close = document.getElementsByClassName("close");
-
+    
     // When the user clicks on <span> (x), close the modal
     for (let i in close) {
         close[i].onclick = function() {
             modal.style.display = "none";
         }
     }
-
+    
     initCreateValidators();
-
+    
     // When the user clicks anywhere outside of the modal, close it
     // window.onclick = function(event) {
-    //     if (event.target == modal) {
+        //     if (event.target == modal) {
     //         modal.style.display = "none";
     //     }
     // }
