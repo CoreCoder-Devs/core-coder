@@ -962,6 +962,7 @@ function init_ace_themes(){
 
 var THEMES = {};
 function load_themes(){
+    if(!fs.existsSync("\\CoreCoder\\themes\\")) fs.mkdirSync("\\CoreCoder\\themes\\")
     fs.readdirSync("C:\\CoreCoder\\themes\\").forEach(file=>{
         if(file.endsWith(".json")){
             // Loads the theme
@@ -969,7 +970,7 @@ function load_themes(){
             theme.pop(); // remove the file extension
             THEMES[theme] = JSON.parse(fs.readFileSync("C:\\CoreCoder\\themes\\" + file));
         }
-    });
+    })
     
     var elm = document.getElementById("themeChooser");
     elm.innerHTML = "";
