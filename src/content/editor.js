@@ -1595,7 +1595,6 @@ function browserZoom(type){
 		wv.setZoomFactor(wv.getZoomFactor() + .1);
 	}
 	else wv.setZoomFactor(wv.getZoomFactor() - .1);
-	console.log(wv.getZoomFactor())
 
 	if(wv.getZoomFactor() > 5)
 		wv.setZoomFactor(5);
