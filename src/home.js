@@ -19,11 +19,13 @@ unhandled({
       const errDlg = new dialogue.dialogue().show()
       .setTitle(translations['dialogue.error'])
       .addText(translations['dialogue.error.message'])
-      .addText(err.message)
+      .addHTML(`<div style="font-family:monospace;font-size:small;user-select:all;">${err.stack.replace(/     at/g, '<br>at')}</div>`)
+      .addHTML(`<button class="modal-button" onclick="shell.openExternal('https://github.com/CoreCoder-Devs/core-coder/issues/new')"
+      style="margin: 0 auto;">Github</button>`)
       errDlg.element.children[0].children[0].style = "background-color: #540d0d;"
       errDlg.element.children[0].children[2].style = "background-color: #290000;"
-      errDlg.element.children[0].style = "background-color: #290000;border-color:#290000;"
-      console.log(err)
+      errDlg.element.children[0].style = "background-color:#290000;border-color:#290000;width: 100%;"
+      console.error(err)
   }
 }); 
 
