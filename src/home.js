@@ -305,9 +305,9 @@ function refreshBPMap(directoryPath) {
 }
 
 function refreshRPMap(directoryPath) {
-    var dev_files = listFiles(directoryPath + '\\development_resource_packs\\');
-    var nodev_files = listFiles(directoryPath + '\\resource_packs\\');
-    var projects = [];
+    let dev_files = listFiles(directoryPath + '\\development_resource_packs\\');
+    let nodev_files = listFiles(directoryPath + '\\resource_packs\\');
+    let projects = [];
 
     // Just showcasing 2 ways of doing foreach
     dev_files.forEach(function(val) {
@@ -364,9 +364,9 @@ function setResourceFolder(value) {
 
 function getProjectManifestJSON(folder_path) {
     // Reads out the project manifest.json and parse it as JS object
-    var filepath = getMojangPath() + '\\' + folder_path + '\\manifest.json';
+    const filepath = getMojangPath() + '\\' + folder_path + '\\manifest.json';
     if (fs.existsSync(filepath)) {
-        var content = fs.readFileSync(filepath, 'UTF-8');
+        const content = fs.readFileSync(filepath, 'UTF-8');
         return readJSONUncomment(content);
     }
     return null;
@@ -374,7 +374,7 @@ function getProjectManifestJSON(folder_path) {
 
 function getProjectWithUUID(arr, projuuid) {
     // Returns the corresponding projects with the uuid provided
-    for (var project in arr) {
+    for (const project in arr) {
         if (arr[project].uuid == projuuid)
             return arr[project];
     }
@@ -966,13 +966,13 @@ function load_themes(){
     fs.readdirSync("C:\\CoreCoder\\themes\\").forEach(file=>{
         if(file.endsWith(".json")){
             // Loads the theme
-            var theme = file.split(".");
+            const theme = file.split(".");
             theme.pop(); // remove the file extension
             THEMES[theme] = JSON.parse(fs.readFileSync("C:\\CoreCoder\\themes\\" + file));
         }
     })
     
-    var elm = document.getElementById("themeChooser");
+    const elm = document.getElementById("themeChooser");
     elm.innerHTML = "";
     elm.innerHTML += `<a href="#" onclick="set_core_theme('default');reinitCustomizationPanel();">default</a>`
     Object.entries(THEMES).forEach(e=>{
