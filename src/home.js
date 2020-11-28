@@ -429,33 +429,29 @@ function openDeleteDlg(elm) {
 }
 
 function openCreateDlg() {
-    // Get the modal
-    var modal = document.getElementById("createdlg");
-    
-    // Open the modal
-    modal.style.display = "block";
-    
-    // Get the <span> element that closes the modal
-    var close = document.getElementsByClassName("close");
-    
-    // When the user clicks on <span> (x), close the modal
-    for (let i in close) {
-        close[i].onclick = function() {
-            modal.style.display = "none";
-        }
-    }
+    const dlg = new dialogue.dialogue()
+    .setTitle(translations['manager.createnew.title'])
+    .addHTML(`<a>${translations['manager.createnew.packname']}</a>
+    <input id="input-create-name" class="textinput" type="text" placeholder=${translations['manager.createnew.packname']}>`)
+    .addHTML(`<a>${translations['manager.createnew.packdesc']}</a>
+    <input id="input-create-desc" class="textinput" type="text" placeholder=${translations['manager.createnew.packdesc']}>`)
+    .addHTML(`<a>${translations['manager.createnew.packuuid']}</a>
+    <input id="input-create-uuid" class="textinput" type="text" placeholder=${translations['manager.createnew.packuuid']}>`)
+    .show()
+    dlg.addHTML(`<a data-translation="manager.createnew.withres">With Resource Pack</a>
+    <label class="switch">
+        <input id="input-create-rp" type="checkbox">
+        <span class="slider round"></span>
+    </label>`)
+    dlg.addHTML(`<a id="validator" style="color: red;"></a>
+    <button id='button-generate' onclick='generateCreateUUID()' data-translation="manager.createnew.genuuid">Generate UUID</button>
+    <button id='button-create' data-translation="manager.createnew.create">Create</button>`)
     
     initCreateValidators();
-    
-    // When the user clicks anywhere outside of the modal, close it
-    // window.onclick = function(event) {
-        //     if (event.target == modal) {
-    //         modal.style.display = "none";
-    //     }
-    // }
+
     
     anime({
-        targets: document.getElementById('createdlg'),
+        targets: dlg.element,
         'backdrop-filter': ["brightness(100%) blur(0px)", "brightness(80%) blur(4px)"],
         duration: 300,
         easing: 'easeOutQuad'

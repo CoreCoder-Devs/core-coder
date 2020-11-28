@@ -24,6 +24,7 @@
 }
 body {
 	background-color: var(--var_backgroundColorDarker);
+	user-select: none;
 }
 
 #btn-delete-delete {
