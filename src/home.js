@@ -12,6 +12,20 @@ const { createPopper } = require('@popperjs/core');
 let translations = require(`./content/texts/${GlobalSettings.lang}.json`);
 const { shell } = require('electron').remote;
 const dialogue = require('./content/util/dialogue')
+const unhandled = require('electron-unhandled')
+
+unhandled({ 
+  logger: (err) => { 
+      const errDlg = new dialogue.dialogue().show()
+      .setTitle(translations['dialogue.error'])
+      .addText(translations['dialogue.error.message'])
+      .addText(err.message)
+      errDlg.element.children[0].children[0].style = "background-color: #540d0d;"
+      errDlg.element.children[0].children[2].style = "background-color: #290000;"
+      errDlg.element.children[0].style = "background-color: #290000;border-color:#290000;"
+      console.log(err)
+  }
+}); 
 
 var PROJECTS_BP = [];
 var PROJECTS_RP = [];

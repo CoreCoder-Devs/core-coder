@@ -60,5 +60,7 @@
     "editor.context.dupe": "Duplicate",
     "editor.context.delete": "Delete",
     "manager.startGame.title": "Launch Minecraft",
-    "manager.startGame.notFound": "Game not found"
+    "manager.startGame.notFound": "Game not found",
+    "dialogue.error": "Error",
+    "dialogue.error.message": "We have run into some issues! Please send the following error messages to us."
 }

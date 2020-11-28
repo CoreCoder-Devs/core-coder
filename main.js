@@ -1,4 +1,6 @@
 const Electron = require('electron');
+const unhandled = require('electron-unhandled')
+
 
 Electron.app.whenReady().then(()=>{
   var win = new Electron.BrowserWindow({
@@ -15,3 +17,10 @@ Electron.app.whenReady().then(()=>{
   console.log(Electron.app.getPath('home'));
 });
 
+
+unhandled({ 
+  logger: () => { 
+      console.error();
+  }, 
+  showDialog: true,
+}); 

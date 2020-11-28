@@ -60,5 +60,7 @@
     "editor.context.dupe": "克隆文件",
     "editor.context.delete": "删除",
     "manager.startGame.title": "启动Minecraft",
-    "manager.startGame.notFound": "无法找到游戏"
+    "manager.startGame.notFound": "无法找到游戏",
+    "dialogue.error": "错误",
+    "dialogue.error.message": "我们遇到了一些问题！请将以下的信息发给我们。"
 }
