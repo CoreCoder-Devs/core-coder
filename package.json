@@ -9,6 +9,7 @@
     "cryptojs": "^2.5.3",
     "discord-rpc": "^3.1.4",
     "draggabilly": "^2.3.0",
+    "electron-unhandled": "^3.0.2",
     "follow-redirects": "^1.12.1",
     "get-title-at-url": "^1.1.8",
     "get-website-favicon": "0.0.7",
