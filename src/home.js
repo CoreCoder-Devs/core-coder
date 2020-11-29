@@ -605,7 +605,7 @@ function init() {
         const theme = require('./content/preset_themes/' + file)
         const node = document.createElement('a')
         node.innerHTML = theme.name
-        node.setAttribute('onclick',`loadPresetTheme('${file}');`)
+        node.setAttribute('onclick',`set_core_theme('PRESET_${file}');`)
         document.getElementById('themeChooser')
         .append(node)
     }
@@ -973,8 +973,6 @@ function load_themes(){
     })
     
     const elm = document.getElementById("themeChooser");
-    elm.innerHTML = "";
-    elm.innerHTML += `<a href="#" onclick="set_core_theme('default');reinitCustomizationPanel();">default</a>`
     Object.entries(THEMES).forEach(e=>{
         elm.innerHTML += `<a href="#" onclick="set_core_theme('${e[0]}');reinitCustomizationPanel();">${e[0]}</a>`
     });
@@ -983,6 +981,10 @@ function load_themes(){
 function set_core_theme(name){
     if(name === "default")
         Object.assign(GlobalSettings,DefaultGlobalSettings);
+    else if(name.startsWith('PRESET_')) {
+        const theme = require('./content/preset_themes/' + name.slice(7))
+        Object.assign(GlobalSettings.theme,theme.theme)
+    }
     else
         Object.assign(GlobalSettings,THEMES[name]);
     set_ace_theme(GlobalSettings.ace_theme);
@@ -1046,13 +1048,6 @@ function setLanguage(langname, caption, reload){
     if(reload) {
         location.reload()
     }
-}
-
-function loadPresetTheme(filename) {
-    const theme = require('./content/preset_themes/' + filename)
-    GlobalSettings.theme = theme.theme
-    saveSettings()
-    location.reload()
 }
 
 function toggleFullscreen(bool) {

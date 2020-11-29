@@ -11,7 +11,8 @@ Electron.app.whenReady().then(()=>{
     icon: __dirname + "/src/resources/icon.ico",
     minWidth: 700,
     minHeight: 400,
-    frame: false
+    frame: false,
+    nodeIntegration: true
   });
   win.loadFile("src\\home.html");
   console.log(Electron.app.getPath('home'));
@@ -21,6 +22,5 @@ Electron.app.whenReady().then(()=>{
 unhandled({ 
   logger: () => { 
       console.error();
-  }, 
-  showDialog: true,
+  }
 }); 
