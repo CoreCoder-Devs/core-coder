@@ -20,7 +20,7 @@
     "jquery": "^3.5.1",
     "json-tokenizer": "^1.1.0",
     "ncp": "^2.0.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "node-fetch-progress": "^1.0.2",
     "node-unique-machine-id": "^1.1.0",
     "open": "^7.1.0",
