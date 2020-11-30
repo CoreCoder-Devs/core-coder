@@ -8,9 +8,9 @@ const tokenizer = require('json-tokenizer');
 var getFavicons = require('get-website-favicon')
 var getTitleAtUrl = require('get-title-at-url');
 const translations = require(`./texts/${GlobalSettings.lang}.json`)
-const docs = require("../content/util/documentation.js");
+const docs = require("../util/documentation.js");
 const { shell } = require('electron').remote;
-const dialogue = require('./util/dialogue')
+const dialogue = require('../util/dialogue')
 const unhandled = require('electron-unhandled')
 
 unhandled({ 

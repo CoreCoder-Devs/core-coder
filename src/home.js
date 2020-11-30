@@ -11,7 +11,7 @@ const streamPipeline = util.promisify(require('stream').pipeline);
 const { createPopper } = require('@popperjs/core');
 let translations = require(`./content/texts/${GlobalSettings.lang}.json`);
 const { shell } = require('electron').remote;
-const dialogue = require('./content/util/dialogue')
+const dialogue = require('./util/dialogue')
 const unhandled = require('electron-unhandled')
 
 unhandled({ 
@@ -589,7 +589,7 @@ function init() {
     });
 
     // Append language dropdown list
-    const langFileNames = fs.readdirSync('./src/content/texts/').filter(f => f.endsWith('.json'))
+    const langFileNames = fs.readdirSync(__dirname + '/content/texts/').filter(f => f.endsWith('.json'))
     for (const file of langFileNames) {
         const langFile = require('./content/texts/' + file)
         const node = document.createElement('a')
@@ -600,7 +600,7 @@ function init() {
     }
 
     //append preset themes
-    const themeFileNames = fs.readdirSync('./src/content/preset_themes/').filter(f => f.endsWith('.json'))
+    const themeFileNames = fs.readdirSync(__dirname + '/content/preset_themes/').filter(f => f.endsWith('.json'))
     for (const file of themeFileNames) {
         const theme = require('./content/preset_themes/' + file)
         const node = document.createElement('a')
