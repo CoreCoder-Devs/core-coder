@@ -1,8 +1,8 @@
 {
 	"versionMajor" : 1,
 	"versionMinor" : 5,
-	"versionBuilds" : 0,
-	"versionName" : "v1.5.0",
-	"forceUpdate" : false,
+	"versionBuilds" : 1,
+	"versionName" : "v1.5.1 Patch",
+	"forceUpdate" : true,
     "devlogLink" : "https://hanprog.itch.io/core-coder"
 }  
