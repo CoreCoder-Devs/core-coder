@@ -968,7 +968,7 @@ function load_themes(){
             // Loads the theme
             const theme = file.split(".");
             theme.pop(); // remove the file extension
-            THEMES[theme] = JSON.parse(fs.readFileSync("C:\\CoreCoder\\themes\\" + file));
+            THEMES[theme] = JSON.parse(fs.readFileSync("/CoreCoder/themes/" + file));
         }
     })
     
