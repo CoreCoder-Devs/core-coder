@@ -10,7 +10,7 @@ module.exports = {
      */ 
     search: (string) => {
         let queryObj = []
-        const file = fs.readFileSync("./src/content/docs/doc.yaml", 'utf8')
+        const file = fs.readFileSync(require('electron').remote.app.getAppPath() + "/src/content/docs/doc.yaml", 'utf8')
         for(const [key, value] of Object.entries(YAML.parse(file))) {
             queryObj.push({
                 entry: key,
