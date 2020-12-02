@@ -2,12 +2,13 @@ const fs = require("fs");
 const util = require("util");
 // Convert readFile, writeFile into Promise version of same
 const readFile = util.promisify(fs.readFile);
+const {settings} = require('../global_settings')
 const writeFile = util.promisify(fs.writeFile);
 const imageSize = require('image-size');
 const tokenizer = require('json-tokenizer');
 var getFavicons = require('get-website-favicon')
 var getTitleAtUrl = require('get-title-at-url');
-const translations = require(`./texts/${GlobalSettings.lang}.json`)
+const translations = require(`./texts/${settings.lang}.json`)
 const docs = require("../util/documentation.js");
 const { shell } = require('electron').remote;
 const dialogue = require('../util/dialogue')
@@ -1442,7 +1443,7 @@ function initAce(){
 		selectionStyle: "text"
 	});
 	editor.getSession().setMode("ace/mode/javascript");
-	editor.setTheme("ace/theme/" + GlobalSettings.ace_theme);
+	editor.setTheme("ace/theme/" + settings.GlobalSettings.ace_theme);
 	editor.setFontSize(16)
 	editor.setOptions({
 		enableBasicAutocompletion: true,

@@ -1,5 +1,6 @@
 //requiring path and fs modules
 const fs = require('fs');
+const { settings } = require('./global_settings')
 const uuid = require('uuid');
 const imageSize = require('image-size');
 const https = require('follow-redirects').https;
@@ -9,7 +10,7 @@ const util = require('util');
 const Progress = require('node-fetch-progress/dist');
 const streamPipeline = util.promisify(require('stream').pipeline);
 const { createPopper } = require('@popperjs/core');
-let translations = require(`./content/texts/${GlobalSettings.lang}.json`);
+let translations = require(`./content/texts/${settings.lang}.json`);
 const { shell } = require('electron').remote;
 const dialogue = require('./util/dialogue')
 const unhandled = require('electron-unhandled')
@@ -64,7 +65,7 @@ function generateProjectHTML(proj_name, proj_folder, project_data, proj_ver) {
     var template = `
     <div class="panel" data-project=` + string_data + `  onclick="window.location='./content/main.html'; localStorage.setItem('project_data', '` + string_data + `')"  id="a${project_data.uuid}v${project_data.version.join('-')}">
         
-            <img class="minibutton" src="content/images/012-more.png" onclick="event.stopPropagation();openDeleteDlg(this);localizeInterface()"/>
+            <img class="minibutton" src="content/images/012-more.png" onclick="event.stopPropagation();openDeleteDlg(this);settings.localizeInterface()"/>
             <img class="icon" src="` + img + `" style="min-width: 60px; height: 60px ` + (filter ? '' : "; image-rendering: pixelated") + `"></img>
             <div class="btnText"><strong style="text-overflow:ellipsis;">` + proj_name + `</strong> 
                 <span><i style="color: var(--var_textColorDarker);">` + proj_ver.join('.') + `</i></span>
@@ -200,7 +201,7 @@ function refreshBPMap(directoryPath) {
 
     var contstr = '<h2>' + translations['manager.welcome.title'] + '</h2>';
     contstr += `
-    <div class="panel panel_action" onclick="openCreateDlg();localizeInterface()">
+    <div class="panel panel_action" onclick="openCreateDlg();settings.localizeInterface()">
             <img class="icon" src="content/images/006-add-plus-button.png" style="min-width: 60px; height: 60px; image-rendering: pixelated;">
             <div class="btnText">
                 <strong>${translations["manager.createnew.title"]}</strong>
@@ -509,8 +510,8 @@ function createProject() {
 function init() {
     refreshProjectMap();
     includeHTML();
-    toggleFullscreen(GlobalSettings.fullscreen);
-    setLanguage(GlobalSettings.lang);
+    toggleFullscreen(settings.GlobalSettings.fullscreen);
+    setLanguage(settings.GlobalSettings.lang);
     
     titlebar.updateTitle("Core Coder " + currentVersion.versionName)
     // Init the download buttons
@@ -941,8 +942,8 @@ function set_ace_theme(name){
     elm.querySelectorAll("a").forEach(queryElm=>{queryElm.classList.remove("selected")}); 
     var self = document.getElementById("theme-" + name);
     self.classList.add("selected");
-    GlobalSettings.ace_theme = name;
-    saveSettings();
+    settings.GlobalSettings.ace_theme = name;
+    settings.saveSettings();
 }
 function load_ace_themes(){
     var themelist = ace.require("ace/ext/themelist")
@@ -956,7 +957,7 @@ function load_ace_themes(){
 }
 
 function init_ace_themes(){
-    set_ace_theme(GlobalSettings.ace_theme);
+    set_ace_theme(settings.GlobalSettings.ace_theme);
     load_themes();
 }
 
@@ -979,16 +980,14 @@ function load_themes(){
 }
 
 function set_core_theme(name){
-    if(name === "default")
-        Object.assign(GlobalSettings,DefaultGlobalSettings);
-    else if(name.startsWith('PRESET_')) {
+    if(name.startsWith('PRESET_')) {
         const theme = require('./content/preset_themes/' + name.slice(7))
-        Object.assign(GlobalSettings.theme,theme.theme)
+        Object.assign(settings.GlobalSettings.theme,theme.theme)
     }
     else
-        Object.assign(GlobalSettings,THEMES[name]);
-    set_ace_theme(GlobalSettings.ace_theme);
-    initGlobalTheme();
+        Object.assign(settings.GlobalSettings,THEMES[name]);
+    set_ace_theme(settings.GlobalSettings.ace_theme);
+    settings.initGlobalTheme();
 }
 
 // Auto updater part
@@ -1038,13 +1037,13 @@ function setLanguage(langname, caption, reload){
     reload = reload || false
     caption = caption || translations['lang']
     if(!reload) {
-        localizeInterface();
+        settings.localizeInterface();
     }
-    GlobalSettings.lang = langname;
-    translations = require(`./content/texts/${GlobalSettings.lang}.json`);
+    settings.GlobalSettings.lang = langname;
+    translations = require(`./content/texts/${settings.GlobalSettings.lang}.json`);
     
     document.getElementById("dropdownlang").innerText = caption;
-    saveSettings();
+    settings.saveSettings();
     if(reload) {
         location.reload()
     }
@@ -1056,8 +1055,8 @@ function toggleFullscreen(bool) {
       } else if(document.fullscreenElement){
         document.exitFullscreen();
     }
-    GlobalSettings.fullscreen = bool;
-    saveSettings();
+    settings.GlobalSettings.fullscreen = bool;
+    settings.saveSettings();
   }
   
 autoUpdate();

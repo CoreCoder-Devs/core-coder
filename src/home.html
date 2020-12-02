@@ -27,7 +27,7 @@
         <script src="../lib/popper.js"></script>
         <script src="../lib/tippy.js"></script>
     </head>
-    <body style="margin: 0;" class="fillEntire" onload="init_ace_themes();localizeInterface();">
+    <body style="margin: 0;" class="fillEntire" onload="init_ace_themes();settings.localizeInterface();">
         <script>
             // Creates the titlebar
             const customTitlebar = require("../lib/custom-electron-titlebar-custom");
@@ -68,8 +68,7 @@
                 }
             </script>
             <!--COMP#DISABLE-->
-            <script src="./util/Preferences.js"></script> 
-            <script src="global_settings.js"></script>
+            <script src="./util/Preferences.js"></script>
             <script src="home.js"></script>
             <script src="content/util.js"></script>
             <div style="display: flex; flex-wrap: nowrap; flex-direction: row; width: 100%; height: 100%; background-image: url('./content/images/icon.png'); background-color: rgb(15, 15, 15);">
@@ -206,11 +205,6 @@
                             };
                             const AColorPicker = require("a-color-picker");
                             function reinitCustomizationPanel() {
-                                // Initialize theme category
-                                // Object.keys(GlobalSettings["theme"]).forEach(key => {
-                                // 	root.style.setProperty('--' + key, GlobalSettings["theme"][key]);
-                                // });
-                                // Initalize settingsitem name
                                 document
                                     .getElementById("Customization")
                                     .querySelectorAll(".settingsitem.themeeditor")
@@ -223,8 +217,8 @@
                                         // Create the color indicators
                                         var cp = document.createElement("div");
                                         cp.classList.add("colorPickingInput");
-                                        cp.style.backgroundColor = GlobalSettings.theme[e.id];
-                                        e.setAttribute("acp-color", GlobalSettings.theme[e.id]);
+                                        cp.style.backgroundColor = settings.GlobalSettings.theme[e.id];
+                                        e.setAttribute("acp-color", settings.GlobalSettings.theme[e.id]);
                                         cp.addEventListener("click", function (el, ev) {
                                             document.querySelectorAll(".a-color-picker").forEach((el) => {
                                                 el.parentNode.removeChild(el);
@@ -232,10 +226,10 @@
                                             document.removeEventListener("mouseup", checkColorPickerClick);
                                             var acp = AColorPicker.from("#" + e.id);
                                             acp.on("change", (picker, color) => {
-                                                GlobalSettings["theme"][e.id] = color;
+                                                settings.GlobalSettings["theme"][e.id] = color;
                                                 cp.style.backgroundColor = color;
-                                                document.documentElement.style.setProperty("--" + e.id, GlobalSettings["theme"][e.id]);
-                                                e.setAttribute("acp-color", GlobalSettings.theme[e.id]);
+                                                document.documentElement.style.setProperty("--" + e.id, settings.GlobalSettings["theme"][e.id]);
+                                                e.setAttribute("acp-color", settings.GlobalSettings.theme[e.id]);
                                             });
                                             acp.id = e.id;
 
@@ -257,7 +251,7 @@
                                         el.parentNode.removeChild(el);
                                     });
                                 }
-                                saveSettings();
+                                settings.saveSettings();
                             }
                             function isUpperCase(char) {
                                 if (char.toUpperCase() == char) return true;
@@ -310,6 +304,6 @@
         </div>
     </body>
     <script>
-        localizeInterface();
+        settings.localizeInterface();
     </script>
 </html>
