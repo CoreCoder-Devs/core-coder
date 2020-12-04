@@ -427,7 +427,7 @@ function openDeleteDlg(elm) {
     const deletebtn = document.getElementById("btn-delete-delete");
     deletebtn.addEventListener('click', listenerElm => {
         let folders = [];
-        folders.push(folder);
+        folders.push(data.folder);
         if (deleterp.checked) {
             folders = folders.concat(dependencies);
         }
