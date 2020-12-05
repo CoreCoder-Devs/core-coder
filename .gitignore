@@ -2,3 +2,4 @@ node_modules/
 bin/
 dist/
 run.bat
+package-lock.json
