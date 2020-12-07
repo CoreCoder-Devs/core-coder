@@ -89,7 +89,7 @@ function listFiles(path) {
     var result = [];
     //passsing directoryPath and callback function
     if (!fs.existsSync(path)) {
-        fs.mkdirSync(path);
+        fs.mkdirSync(path, {recursive: true});
     }
     var files = fs.readdirSync(path);
     files.forEach(file => {
