@@ -499,10 +499,6 @@ function createProject() {
         generateNeccesaryRPFiles(path_rp);
     }
 
-    // Close the dialog
-    var modal = document.getElementById("createdlg");
-    modal.style.display = "none";
-
     // Refresh the project list
     refreshProjectMap();
 }
