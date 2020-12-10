@@ -459,6 +459,7 @@ function openDeleteDlg(elm) {
                 recursive: true
             });
         }
+        document.getElementById('dialogue').remove()
         refreshProjectMap();
     });
 
@@ -521,6 +522,7 @@ function createProject() {
 
     // Refresh the project list
     refreshProjectMap();
+    document.getElementById('dialogue').remove()
 }
 
 function init() {
