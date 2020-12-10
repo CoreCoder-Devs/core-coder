@@ -508,7 +508,20 @@ function createProject() {
 
     let path_bp = getMojangPath() + '\\' + getBehaviorFolder() + '\\' + name + ' BP';
     let path_rp = getMojangPath() + '\\' + getResourceFolder() + '\\' + name + ' RP';
-    fs.mkdirSync(path_bp);
+    try{fs.mkdirSync(path_bp);}
+    catch(e){
+        if(e.message.startsWith('EEXIST')) {
+            document.getElementById('dialogue').remove()
+            new dialogue.dialogue()
+            .setTitle('Could not create project')
+            .addText('This project already exists.')
+            .show()
+            return
+        }
+        else{
+            throw e
+        }
+    }
     generateProjectBPManifest(path_bp, name + ' BP', desc, uuidval, createrp ? rpuuid : '');
     generateNeccesaryBPFiles(path_bp);
     makePackIcon(path_bp);
