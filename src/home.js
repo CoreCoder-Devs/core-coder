@@ -200,7 +200,21 @@ function refreshBPMap(directoryPath) {
     }
 
     var contstr = '<h2>' + translations['manager.welcome.title'] + '</h2>';
+    const recent = localStorage.getItem('project_data')
+    if(recent) {
+        const recentProjData = JSON.parse(unescape(recent))
+        contstr += `
+        <div class="panel panel_action" onclick="window.location='./content/main.html'">
+            <img class="icon" src="content/images/continue.png" style="min-width: 60px; height: 60px; image-rendering: pixelated;">
+            <div class="btnText">
+                <strong>Continue with</strong>
+                <span><i style="color: var(--var_textColorDarker);">${recentProjData.name}</i></span>
+            </div>
+    </div>
+        `
+    }
     contstr += `
+
     <div class="panel panel_action" onclick="openCreateDlg();settings.localizeInterface()">
             <img class="icon" src="content/images/006-add-plus-button.png" style="min-width: 60px; height: 60px; image-rendering: pixelated;">
             <div class="btnText">
