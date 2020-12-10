@@ -203,15 +203,22 @@ function refreshBPMap(directoryPath) {
     const recent = localStorage.getItem('project_data')
     if(recent) {
         const recentProjData = JSON.parse(unescape(recent))
-        contstr += `
-        <div class="panel panel_action" onclick="window.location='./content/main.html'">
-            <img class="icon" src="content/images/continue.png" style="min-width: 60px; height: 60px; image-rendering: pixelated;">
-            <div class="btnText">
-                <strong>Continue with</strong>
-                <span><i style="color: var(--var_textColorDarker);">${recentProjData.name}</i></span>
-            </div>
-    </div>
-        `
+        try{
+            fs.readdirSync(Preferences.COM_MOJANG_PATH + '/' + recentProjData.folder)
+            contstr += `
+            <div class="panel panel_action" onclick="window.location='./content/main.html'">
+                <img class="icon" src="content/images/continue.png" style="min-width: 60px; height: 60px; image-rendering: pixelated;">
+                <div class="btnText">
+                    <strong>Continue with</strong>
+                    <span><i style="color: var(--var_textColorDarker);">${recentProjData.name}</i></span>
+                </div>
+        </div>
+            `
+        }catch(e){
+            console.log(e)
+        }
+        
+
     }
     contstr += `
 
@@ -437,7 +444,7 @@ function openDeleteDlg(elm) {
         }
     });
     deleterp.setAttribute('data-project', elm.parentElement.parentElement.getAttribute('data-project'))
-    
+    console.log(data)
     const deletebtn = document.getElementById("btn-delete-delete");
     deletebtn.addEventListener('click', listenerElm => {
         let folders = [];
@@ -453,7 +460,6 @@ function openDeleteDlg(elm) {
             });
         }
         refreshProjectMap();
-        modal.style.display = "none";
     });
 
 
