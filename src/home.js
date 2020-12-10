@@ -89,7 +89,7 @@ function listFiles(path) {
     var result = [];
     //passsing directoryPath and callback function
     if (!fs.existsSync(path)) {
-        fs.mkdirSync(path);
+        fs.mkdirSync(path, {recursive: true});
     }
     var files = fs.readdirSync(path);
     files.forEach(file => {
@@ -441,7 +441,7 @@ function openDeleteDlg(elm) {
     const deletebtn = document.getElementById("btn-delete-delete");
     deletebtn.addEventListener('click', listenerElm => {
         let folders = [];
-        folders.push(folder);
+        folders.push(data.folder);
         if (deleterp.checked) {
             folders = folders.concat(dependencies);
         }
@@ -512,10 +512,6 @@ function createProject() {
         generateProjectRPManifest(path_rp, name + ' RP', desc, rpuuid);
         generateNeccesaryRPFiles(path_rp);
     }
-
-    // Close the dialog
-    var modal = document.getElementById("createdlg");
-    modal.style.display = "none";
 
     // Refresh the project list
     refreshProjectMap();
