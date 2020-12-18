@@ -33,7 +33,7 @@ module.exports = {
             /**
              * The path of settings.json
              */
-            this.settingsPath = this.appFolder + "settings.json";
+            this.settingsPath = this.appFolder + "/settings.json";
             /**
              * The settings object
              */
