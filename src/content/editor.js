@@ -256,12 +256,12 @@ function createNewFolder() {
 	input.focus();
 }
 
-function dupplicateClicked(defaultFilename, src) {
+function duplicateClicked(defaultFilename, src) {
 	// Optional arguments
 	defaultFilename = typeof defaultFilename !== 'undefined' ? defaultFilename : '';
 	src = typeof src !== 'undefined' ? src : '';
 
-	if (!contextobj) return console.log('Object to dupplicate is undefined');
+	if (!contextobj) return console.log('Object to duplicate is undefined');
 	var path = contextobj.getAttribute('data-path').split('\\');
 	var filename = path.pop();
 	path = path.join("\\");
@@ -276,9 +276,9 @@ function dupplicateClicked(defaultFilename, src) {
 		var text = evt.target.value;
 		if (text !== '') {
 			if (src == '')
-				dupplicatePath(path + '\\' + filename, path + '\\' + text);
+				duplicatePath(path + '\\' + filename, path + '\\' + text);
 			else
-				dupplicatePath(src, getCurrentOpenedFolderPath() + '\\' + text);
+				duplicatePath(src, getCurrentOpenedFolderPath() + '\\' + text);
 		}
 		regenerateTree();
 	});
@@ -287,9 +287,9 @@ function dupplicateClicked(defaultFilename, src) {
 			var text = evt.target.value;
 			if (text !== '') {
 				if (src == '')
-					dupplicatePath(path + '\\' + filename, path + '\\' + text);
+					duplicatePath(path + '\\' + filename, path + '\\' + text);
 				else
-					dupplicatePath(src, getCurrentOpenedFolderPath() + '\\' + text);
+					duplicatePath(src, getCurrentOpenedFolderPath() + '\\' + text);
 			}
 			regenerateTree();
 		}
@@ -362,7 +362,7 @@ function pasteClicked() {
 	var folder = popOnPath(path);
 
 	if (path == clipboard_path || popOnPath(clipboard_path) == folder) {
-		dupplicateClicked(getFilenameFromPath(clipboard_path));
+		duplicateClicked(getFilenameFromPath(clipboard_path));
 	} else {
 		copy(clipboard_path, folder + '\\' + getFilenameFromPath(clipboard_path));
 		if (cut) {
@@ -382,12 +382,12 @@ function pasteCurrentFolder() {
 
 	if (!fs.existsSync(target)) {
 
-		dupplicatePath(clipboard_path, target);
+		duplicatePath(clipboard_path, target);
 		if (cut) {
 			deleteFile(clipboard_path);
 		}
 		regenerateTree();
-	} else dupplicateClicked(filename, clipboard_path);
+	} else duplicateClicked(filename, clipboard_path);
 }
 
 function saveCurrentFile() {
@@ -443,15 +443,15 @@ function createEmptyFolder(filename) {
 	}
 }
 
-function dupplicatePath(path, newpath) {
+function duplicatePath(path, newpath) {
 	if (fs.existsSync(newpath)) return console.log('file already exists, dupplication canceled');
 	if (path === newpath) return;
 
 	if (fs.statSync(path).isDirectory()) {
-		// Dupplicate a folder
+		// duplicate a folder
 		copyDir(path, newpath, '');
 	} else {
-		// Dupplicate a file
+		// duplicate a file
 		fs.copyFileSync(path, newpath);
 	}
 }
