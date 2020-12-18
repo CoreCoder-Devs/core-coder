@@ -1,6 +1,7 @@
 var os = require('os');
 const path = require("path");
-let default_dir = require(__dirname + '/global_settings').appFolder;
+const {remote} = require('electron')
+let default_dir = require(remote.app.getAppPath() + '/src/global_settings').appFolder;
 
 const Preferences = {
 	get COM_MOJANG_PATH(){
