@@ -95,7 +95,6 @@
                         <div class="tab">
                             <button class="tablinks" onclick="openPanel(event, 'General')" id="general" data-translation="manager.settings.general">General</button>
                             <button class="tablinks" onclick="openPanel(event, 'Customization')" data-translation="manager.settings.theme">Theme</button>
-                            <button class="tablinks" onclick="openPanel(event, 'Editor')" data-translation="manager.settings.editor">Editor</button>
                             <button class="tablinks" onclick="openPanel(event, 'AutoUpdate')" data-translation="manager.settings.exp">Experimental options</button>
                         </div>
                         <div id="General" class="tabcontent">
@@ -150,16 +149,6 @@
                             <div data-translation="manager.settings.theme.colorSidebar" class="settingsitem themeeditor" id="var_sidebarColor"></div>
                             <div data-translation="manager.settings.theme.iconColor" class="settingsitem themeeditor" id="var_iconColor"></div>
                             <div data-translation="manager.settings.theme.iconColorActive" class="settingsitem themeeditor" id="var_iconColorActive"></div>
-                        </div>
-
-                        <div id="AutoUpdate" class="tabcontent">
-                            <div class="settingsitem">
-                                <a class="checkBoxContainer" data-translation="manager.settings.exp.aupdate">AutoUpdate </a>
-                                <input type="checkbox" checked="checked" />
-                                <span class="checkmark"></span>
-                            </div>
-                        </div>
-                        <div id="Editor" class="tabcontent">
                             <h3 data-translation="manager.settings.editor">Editor Settings</h3>
                             <div id="themeDropdown" class="themeList">
                                 <a href="#" onclick="">Link 1</a>
@@ -167,13 +156,22 @@
                                 <a href="#">Link 3</a>
                             </div>
                             <div id="aceeditor" style="min-height: 256px;">function foo(items) { var x = "All this is syntax highlighted"; return x; }</div>
-
+                            
                             <script>
                                 var editor = ace.edit("aceeditor");
                                 editor.setTheme("ace/theme/monokai");
                                 editor.session.setMode("ace/mode/javascript");
                                 load_ace_themes();
-                            </script>
+                                </script>
+                        </div>
+                        
+
+                        <div id="AutoUpdate" class="tabcontent">
+                            <div class="settingsitem">
+                                <a class="checkBoxContainer" data-translation="manager.settings.exp.aupdate">AutoUpdate </a>
+                                <input type="checkbox" checked="checked" />
+                                <span class="checkmark"></span>
+                            </div>
                         </div>
                         <script>
                             function openPanel(evt, panelName) {
