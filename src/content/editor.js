@@ -1654,7 +1654,7 @@ function browserLoadFromString(webview, string){
 		console.log(result);
 	});
 }
-const bookmark_dir = "C:\\CoreCoder\\bookmarks\\";
+const bookmark_dir = settings.appFolder + "\\bookmarks\\";
 function addBookmark(){
 	// Add the current web browser opened url to bookmarks
 	var i = 0;

@@ -1,5 +1,6 @@
 const fs = require("fs");
-const bookmark_dir = "C:\\CoreCoder\\bookmarks"
+const settings = require('../../global_settings')
+const bookmark_dir = settings.appFolder + "\\bookmarks"
 var cont = document.getElementById("bookmark");
 function init(){
     cont = document.getElementById("bookmark");

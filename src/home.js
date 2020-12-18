@@ -595,9 +595,9 @@ function init() {
                     })
                     console.log(response);
                     if (response.ok) {
-                        if (!fs.existsSync(Preferences.CC_PATH))
-                            fs.mkdirSync(Preferences.CC_PATH);
-                        return streamPipeline(response.body, fs.createWriteStream(Preferences.CC_PATH + '\\' + default_pack_info[currently_downloading].data.name));
+                        if (!fs.existsSync(settings.appFolder))
+                            fs.mkdirSync(settings.appFolder);
+                        return streamPipeline(response.body, fs.createWriteStream(settings.appFolder + '\\' + default_pack_info[currently_downloading].data.name));
                     }
 
                     throw new Error(`unexpected response ${response.statusText}`);
@@ -994,8 +994,8 @@ function init_ace_themes(){
 
 var THEMES = {};
 function load_themes(){
-    if(!fs.existsSync("\\CoreCoder\\themes\\")) fs.mkdirSync("\\CoreCoder\\themes\\")
-    fs.readdirSync("C:\\CoreCoder\\themes\\").forEach(file=>{
+    if(!fs.existsSync(settings.appFolder + "\\themes\\")) fs.mkdirSync(settings.appFolder + "\\themes\\", { recursive: true })
+    fs.readdirSync(settings.appFolder + "\\themes\\").forEach(file=>{
         if(file.endsWith(".json")){
             // Loads the theme
             const theme = file.split(".");

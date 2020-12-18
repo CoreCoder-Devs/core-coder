@@ -1,4 +1,5 @@
 // Global settings which will be used in all files
+const os = require('os')
 const _fs = require("fs");
 
 module.exports = {
@@ -7,7 +8,28 @@ module.exports = {
             /**
              * The path of the app's folder for data storage
              */
-            this.appFolder = "\\CoreCoder\\";
+            switch (os.platform()) {
+                case 'win32':
+                    this.appFolder = path.join(
+                        process.env['LOCALAPPDATA'],
+                        'CoreCoder'
+                    )
+                    break
+                case 'linux':
+                    this.appFolder = path.join(os.homedir(), '.local/share/CoreCoders')
+                    break
+                case 'darwin':
+                    this.appFolder = path.join(
+                        os.homedir(),
+                        'Library/Application Support/CoreCoder'
+                    )
+                    break
+                case 'android':
+                    this.appFolder = path.join(os.homedir(), 'storage/shared/CoreCoder')
+                    break
+                default:
+                    this.appFolder = '~/CoreCoder'
+            }
             /**
              * The path of settings.json
              */

@@ -1,6 +1,6 @@
 var os = require('os');
 const path = require("path");
-let default_dir = 'C:\\CoreCoder';
+let default_dir = require(__dirname + '/global_settings').appFolder;
 
 const Preferences = {
 	get COM_MOJANG_PATH(){
