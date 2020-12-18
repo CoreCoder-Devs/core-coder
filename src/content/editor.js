@@ -270,7 +270,7 @@ function duplicateClicked(defaultFilename, src) {
 	var input = document.createElement('input');
 	input.classList.add('browserinput');
 	input.type = 'text';
-	input.value = defaultFilename;
+	input.value = filename.split('.').slice(0, -1).join('.') + ' copy.' + filename.split('.').pop()
 	input.setAttribute('tabindex', '-1');
 	input.addEventListener('focusout', function(evt) {
 		var text = evt.target.value;
