@@ -514,7 +514,7 @@ function createProject() {
             document.getElementById('dialogue').remove()
             new dialogue.dialogue()
             .setTitle('Could not create project')
-            .addText('This project already exists.')
+            .addText('A project with this name already exists.')
             .show()
             return
         }
@@ -1003,7 +1003,7 @@ function load_themes(){
             THEMES[theme] = JSON.parse(fs.readFileSync("/CoreCoder/themes/" + file));
         }
     })
-    
+    if(!THEMES) return
     const elm = document.getElementById("themeChooser");
     Object.entries(THEMES).forEach(e=>{
         elm.innerHTML += `<a href="#" onclick="set_core_theme('${e[0]}');reinitCustomizationPanel();">${e[0]}</a>`
