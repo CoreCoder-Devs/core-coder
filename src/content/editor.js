@@ -77,6 +77,29 @@ const fileIcons = {
 	'.json': 'images/snippet.png',
 };
 
+const folderIcons = {
+	"items": "item",
+	"blocks": "blocks",
+	"entity": "entity",
+	"entities": "entity",
+	"functions": "commands",
+	"texts": "book",
+	"loot_tables": "chest",
+	"biomes": "biome",
+	"scripts": "script",
+	"trading": "trading",
+	"spawn_rules": "spawn_rules",
+	"recipes": "recipe",
+	"animations": null,
+	"animation_controllers": null,
+	"attachables": null,
+	"models": null,
+	"particles": null,
+	"render_controllers": null,
+	"sounds": null,
+	"textures": null
+}
+
 let folderIcon = 'images/015-folder.png';
 let items_texture = {};
 let items_identifier_textures = {};
@@ -747,6 +770,16 @@ function goInFolder(_name) {
 	relativePath[openedBrowser] += (relativePath[openedBrowser].endsWith('\\') ? name : ('\\' + name));
 }
 
+/**
+ * Returns the path of a folder fa
+ * @param {"items"|"blocks"|"entity"|"entities"|"functions"|"texts"|"loot_tables"|"biomes"|"scripts"|"trading"|"spawn_rules"|"recipes"|"animations"|"animation_controllers"|"attachables"|"models"|"particles"|"render_controllers"|"sounds"|"textures"} folderName The name of the folder
+ */
+function getFolderIconPath(folderName) {
+	const iconsBaseUrl = "images/folder/";
+	const icon = folderIcons[folderName] 
+	return icon ? iconsBaseUrl + icon + '.png' : null;
+}
+
 function openFile(_path) {
 	if (_path === '') return;
 	if(_path.endsWith(".png") || _path.endsWith(".jpeg") || _path.endsWith(".bmp"))
@@ -797,60 +830,7 @@ function openFile(_path) {
 				console.log(error);
 			}
 		}
-		switch(rel.split("\\")[1]) {
-			case "items":
-				favicon_path = "images/folder/item.png";
-				break;
-			case "blocks":
-				favicon_path = "images/folder/blocks.png";
-				break;
-			case "entity":
-			case "entities":
-				favicon_path = "images/folder/entity.png";
-				break;
-			case "functions":
-				favicon_path = "images/folder/commands.png";
-				break;
-			case "texts":
-				favicon_path = "images/folder/book.png";
-				break;
-			case "loot_tables":
-				favicon_path = "images/folder/chest.png";
-				break;
-			case "biomes":
-				favicon_path = "images/folder/biome.png";
-				break;
-			case "scripts":
-				favicon_path = "images/folder/script.png"
-				break;
-			case "trading":
-				favicon_path = "images/folder/trading.png"
-				break;
-			case "spawn_rules":
-				favicon_path = "images/folder/spawn_rules.png"
-				break;
-			case "recipes":
-				favicon_path = "images/folder/recipe.png"
-				break;
-			case "animations":
-				break;
-			case "animation_controllers":
-				break;
-			case "attachables":
-				break;
-			case "models":
-				break;
-			case "particles":
-				break;
-			case "render_controllers":
-				break;
-			case "sounds":
-				break;
-			case "textures":
-				break;
-			case "particles":
-				break;
-		}
+		favicon_path = getFolderIconPath(rel.split("\\")[1]) || favicon_path;
 		
 			chromeTabs.addTab({
 				title: filename,
@@ -977,61 +957,7 @@ function generateFileItemEl(name, path) {
 	} else {
 		var img = 'images/025-files-and-folders.png';
 		if (fs.lstatSync(path).isDirectory()) {
-			img = folderIcon;
-			switch(p) {
-				case "\\items":
-					img = "images/folder/item.png";
-					break;
-				case "\\blocks":
-					img = "images/folder/blocks.png";
-					break;
-				case "\\entity":
-				case "\\entities":
-					img = "images/folder/entity.png";
-					break;
-				case "\\functions":
-					img = "images/folder/commands.png";
-					break;
-				case "\\texts":
-					img = "images/folder/book.png";
-					break;
-				case "\\loot_tables":
-					img = "images/folder/chest.png";
-					break;
-				case "\\biomes":
-					img = "images/folder/biome.png";
-					break;
-				case "\\scripts":
-					img = "images/folder/script.png"
-					break;
-				case "\\trading":
-					img = "images/folder/trading.png"
-					break;
-				case "\\spawn_rules":
-					img = "images/folder/spawn_rules.png"
-					break;
-				case "\\recipes":
-					img = "images/folder/recipe.png"
-					break;
-				case "\\animations":
-					break;
-				case "\\animation_controllers":
-					break;
-				case "\\attachables":
-					break;
-				case "\\models":
-					break;
-				case "\\particles":
-					break;
-				case "\\render_controllers":
-					break;
-				case "\\sounds":
-					break;
-				case "\\textures":
-					break;
-				case "\\particles":
-					break;
-			}
+			img = getFolderIconPath(p.slice(1)) || folderIcon;
 			var val = `
             <div class="flex-hor filebrowseritem" data-path="` + path + `" onclick=\'goInFolder("` + escape(name) + `"); regenerateTree();\'"\>
                 <img src="` + img + `"/>
