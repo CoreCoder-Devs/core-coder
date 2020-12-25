@@ -1036,17 +1036,25 @@ function getIcon(path) {
 	return img;
 }
 
-function search() {
-	document.getElementById("res").innerHTML = ""
-	for(const item of docs.search(document.getElementById("input").value)) {
-		document.getElementById("res").innerHTML += `<div class="docitem"><l class="doctag">${item.type}</l>
-		<h4 class="doctitle">${item.entry}</h4><p class="doctext">${item.docs}</p></div><br>`
+async function search() {
+	document.getElementById("res").innerHTML = "";
+	var list = [];
+	var result = ``;
+	await docs.searchAsync(document.getElementById("input").value).then(
+		function(value){ list = value; }, // succesful
+		function(value){} // rejected 
+	);
+	for(const item of list) {
+		let val = await `<div class="docitem"><l class="doctag">${item.type}</l>
+		<h4 class="doctitle">${item.entry}</h4><p class="doctext">${item.docs}</p></div><br>`;
+		result += val;
 		// Query object format:
 		// {
 		//     entry: name/function/query
 		//     docs: the description or documentation
 		// }
 	}
+	document.getElementById("res").innerHTML = result;
 }
 
 function regenerateTree() {
