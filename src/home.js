@@ -471,11 +471,11 @@ function openCreateDlg() {
     const dlg = new dialogue.dialogue()
     .setTitle(translations['manager.createnew.title'])
     .addHTML(`<a>${translations['manager.createnew.packname']}</a>
-    <input id="input-create-name" class="textinput" type="text" placeholder=${translations['manager.createnew.packname']}>`)
+    <input id="input-create-name" class="textinput" type="text">`)
     .addHTML(`<a>${translations['manager.createnew.packdesc']}</a>
-    <input id="input-create-desc" class="textinput" type="text" placeholder=${translations['manager.createnew.packdesc']}>`)
+    <input id="input-create-desc" class="textinput" type="text">`)
     .addHTML(`<a>${translations['manager.createnew.packuuid']}</a>
-    <input id="input-create-uuid" class="textinput" type="text" placeholder=${translations['manager.createnew.packuuid']}>`)
+    <input id="input-create-uuid" class="textinput" type="text">`)
     .show()
     dlg.addHTML(`<a data-translation="manager.createnew.withres">With Resource Pack</a>
     <label class="switch">
