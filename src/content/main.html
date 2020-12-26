@@ -187,9 +187,13 @@
                                     items_source[id].data.webview.style.width = "100%";
                                 }
                             }
+                            let stateText
+                            if(chromeTabs.activeTabEl.children[2].children[1].innerText == "Web Browser") {
+                                stateText = ""
+                            }
                             ipcRenderer.send('discord-activity-change', {
                                 details: `${project_info.bp_name}`,
-                                state: `Editing ${chromeTabs.activeTabEl.children[2].children[1].innerText}`,
+                                state: `${chromeTabs.activeTabEl.children[2].children[1].innerText}`,
                             })
                         });
                         
