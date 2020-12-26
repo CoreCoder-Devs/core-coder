@@ -35,9 +35,9 @@ module.exports = {
              */
             this.settingsPath = this.appFolder + "/settings.json";
             /**
-             * The settings object
+             * This is default uierhgpiuoagoiaer
              */
-            this.global = {
+            const defaultSettings = {
                 // General
                 fullscreen : false,
                 
@@ -59,9 +59,11 @@ module.exports = {
                     var_iconColorActive: this.rgb(255, 255, 255)
                 },
                 lang: "en",
-                langCaption: "English"
+                
+                searchEngine: "https://google.com/search?q=%s",
+                searchEngineName: "Google"
             }
-            let result = this.global;
+            let result = defaultSettings;
             if(_fs.existsSync(this.settingsPath)){
                 try{
                     result = JSON.parse(_fs.readFileSync(this.settingsPath));
@@ -72,9 +74,9 @@ module.exports = {
                 this.saveSettings();
             }
             /**
-             * I dont know
+             * Settings
              */
-            this.GlobalSettings = Object.assign(this.global,result);
+            this.GlobalSettings = Object.assign(defaultSettings,result);
             this.initGlobalTheme();
             this.translations = require(`./content/texts/${this.lang}.json`)
             this.localizeInterface()
@@ -132,7 +134,7 @@ module.exports = {
          * Returns the area code of the language set by the user
          */
         get lang() {
-            return this.global.lang
+            return this.GlobalSettings.lang
         }
     },
 }
