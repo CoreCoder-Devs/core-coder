@@ -1369,15 +1369,13 @@ function init() {
 		 '(\\#[-a-z\\d_]*)?$','img')
 		 console.log(input.value)
 		 if(urlRegex.test(input.value) == true) {
-				console.log('[BROWSER] is url')
 				if(!(input.value.startsWith("https://") || input.value.startsWith("file://") || input.value.startsWith("http://"))) {
 					input.value = "https://" + input.value
 				}
 				items_source[chromeTabs.activeTabEl.id].data.webview.src = input.value;
 			}
 			else {
-				console.log('[BROWSER] is not url')
-				items_source[chromeTabs.activeTabEl.id].data.webview.src = "https://www.google.com/search?q=" + encodeURI(input.value)
+				items_source[chromeTabs.activeTabEl.id].data.webview.src = settings.GlobalSettings.searchEngine.replace('%s',encodeURI(input.value))
 			}
 			  
 			//items_source[chromeTabs.activeTabEl.id].data.webview.reload();
