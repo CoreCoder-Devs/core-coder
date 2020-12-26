@@ -646,7 +646,10 @@ function init() {
     //discord rich presence home screen
     ipcRenderer.send('discord-activity-change', {
         details: `In home screen`
-      })
+    })
+
+    //h
+    setSearchEngine(settings.GlobalSettings.searchEngine, settings.GlobalSettings.searchEngineName)
 }
 
 // Project generation process
@@ -1084,6 +1087,14 @@ function setLanguage(langname, caption, reload){
     if(reload) {
         location.reload()
     }
+}
+
+function setSearchEngine(uri, caption) {
+    settings.GlobalSettings.searchEngine = uri
+    settings.GlobalSettings.searchEngineName = caption
+
+    document.getElementById("dropdownsearche").innerText = caption;
+    settings.saveSettings()
 }
 
 function toggleFullscreen(bool) {

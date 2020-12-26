@@ -117,7 +117,6 @@
                                     function displayLangDropdown() {
                                         document.getElementById("langDropDown").classList.toggle("show");
                                     }
-
                                     // Close the dropdown menu if the user clicks outside of it
                                     window.onclick = function (event) {
                                         if (!event.target.matches(".dropbtn")) {
@@ -131,6 +130,25 @@
                                             }
                                         }
                                     };
+                                </script>
+                            </div>
+                            <div class="settingsitem">
+                                <h3 data-translation="manager.settings.searchEngine">Search Engine</h3>
+                                <div class="dropdown">
+                                    <button class="dropbtn" id="dropdownsearche">Google</button>
+                                    <div id="searchEngineDropDown" class="dropdown-content">
+                                        <a onclick="setSearchEngine('https:/\/google.com/search?q=%s', 'Google')">Google</a>
+                                        <a onclick="setSearchEngine('https:/\/www.bing.com/search?q=%s', 'Bing')">Bing</a>
+                                        <a onclick="setSearchEngine('https:/\/duckduckgo.com/?q=%s', 'DuckDuckGO')">DuckDuckGo</a>
+                                        <a onclick="setSearchEngine('https:/\/www.baidu.com/s?wd=%s', 'Baidu')">Baidu</a>
+                                    </div>
+                                </div>
+                                <script>
+                                    /* When the user clicks on the button,
+										toggle between hiding and showing the dropdown content */
+                                    document.getElementById('dropdownsearche').onclick = () => {
+                                        document.getElementById("searchEngineDropDown").classList.toggle("show");
+                                    }
                                 </script>
                             </div>
                         </div>
