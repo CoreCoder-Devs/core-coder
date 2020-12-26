@@ -13,6 +13,7 @@ const docs = require("../util/documentation.js");
 const { shell } = require('electron').remote;
 const dialogue = require('../util/dialogue')
 const unhandled = require('electron-unhandled')
+const { ipcRenderer } = require('electron')
 
 unhandled({ 
   logger: (err) => { 
@@ -1432,6 +1433,9 @@ function init() {
 		}
 	});
 	initAce();
+	ipcRenderer.send('discord-activity-change', {
+		details: `${project_info.bp_name}`
+	  })
 }
 
 function initAce(){

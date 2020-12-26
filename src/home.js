@@ -14,6 +14,7 @@ let translations = require(`./content/texts/${settings.lang}.json`);
 const { shell } = require('electron').remote;
 const dialogue = require('./util/dialogue')
 const unhandled = require('electron-unhandled')
+const { ipcRenderer } = require('electron')
 
 unhandled({ 
   logger: (err) => { 
@@ -641,6 +642,11 @@ function init() {
         document.getElementById('themeChooser')
         .append(node)
     }
+
+    //discord rich presence home screen
+    ipcRenderer.send('discord-activity-change', {
+        details: `In home screen`
+      })
 }
 
 // Project generation process

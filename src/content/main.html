@@ -168,7 +168,7 @@
 
                         chromeTabs.init(el);
 
-                        el.addEventListener("activeTabChange", function (elm) {
+                        el.addEventListener("activeTabChange", (elm) => {
                             if (elm.detail.tabEl === undefined) return;
                             var id = elm.detail.tabEl.id;
                             document.querySelectorAll("webview").forEach((elm) => {
@@ -187,8 +187,12 @@
                                     items_source[id].data.webview.style.width = "100%";
                                 }
                             }
+                            ipcRenderer.send('discord-activity-change', {
+                                details: `${project_info.bp_name}`,
+                                state: `Editing ${chromeTabs.activeTabEl.children[2].children[1].innerText}`,
+                            })
                         });
-
+                        
                         el.addEventListener("tabRemove", function (elm) {
                             var id = elm.detail.tabEl.id;
                             if (id != "") {
@@ -207,6 +211,11 @@
                                     }
                                 }
                                 chromeTabs.removeTab(elm.detail.tabEl);
+                            }
+                            if(!chromeTabs.activeTabEl) {
+                                ipcRenderer.send('discord-activity-change', {
+                                details: `${project_info.bp_name}`
+                            })
                             }
                         });
                         var ctrlPressed = false;
