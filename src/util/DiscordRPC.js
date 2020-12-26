@@ -4,7 +4,7 @@ const client = new RPC.Client({ transport: 'ipc' });
 client.on('ready', () => {
     const startTimestamp = new Date();
       client.setActivity({
-      details: `Making an Add-on`,
+      details: 'In home screen',
       startTimestamp,
       largeImageKey: 'icon',
     });
@@ -13,7 +13,7 @@ client.on('ready', () => {
 client.login({clientId: '774605779952468022'}).catch(e => {})
 
 module.exports = {
-    setActivity = (act) => {
+    setActivity(act) {
       client.setActivity(act)
     }
 }
