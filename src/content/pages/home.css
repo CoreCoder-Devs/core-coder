@@ -1,53 +1,69 @@
 :root{
     --var_default_bg: rgb(34, 34, 34);
+    --var_backgroundColor : rgb(29, 29, 29);
+	--var_backgroundColorDarker : rgb(19, 19, 19);
+	--var_backgroundColorLighter : rgb(39, 39, 39);
+
+	--var_textColor: white;
+	--var_textColorDarker : rgb(175, 175, 175);
+
+	--var_colorAccent : rgb(0, 158, 124);
+	--var_colorAccentDarker : rgb(5, 126, 110);
+	--var_colorAccentLighter : rgb(10, 185, 147);
+	--var_sidebarColor: rgb(44, 44, 44);
+	--var_iconColor: rgb(168, 164, 164);
+	--var_iconColorActive: rgb(255, 255, 255);
 }
-html, body {
-    margin: 0;
-    height: 99%;
+
+.center_container_parent_thing{
+    justify-content: center;
+    text-align: center;
+    margin-top: 15%;
 }
+
 .center_container{
-    display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
 
 body {
-    background-color: var(--var_default_bg);
-    width: 100%;
+    background-color: var(--var_backgroundColor);
+    color: var(--var_textColor);
+    align-items: center;
+}
+
+html, body {
+    margin: 0;
     height: 100%;
 }
 
-
 .card {
-    width: 128px;
-    height: 150px;
-    background-color: rgba(29, 28, 28, 0.74);
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 16px;
+    width: 150px;
+    height: 69px;
+    background-color: var(--var_colorAccent);
+    margin: 4px;
     border-radius: 4px;
     cursor: pointer;
     margin-bottom: 0;
     transition: all .3s;
 }
 .card img{
-    width: 48px;
-    height: 48px;
-    margin-left: 40px;
-    margin-top: 32px;
-    padding: auto;
+    width: 16px;
+    height: 16px;
+    margin: 0 auto;
+    margin-top: 10%;
+    text-align: center;
     -webkit-user-drag: none;
 }
 .card:hover{
-    background-color: rgba(49, 49, 49, 0.418);
-    margin-bottom: 8px;
+    background-color: var(--var_colorAccentLighter);
 }
 
-.card h1 {
-    font-size: 12pt;
+.card h5 {
+    margin-block-start: 0;
     user-select: none;
     text-align: center;
-    width: 90%;
-    margin-left: 5%;
 }

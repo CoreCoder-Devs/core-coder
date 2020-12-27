@@ -1485,7 +1485,7 @@ function initWebView(webview, image) {
 			else if(msg == "zoomout"){
 				browserZoom('out');
 			}
-		}else console.log('WebBrowser:', e.message)
+		}else console.log('[WEB BROWSER]' + e.message + "\n" + e.stack)
 	});
 	webview.addEventListener('dom-ready', function(e) {
 		// Set the user agent to prevent errors
