@@ -1,6 +1,7 @@
 // Global settings which will be used in all files
 const os = require('os')
 const _fs = require("fs");
+const path = require('path')
 
 module.exports = {
     settings: new class settings {
